@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tugas Pertemuan 2</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .container {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            padding: 20px;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+        }
+
+        h1 {
+            margin-top: 15px;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border-left: 4px solid #f97316;
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .question-box {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .question {
+            font-weight: bold;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            display: block;
+            background: #f8fafc;
+            border: 1px solid #ddd;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .option input {
+            margin-right: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            resize: vertical;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            background: #1f2937;
+            color: white;
+            padding: 15px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .success {
+            display: none;
+            text-align: center;
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            line-height: 1.7;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background: #1f2937;
+            color: white;
+            padding: 14px;
+            border-radius: 9px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+<style id="fifi-theme-embedded">
+:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
+body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
+.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
+</style></head>
+
+<body>
+<section class="fifi-hero fifi-hero--tasks" aria-label="Ilustrasi tugas pembelajaran"><div class="fifi-hero-copy"><span class="fifi-hero-title">TUGAS PEMBELAJARAN PERTEMUAN 2</span><p>Kerjakan dengan teliti dan periksa kembali jawabanmu.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">✏️</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">✓</span></div></section>
+
+<div class="container">
+
+    <a href="pertemuan2.html" class="back">
+        ← Kembali ke Pertemuan 2
+    </a>
+
+    <h1>Tugas Pertemuan 2</h1>
+
+    <p class="subtitle">
+        Penjumlahan Matriks
+    </p>
+
+
+    <div class="info">
+
+        <strong>Mata Pelajaran:</strong> Matematika<br>
+
+        <strong>Kelas:</strong> XI SMA<br>
+
+        <strong>Pertemuan:</strong> 2<br>
+
+        <strong>Jumlah Soal:</strong> 10 soal
+
+    </div>
+
+
+    <div class="warning">
+
+        ⚠️ <strong>Perhatian</strong><br>
+
+        Kerjakan semua soal dengan teliti.
+        Setelah tugas dikumpulkan, jawaban tidak akan
+        ditampilkan kembali.
+
+    </div>
+
+
+    <form id="tugasForm">
+
+
+        <!-- SOAL 1 -->
+
+        <div class="question-box">
+
+            <div class="question">
+
+                1.Syarat agar dua buah matriks dapat dijumlahkan adalah...
+
+            </div>
+
+            <label class="option">
+                <input type="radio" name="soal1" value="A">
+                A. Jumlah elemennya harus ganjil
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal1" value="B">
+                B.  Kedua matriks harus memiliki ordo yang sama
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal1" value="C">
+                C. Angka di dalamnya harus bernilai positif
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal1" value="D">
+                D.  Salah satu matriks harus berupa matriks persegi
+            </label>
+
+        </div>
+
+
+        <!-- SOAL 2 -->
+
+        <div class="question-box">
+
+            <div class="question">
+
+                2. Jika matriks A berordo 2 x 3 dan matriks B berordo 2 x 3, maka hasil penjumlahan matriks (A + B) akan menghasilkan matriks berordo... 
+
+            </div>
+
+            <label class="option">
+                <input type="radio" name="soal2" value="A">
+                A. 4 x 6
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal2" value="B">
+                B. 2 x 2
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal2" value="C">
+                C. 2 x 3
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal2" value="D">
+                D. 3 x 2s
+            </label>
+
+        </div>
+
+
+        <!-- SOAL 3 -->
+
+        <style>
+
+/* =====================================================
+   SOAL NOMOR 3
+   ===================================================== */
+
+.soal3 {
+    font-family: Arial, sans-serif;
+}
+
+
+/* Judul soal tetap BOLD */
+.soal3 .judul-soal {
+    font-size: 16px;
+    font-weight: bold !important;
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   BAGIAN PERTANYAAN
+   ===================================================== */
+
+.soal3 .pertanyaan-matriks {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-bottom: 22px;
+
+    font-size: 17px;
+    font-weight: 400 !important;
+}
+
+
+/* =====================================================
+   MATRIKS
+   Bentuknya seperti matriks pada SOAL NO. 1
+   ===================================================== */
+
+.soal3 .matrix {
+    display: inline-flex;
+    align-items: stretch;
+
+    height: 70px;
+
+    font-size: 18px;
+    font-weight: 400 !important;
+}
+
+
+/* Isi angka matriks */
+.soal3 .matrix-isi {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    min-width: 32px;
+
+    padding: 3px 5px;
+
+    text-align: center;
+
+    font-size: 18px;
+    font-weight: 400 !important;
+}
+
+
+/* =====================================================
+   KURUNG KIRI [ 
+   ===================================================== */
+
+.soal3 .kurung-kiri {
+    position: relative;
+
+    width: 12px;
+
+    border-left: 2px solid #000;
+}
+
+
+/* garis pendek atas */
+.soal3 .kurung-kiri::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 7px;
+
+    border-top: 2px solid #000;
+}
+
+
+/* garis pendek bawah */
+.soal3 .kurung-kiri::after {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 7px;
+
+    border-bottom: 2px solid #000;
+}
+
+
+/* =====================================================
+   KURUNG KANAN ]
+   ===================================================== */
+
+.soal3 .kurung-kanan {
+    position: relative;
+
+    width: 12px;
+
+    border-right: 2px solid #000;
+}
+
+
+/* garis pendek atas */
+.soal3 .kurung-kanan::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 7px;
+
+    border-top: 2px solid #000;
+}
+
+
+/* garis pendek bawah */
+.soal3 .kurung-kanan::after {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    width: 7px;
+
+    border-bottom: 2px solid #000;
+}
+
+
+/* =====================================================
+   TANDA +
+   ===================================================== */
+
+.soal3 .tanda-plus {
+    font-size: 17px;
+    font-weight: 400 !important;
+}
+
+
+/* =====================================================
+   PILIHAN JAWABAN
+   ===================================================== */
+
+/*
+   INI YANG MEMASTIKAN A B C D TIDAK BOLD
+*/
+
+.soal3 .pilihan,
+.soal3 .pilihan *,
+.soal3 .pilihan span,
+.soal3 .pilihan label {
+    font-family: Arial, sans-serif !important;
+    font-weight: 400 !important;
+}
+
+
+/* Kotak pilihan */
+.soal3 .pilihan {
+    display: flex;
+    align-items: center;
+
+    min-height: 64px;
+
+    padding: 8px 12px;
+
+    margin-bottom: 10px;
+
+    box-sizing: border-box;
+
+    background-color: #f8f9fa;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* Radio button */
+.soal3 .pilihan input[type="radio"] {
+    width: 16px;
+    height: 16px;
+
+    margin-right: 10px;
+
+    flex-shrink: 0;
+}
+
+
+/* Huruf A B C D */
+.soal3 .huruf-jawaban {
+    display: inline-block;
+
+    margin-right: 5px;
+
+    font-size: 15px;
+
+    font-weight: 400 !important;
+}
+
+
+/* Matriks di pilihan jawaban */
+.soal3 .matrix-jawaban {
+    height: 52px;
+
+    font-size: 16px;
+
+    font-weight: 400 !important;
+}
+
+
+.soal3 .matrix-jawaban .matrix-isi {
+    min-width: 25px;
+
+    font-size: 16px;
+
+    font-weight: 400 !important;
+}
+
+
+.soal3 .matrix-jawaban .kurung-kiri,
+.soal3 .matrix-jawaban .kurung-kanan {
+    width: 9px;
+}
+
+</style>
+
+
+<!-- =====================================================
+     SOAL NOMOR 3
+     ===================================================== -->
+
+<div class="question-box soal3">
+
+    <!-- JUDUL -->
+    <div class="judul-soal">
+        3. Hasil dari penjumlahan matriks
+    </div>
+
+
+    <!-- =================================================
+         PERTANYAAN
+         ================================================= -->
+
+    <div class="pertanyaan-matriks">
+
+
+        <!-- MATRIKS PERTAMA -->
+
+        <div class="matrix">
+
+            <div class="kurung-kiri"></div>
+
+            <div class="matrix-isi">
+                <span>2</span>
+                <span>5</span>
+            </div>
+
+            <div class="kurung-kanan"></div>
+
+        </div>
+
+
+        <!-- PLUS -->
+
+        <span class="tanda-plus">+</span>
+
+
+        <!-- MATRIKS KEDUA -->
+
+        <div class="matrix">
+
+            <div class="kurung-kiri"></div>
+
+            <div class="matrix-isi">
+                <span>3</span>
+                <span>1</span>
+            </div>
+
+            <div class="kurung-kanan"></div>
+
+        </div>
+
+
+        <!-- TEKS -->
+
+        <span>adalah...</span>
+
+    </div>
+
+
+
+    <!-- =================================================
+         JAWABAN A
+         ================================================= -->
+
+    <label class="pilihan">
+
+        <input type="radio" name="soal3" value="A">
+
+        <span class="huruf-jawaban">A.</span>
+
+        <div class="matrix matrix-jawaban">
+
+            <div class="kurung-kiri"></div>
+
+            <div class="matrix-isi">
+                <span>6</span>
+                <span>5</span>
+            </div>
+
+            <div class="kurung-kanan"></div>
+
+        </div>
+
+    </label>
+
+
+
+    <!-- =================================================
+         JAWABAN B
+         ================================================= -->
+
+    <label class="pilihan">
+
+        <input type="radio" name="soal3" value="B">
+
+        <span class="huruf-jawaban">B.</span>
+
+        <div class="matrix matrix-jawaban">
+
+            <div class="kurung-kiri"></div>
+
+            <div class="matrix-isi">
+                <span>5</span>
+                <span>4</span>
+            </div>
+
+            <div class="kurung-kanan"></div>
+
+        </div>
+
+    </label>
+
+
+
+    <!-- =================================================
+         JAWABAN C
+         ================================================= -->
+
+    <label class="pilihan">
+
+        <input type="radio" name="soal3" value="C">
+
+        <span class="huruf-jawaban">C.</span>
+
+        <div class="matrix matrix-jawaban">
+
+            <div class="kurung-kiri"></div>
+
+            <div class="matrix-isi">
+                <span>1</span>
+                <span>4</span>
+            </div>
+
+            <div class="kurung-kanan"></div>
+
+        </div>
+
+    </label>
+
+
+
+    <!-- =================================================
+         JAWABAN D
+         ================================================= -->
+
+    <label class="pilihan">
+
+        <input type="radio" name="soal3" value="D">
+
+        <span class="huruf-jawaban">D.</span>
+
+        <div class="matrix matrix-jawaban">
+
+            <div class="kurung-kiri"></div>
+
+            <div class="matrix-isi">
+                <span>5</span>
+                <span>6</span>
+            </div>
+
+            <div class="kurung-kanan"></div>
+
+        </div>
+
+    </label>
+
+</div>    
+
+
+        <!-- SOAL 4 -->
+
+        <!-- SOAL 4 -->
+<div style="
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+">
+
+    <!-- PERTANYAAN -->
+    <div style="
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 18px;
+    ">
+        4. Diketahui
+    </div>
+
+
+    <!-- P = MATRIKS DAN Q = MATRIKS -->
+    <div style="
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        flex-wrap: wrap;
+    ">
+
+        <!-- P = -->
+        <span>P =</span>
+
+        <!-- MATRIKS P -->
+        <table style="
+            border-collapse: collapse;
+            font-size: 17px;
+            font-weight: bold;
+        ">
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 8px;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 2px 8px;
+                ">
+                    4
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 8px;
+                "></td>
+            </tr>
+
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 2px 8px;
+                ">
+                    1
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+            </tr>
+        </table>
+
+
+        <!-- DAN -->
+        <span>dan</span>
+
+
+        <!-- Q = -->
+        <span>Q =</span>
+
+
+        <!-- MATRIKS Q -->
+        <table style="
+            border-collapse: collapse;
+            font-size: 17px;
+            font-weight: bold;
+        ">
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 8px;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 2px 8px;
+                ">
+                    2
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 8px;
+                "></td>
+            </tr>
+
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 2px 8px;
+                ">
+                    7
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+            </tr>
+        </table>
+
+
+        <!-- KETERANGAN -->
+        <span>
+            . Hasil dari P + Q adalah...
+        </span>
+
+    </div>
+
+
+    <!-- =========================
+         JAWABAN A
+         ========================= -->
+
+    <label style="
+        display: flex;
+        align-items: center;
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-weight: normal;
+        cursor: pointer;
+    ">
+
+        <input
+            type="radio"
+            name="soal4"
+            value="A"
+            style="margin-right: 10px;"
+        >
+
+        <span style="font-weight: normal;">
+            A.
+        </span>
+
+        <!-- MATRIKS JAWABAN -->
+        <table style="
+            border-collapse: collapse;
+            margin-left: 5px;
+            font-size: 16px;
+            font-weight: normal;
+        ">
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 7px;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: normal;
+                ">
+                    6
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 7px;
+                "></td>
+            </tr>
+
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: normal;
+                ">
+                    8
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+            </tr>
+        </table>
+
+    </label>
+
+
+    <!-- =========================
+     JAWABAN B
+     ========================= -->
+
+<label style="
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    cursor: pointer;
+">
+
+    <input
+        type="radio"
+        name="soal4"
+        value="B"
+        style="margin-right: 10px;"
+    >
+
+    <span style="font-weight: normal;">
+        B.
+    </span>
+
+    <!-- MATRIKS JAWABAN B -->
+    <table style="
+        border-collapse: collapse;
+        margin-left: 5px;
+        font-size: 16px;
+        font-weight: normal;
+    ">
+        <tr>
+            <td style="
+                border-left: 2px solid black;
+                border-top: 2px solid black;
+                width: 7px;
+            "></td>
+
+            <td style="
+                text-align: center;
+                padding: 1px 7px;
+                font-weight: normal;
+            ">
+                8
+            </td>
+
+            <td style="
+                border-right: 2px solid black;
+                border-top: 2px solid black;
+                width: 7px;
+            "></td>
+        </tr>
+
+        <tr>
+            <td style="
+                border-left: 2px solid black;
+                border-bottom: 2px solid black;
+                width: 7px;
+            "></td>
+
+            <td style="
+                text-align: center;
+                padding: 1px 7px;
+                font-weight: normal;
+            ">
+                7
+            </td>
+
+            <td style="
+                border-right: 2px solid black;
+                border-bottom: 2px solid black;
+                width: 7px;
+            "></td>
+        </tr>
+    </table>
+
+</label>
+
+
+<!-- =========================
+     JAWABAN C
+     ========================= -->
+
+<label style="
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    cursor: pointer;
+">
+
+    <input
+        type="radio"
+        name="soal4"
+        value="C"
+        style="margin-right: 10px;"
+    >
+
+    <span style="font-weight: normal;">
+        C.
+    </span>
+
+    <!-- MATRIKS JAWABAN C -->
+    <table style="
+        border-collapse: collapse;
+        margin-left: 5px;
+        font-size: 16px;
+        font-weight: normal;
+    ">
+        <tr>
+            <td style="
+                border-left: 2px solid black;
+                border-top: 2px solid black;
+                width: 7px;
+            "></td>
+
+            <td style="
+                text-align: center;
+                padding: 1px 7px;
+                font-weight: normal;
+            ">
+                6
+            </td>
+
+            <td style="
+                border-right: 2px solid black;
+                border-top: 2px solid black;
+                width: 7px;
+            "></td>
+        </tr>
+
+        <tr>
+            <td style="
+                border-left: 2px solid black;
+                border-bottom: 2px solid black;
+                width: 7px;
+            "></td>
+
+            <td style="
+                text-align: center;
+                padding: 1px 7px;
+                font-weight: normal;
+            ">
+                7
+            </td>
+
+            <td style="
+                border-right: 2px solid black;
+                border-bottom: 2px solid black;
+                width: 7px;
+            "></td>
+        </tr>
+    </table>
+
+</label>
+
+
+<!-- =========================
+     JAWABAN D
+     ========================= -->
+
+<label style="
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 0;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    cursor: pointer;
+">
+
+    <input
+        type="radio"
+        name="soal4"
+        value="D"
+        style="margin-right: 10px;"
+    >
+
+    <span style="font-weight: normal;">
+        D.
+    </span>
+
+    <!-- MATRIKS JAWABAN D -->
+    <table style="
+        border-collapse: collapse;
+        margin-left: 5px;
+        font-size: 16px;
+        font-weight: normal;
+    ">
+        <tr>
+            <td style="
+                border-left: 2px solid black;
+                border-top: 2px solid black;
+                width: 7px;
+            "></td>
+
+            <td style="
+                text-align: center;
+                padding: 1px 7px;
+                font-weight: normal;
+            ">
+                2
+            </td>
+
+            <td style="
+                border-right: 2px solid black;
+                border-top: 2px solid black;
+                width: 7px;
+            "></td>
+        </tr>
+
+        <tr>
+            <td style="
+                border-left: 2px solid black;
+                border-bottom: 2px solid black;
+                width: 7px;
+            "></td>
+
+            <td style="
+                text-align: center;
+                padding: 1px 7px;
+                font-weight: normal;
+            ">
+                6
+            </td>
+
+            <td style="
+                border-right: 2px solid black;
+                border-bottom: 2px solid black;
+                width: 7px;
+            "></td>
+        </tr>
+    </table>
+
+</label>
+</div>
+
+        <!-- SOAL 5 -->
+
+        <!-- SOAL 5 -->
+<div style="
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+">
+
+    <!-- JUDUL SOAL -->
+    <div style="
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 18px;
+    ">
+        5. Perhatikan penjumlahan berikut:<!-- PERTANYAAN -->
+
+    <div style="
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 2.0;
+    ">
+
+
+        <!-- MATRIKS 1 -->
+        <table style="
+            display: inline-table;
+            vertical-align: middle;
+            border-collapse: collapse;
+            margin: 0 5px;
+            font-size: 16px;
+            font-weight: bold;
+        ">
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 7px;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: bold;
+                ">
+                    1
+                </td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: bold;
+                ">
+                    3
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 7px;
+                "></td>
+            </tr>
+
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: bold;
+                ">
+                    2
+                </td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: bold;
+                ">
+                    4
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+            </tr>
+        </table>
+
+
+        <!-- TANDA + -->
+        <span style="
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0 5px;
+        ">
+            +
+        </span>
+
+
+        <!-- MATRIKS 2 -->
+        <table style="
+            display: inline-table;
+            vertical-align: middle;
+            border-collapse: collapse;
+            margin: 0 5px;
+            font-size: 16px;
+            font-weight: bold;
+        ">
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 7px;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: bold;
+                ">
+                    5
+                </td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: bold;
+                ">
+                    0
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-top: 2px solid black;
+                    width: 7px;
+                "></td>
+            </tr>
+
+            <tr>
+                <td style="
+                    border-left: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: bold;
+                ">
+                    1
+                </td>
+
+                <td style="
+                    text-align: center;
+                    padding: 1px 7px;
+                    font-weight: bold;
+                ">
+                    2
+                </td>
+
+                <td style="
+                    border-right: 2px solid black;
+                    border-bottom: 2px solid black;
+                "></td>
+            </tr>
+        </table>
+
+
+        <!-- PERTANYAAN AKHIR -->
+        <span style="font-weight: bold;">
+            . Elemen pada baris pertama kolom pertama dari matriks hasilnya adalah...
+        </span>
+
+    </div>
+
+</div>
+
+            <label class="option">
+                <input type="radio" name="soal5" value="A">
+                A. 3
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal5" value="B">
+                B. 4
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal5" value="C">
+                C. 6
+            </label>
+
+            <label class="option">
+                <input type="radio" name="soal5" value="D">
+                D. 5
+            </label>
+
+        </div>
+
+
+        <!-- ESSAY 6 -->
+
+        <div class="quiz-container" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 16px; padding: 30px; max-width: 650px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); font-family: sans-serif; font-size: 16px; color: #000; margin-top: 20px; margin-bottom: 30px;">
+    
+    <!-- Bagian Pertanyaan Soal 6 (Semua teks dijamin tebal) -->
+    <div style="font-size: 17px; color: #000; margin-top: 0; margin-bottom: 25px; font-weight: bold; line-height: 1.8;">
+        
+        <p style="margin-top: 0; margin-bottom: 15px; font-weight: bold;">6. Apakah matriks</p>
+        
+        <!-- Baris Khusus M = dan Matriksnya (Terkunci Bersama, Tidak Akan Terpisah) -->
+        <div style="margin: 15px 0; padding-left: 20px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; font-weight: bold;">
+                <span style="font-weight: bold; font-size: 18px;">M =</span>
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px;">
+                        <tr>
+                            <td style="padding: 0 8px; font-weight: bold;">1</td>
+                            <td style="padding: 0 8px; font-weight: bold;">2</td>
+                        </tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <p style="margin: 15px 0; font-weight: bold;">dapat dijumlahkan dengan matriks</p>
+        
+        <!-- Baris Khusus N = dan Matriksnya (Terkunci Bersama, Ada Jarak Spasi yang Cukup) -->
+        <div style="margin: 15px 0; padding-left: 20px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; font-weight: bold;">
+                <span style="font-weight: bold; font-size: 18px;">N =</span>
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px;">
+                        <tr><td style="padding: 4px 6px; font-weight: bold;">3</td></tr>
+                        <tr><td style="padding: 4px 6px; font-weight: bold;">4</td></tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <p style="margin-top: 15px; margin-bottom: 0; font-weight: bold;">? Jelaskan alasan singkatnya!</p>
+    </div>
+
+    <!-- Bagian Kotak Tempat Mengetik Jawaban -->
+    <div style="margin-top: 20px;">
+        <textarea style="width: 100%; height: 150px; border: 1px solid #cccccc; border-radius: 12px; padding: 15px; font-size: 16px; font-family: sans-serif; resize: vertical; box-sizing: border-box; outline: none; background-color: #ffffff;" placeholder="Tuliskan jawaban dan penjelasanmu di sini..."></textarea>
+    
+
+
+
+            </div>
+
+        
+
+        </div>
+        
+
+
+        <!-- ESSAY 7 -->
+
+        <div class="quiz-container" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 16px; padding: 30px; max-width: 650px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); font-family: sans-serif; font-size: 16px; color: #000; margin-top: 20px; margin-bottom: 30px;">
+    
+    <!-- Bagian Pertanyaan Soal 7 (Semua teks dijamin tebal) -->
+    <div style="font-size: 17px; color: #000; margin-top: 0; margin-bottom: 25px; font-weight: bold; line-height: 1.8;">
+        
+        <p style="margin-top: 0; margin-bottom: 15px; font-weight: bold;">7. Tentukan hasil penjumlahan dari matriks berikut:</p>
+        
+        <!-- Baris Khusus Operasi Penjumlahan Matriks (Sejajar ke Samping dengan Rapi) -->
+        <div style="margin: 25px 0; padding-left: 20px;">
+            <div style="display: inline-flex; align-items: center; gap: 12px; font-weight: bold;">
+                
+                <!-- Matriks Pertama -->
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px; border-spacing: 12px 6px; display: table;">
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">7</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">2</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">4</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">5</td>
+                        </tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+
+                <!-- Tanda Tambah -->
+                <span style="font-size: 22px; font-weight: bold; padding: 0 5px;">+</span>
+
+                <!-- Matriks Kedua -->
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px; border-spacing: 12px 6px; display: table;">
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">1</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">3</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">0</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">2</td>
+                        </tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+
+            </div>
+        </div>
+        
+    
+    
+
+    <!-- Bagian Kotak Tempat Mengetik Jawaban (Sesuai Desain Soal 6) -->
+    <div style="margin-top: 20px;">
+        <textarea style="width: 100%; height: 150px; border: 1px solid #cccccc; border-radius: 12px; padding: 15px; font-size: 16px; font-family: sans-serif; resize: vertical; box-sizing: border-box; outline: none; background-color: #ffffff;" placeholder="Tuliskan jawaban dan penjelasanmu di sini..."></textarea>
+    </div>
+
+</div> <!-- Penutup kotak Soal 7 -->
+</div>
+
+<!-- ================= KOTAK SOAL 8 ================= -->
+ 
+<div class="quiz-container" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 16px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); font-family: sans-serif; font-size: 16px; color: #000; margin-top: 20px; margin-bottom: 20px;">
+    <div style="font-size: 17px; color: #000; font-weight: bold; line-height: 2.2; text-align: justify;">
+        <span style="font-weight: bold;">8. Jika diketahui matriks</span>
+        
+        <!-- Kelompok Matriks A -->
+        <div style="display: inline-flex; align-items: center; gap: 6px; font-weight: bold;">
+            <span style="font-weight: bold;">A =</span>
+            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 6px;">
+                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px;">
+                    <tr>
+                        <td style="padding: 0 8px; font-weight: bold;">10</td>
+                        <td style="padding: 0 8px; font-weight: bold;">8</td>
+                    </tr>
+                </table>
+                <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+            </div>
+        </div>
+        
+        <span style="font-weight: bold;">dan matriks</span>
+
+        <!-- Kelompok Matriks B -->
+        <div style="display: inline-flex; align-items: center; gap: 6px; font-weight: bold;">
+            <span style="font-weight: bold;">B =</span>
+            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 6px;">
+                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px;">
+                    <tr>
+                        <td style="padding: 0 8px; font-weight: bold;">5</td>
+                        <td style="padding: 0 8px; font-weight: bold;">-3</td>
+                    </tr>
+                </table>
+                <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+            </div>
+        </div>
+        
+        <span style="font-weight: bold;">, hitunglah nilai dari A + B!</span>
+    </div>
+    <div style="margin-top: 20px;">
+        <textarea style="width: 100%; height: 150px; border: 1px solid #cccccc; border-radius: 12px; padding: 15px; font-size: 16px; font-family: sans-serif; resize: vertical; box-sizing: border-box; outline: none; background-color: #ffffff;" placeholder="Tuliskan jawaban dan penjelasanmu di sini..."></textarea>
+    </div>
+</div>
+
+<!-- ================= KOTAK SOAL 9 ================= -->
+<div class="quiz-container" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 16px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); font-family: sans-serif; font-size: 16px; color: #000; margin-top: 20px; margin-bottom: 20px;">
+    <div style="font-size: 17px; color: #000; font-weight: bold; line-height: 1.8;">
+        <p style="margin-top: 0; margin-bottom: 20px; font-weight: bold;">9. Hitunglah hasil dari operasi penjumlahan matriks kolom berikut:</p>
+        <div style="margin: 20px 0; padding-left: 20px;">
+            <div style="display: inline-flex; align-items: center; gap: 12px; font-weight: bold;">
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px; border-spacing: 0 6px;">
+                        <tr><td style="padding: 2px 8px; font-weight: bold;">6</td></tr>
+                        <tr><td style="padding: 2px 8px; font-weight: bold;">9</td></tr>
+                        <tr><td style="padding: 2px 8px; font-weight: bold;">3</td></tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+                <span style="font-size: 22px; font-weight: bold;">+</span>
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px; border-spacing: 0 6px;">
+                        <tr><td style="padding: 2px 8px; font-weight: bold;">4</td></tr>
+                        <tr><td style="padding: 2px 8px; font-weight: bold;">1</td></tr>
+                        <tr><td style="padding: 2px 8px; font-weight: bold;">5</td></tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 20px;">
+        <textarea style="width: 100%; height: 150px; border: 1px solid #cccccc; border-radius: 12px; padding: 15px; font-size: 16px; font-family: sans-serif; resize: vertical; box-sizing: border-box; outline: none; background-color: #ffffff;" placeholder="Tuliskan jawaban dan penjelasanmu di sini..."></textarea>
+    </div>
+</div>
+
+<!-- ================= KOTAK SOAL 10 ================= -->
+<div class="quiz-container" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 16px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); font-family: sans-serif; font-size: 16px; color: #000; margin-top: 20px; margin-bottom: 20px;">
+    <div style="font-size: 17px; color: #000; font-weight: bold; line-height: 1.8;">
+        <p style="margin-top: 0; margin-bottom: 20px; font-weight: bold;">10. Diketahui penjumlahan matriks menghasilkan nilai sebagai berikut:</p>
+        <div style="margin: 25px 0; padding-left: 20px;">
+            <div style="display: inline-flex; align-items: center; gap: 12px; font-weight: bold;">
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px;">
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">2</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">4</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">1</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">3</td>
+                        </tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+                <span style="font-size: 22px; font-weight: bold;">+</span>
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px;">
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold; font-style: italic;">x</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">1</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">5</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">2</td>
+                        </tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+                <span style="font-size: 22px; font-weight: bold;">=</span>
+                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
+                    <table style="text-align: center; border-collapse: collapse; font-weight: bold; color: #000; font-size: 16px;">
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">7</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">5</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px 8px; font-weight: bold;">6</td>
+                            <td style="padding: 4px 8px; font-weight: bold;">5</td>
+                        </tr>
+                    </table>
+                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+
+
+        <button type="submit">
+            KUMPULKAN TUGAS
+        </button>
+
+    </form>
+
+
+    <div class="success" id="success">
+
+        <div style="font-size: 45px;">
+            ✅
+        </div>
+
+        <strong>Tugas Berhasil Dikumpulkan!</strong>
+
+        <br><br>
+
+        Jawaban kamu sudah berhasil disimpan.
+
+        <br>
+
+        Kunci jawaban tidak ditampilkan.
+
+        <br><br>
+
+        Terima kasih sudah mengerjakan tugas.
+
+        <a href="pertemuan2.html" class="back-button">
+            KEMBALI KE PERTEMUAN 2
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    document.getElementById("tugasForm").addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            // CEK PILIHAN GANDA
+
+            for (let i = 1; i <= 5; i++) {
+
+                const answer =
+                    document.querySelector(
+                        'input[name="soal' + i + '"]:checked'
+                    );
+
+                if (!answer) {
+
+                    alert(
+                        "Soal pilihan ganda nomor " +
+                        i +
+                        " belum dijawab."
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+            // CEK ESSAY
+
+            const essay6 =
+                document.getElementById("essay6").value.trim();
+
+            const essay7 =
+                document.getElementById("essay7").value.trim();
+
+
+            if (essay6 === "") {
+
+                alert("Essay nomor 6 belum dijawab.");
+
+                return;
+
+            }
+
+
+            if (essay7 === "") {
+
+                alert("Essay nomor 7 belum dijawab.");
+
+                return;
+
+            }
+
+
+            // AMBIL JAWABAN
+
+            const jawaban = {
+
+                soal1: document.querySelector(
+                    'input[name="soal1"]:checked'
+                ).value,
+
+                soal2: document.querySelector(
+                    'input[name="soal2"]:checked'
+                ).value,
+
+                soal3: document.querySelector(
+                    'input[name="soal3"]:checked'
+                ).value,
+
+                soal4: document.querySelector(
+                    'input[name="soal4"]:checked'
+                ).value,
+
+                soal5: document.querySelector(
+                    'input[name="soal5"]:checked'
+                ).value,
+
+                soal6: essay6,
+
+                soal7: essay7,
+
+                waktu: new Date().toLocaleString("id-ID"),
+
+                pertemuan: 2
+
+            };
+
+
+            // SIMPAN DATA
+
+            localStorage.setItem(
+                "tugasPertemuan2",
+                JSON.stringify(jawaban)
+            );
+
+
+            // SEMBUNYIKAN FORM
+
+            document.getElementById("tugasForm").style.display =
+                "none";
+
+
+            // TAMPILKAN PESAN
+
+            document.getElementById("success").style.display =
+                "block";
+
+        }
+    );
+
+</script>
+<script src="js/auth.js"></script>
+</body>
+</html>

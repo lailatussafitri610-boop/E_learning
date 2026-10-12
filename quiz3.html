@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Pertemuan 3 - E-Learning SMA</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
+    .container { max-width: 500px; min-height: 100vh; margin: auto; background: white; padding-bottom: 30px; }
+    .header { background: #1f2937; color: white; padding: 20px; }
+    .back { color: white; text-decoration: none; font-size: 14px; }
+    .header h1 { margin-top: 15px; font-size: 24px; }
+    .header p { margin-top: 5px; color: #d1d5db; }
+    .content { padding: 20px; }
+    .info, .warning { padding: 15px; border-radius: 10px; margin-bottom: 18px; line-height: 1.7; }
+    .info { background: #f3f4f6; }
+    .warning { background: #fff7ed; border: 1px solid #fed7aa; font-size: 14px; }
+    .progress { margin-bottom: 15px; font-size: 14px; font-weight: bold; }
+    .question { display: none; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 18px; }
+    .question.active { display: block; }
+    .question h2 { font-size: 17px; line-height: 1.6; margin-bottom: 15px; }
+    .option { display: flex; align-items: center; background: white; border: 1px solid #ddd; padding: 12px; border-radius: 8px; margin-bottom: 9px; cursor: pointer; }
+    .option:hover { background: #f3f4f6; }
+    .option input { cursor: pointer; flex: 0 0 auto; }
+    .option label { margin-left: 8px; cursor: pointer; font-size: 14px; width: 100%; }
+    .navigation { display: flex; gap: 10px; margin-top: 20px; }
+    .nav-link { flex: 1; width: 50%; min-height: 46px; border: none; border-radius: 9px; font-weight: bold; font-size: 14px; cursor: pointer; }
+    .nav-link:hover { filter: brightness(.96); }
+    .previous-link { background: #e5e7eb; color: #222; }
+    .next-link { background: #1f2937; color: white; }
+    .previous-link[hidden] { display: none; }
+    .submit-container { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1); text-align: center; margin-top: 20px; }
+    .submit-button { width: 100%; background: #1e2538; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+    .submit-button:hover { background: #374151; }
+    .result { display: none; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; padding: 20px; text-align: center; line-height: 1.7; }
+    .result h2 { margin-bottom: 10px; color: #065f46; }
+    .back-button { display: block; background: #1f2937; color: white; text-decoration: none; padding: 13px; border-radius: 8px; margin-top: 18px; font-weight: bold; text-align: center; }
+    .matrix-container { display: inline-flex; align-items: center; font-size: 14px; font-weight: bold; vertical-align: middle; margin: 2px 0; }
+    .matrix { position: relative; display: inline-grid; grid-template-columns: repeat(2, auto); gap: 4px 10px; padding: 4px 8px; margin: 0 4px; text-align: center; color: #000; }
+    .matrix::before, .matrix::after { content: ""; position: absolute; top: 0; bottom: 0; width: 5px; border: 2px solid black; }
+    .matrix::before { left: 0; border-right: none; }
+    .matrix::after { right: 0; border-left: none; }
+    .notice { min-height: 20px; margin-top: 10px; color: #b45309; font-size: 13px; }
+  </style>
+<style id="fifi-theme-embedded">
+:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
+body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
+.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
+</style></head>
+<body>
+<div class="container">
+  <header class="header">
+    <a href="pertemuan3.html" class="back">← Kembali</a>
+    <h1>❓ Quiz Pertemuan 3</h1>
+    <p>Operasi Pengurangan Matriks</p>
+  </header>
+<section class="fifi-hero fifi-hero--quiz" aria-label="Ilustrasi uji pemahaman"><div class="fifi-hero-copy"><span class="fifi-hero-title">UJI PEMAHAMAN PERTEMUAN 3</span><p>Jawab berdasarkan materi yang sudah dipelajari.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">❓</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">✓</span></div></section>
+  <main class="content">
+    <div id="quiz-container">
+      <div class="info"><strong>Mata Pelajaran:</strong> Matematika<br><strong>Kelas:</strong> XI SMA<br><strong>Pertemuan:</strong> 3<br><strong>Jumlah Soal:</strong> 10</div>
+      <div class="warning">⚠️ <strong>Perhatian!</strong><br>Pilih satu jawaban yang paling tepat. Semua soal harus dijawab sebelum quiz dikumpulkan.</div>
+      <div id="quiz">
+        <div class="progress" aria-live="polite">Soal <span id="nomor">1</span> dari 10</div>
+        <section class="question active" aria-label="Soal 1">
+          <h2>1. Dua buah matriks dapat diselesaikan dengan operasi pengurangan jika memiliki...</h2>
+          <div class="option"><input type="radio" name="q1" value="A" id="q1a"><label for="q1a">A. Nilai elemen yang sama ganjil</label></div>
+          <div class="option"><input type="radio" name="q1" value="B" id="q1b"><label for="q1b">B. Ukuran ordo yang sama</label></div>
+          <div class="option"><input type="radio" name="q1" value="C" id="q1c"><label for="q1c">C. Jumlah garis baris yang ganjil</label></div>
+          <div class="option"><input type="radio" name="q1" value="D" id="q1d"><label for="q1d">D. Bentuk kolom persegi panjang</label></div>
+        </section>
+        <section class="question" aria-label="Soal 2">
+          <h2>2. Bagaimana aturan teknis utama dalam melakukan operasi pengurangan matriks?</h2>
+          <div class="option"><input type="radio" name="q2" value="A" id="q2a"><label for="q2a">A. Mengalikan silang seluruh elemen diagonal</label></div>
+          <div class="option"><input type="radio" name="q2" value="B" id="q2b"><label for="q2b">B. Mengurangkan elemen-elemen yang seletak</label></div>
+          <div class="option"><input type="radio" name="q2" value="C" id="q2c"><label for="q2c">C. Membagi komponen elemen kolom awal</label></div>
+          <div class="option"><input type="radio" name="q2" value="D" id="q2d"><label for="q2d">D. Menjumlahkan elemen diagonal samping</label></div>
+        </section>
+        <section class="question" aria-label="Soal 3">
+          <h2>3. Operasi pengurangan matriks A - B didefinisikan setara dengan bentuk operasi...</h2>
+          <div class="option"><input type="radio" name="q3" value="A" id="q3a"><label for="q3a">A. A + B</label></div>
+          <div class="option"><input type="radio" name="q3" value="B" id="q3b"><label for="q3b">B. A + (-B)</label></div>
+          <div class="option"><input type="radio" name="q3" value="C" id="q3c"><label for="q3c">C. A × (-B)</label></div>
+          <div class="option"><input type="radio" name="q3" value="D" id="q3d"><label for="q3d">D. (-A) - B</label></div>
+        </section>
+        <section class="question" aria-label="Soal 4">
+          <h2>4. Di dalam konsep pengurangan, matriks dalam kurung (-B) dimaknai sebagai...</h2>
+          <div class="option"><input type="radio" name="q4" value="A" id="q4a"><label for="q4a">A. Lawan dari matriks B</label></div>
+          <div class="option"><input type="radio" name="q4" value="B" id="q4b"><label for="q4b">B. Hasil transpose matriks B</label></div>
+          <div class="option"><input type="radio" name="q4" value="C" id="q4c"><label for="q4c">C. Matriks identitas ordo B</label></div>
+          <div class="option"><input type="radio" name="q4" value="D" id="q4d"><label for="q4d">D. Kebalikan letak baris kolom B</label></div>
+        </section>
+        <section class="question" aria-label="Soal 5">
+          <h2>5. Diberikan matriks B = <span class="matrix-container"><span class="matrix"><span>-6</span><span>5</span><span>-9</span><span>6</span></span></span>. Maka bentuk dari lawan matriks B (ditulis -B) adalah...</h2>
+          <div class="option"><input type="radio" name="q5" value="A" id="q5a"><label for="q5a">A. <span class="matrix-container"><span class="matrix"><span>6</span><span>-5</span><span>9</span><span>-6</span></span></span></label></div>
+          <div class="option"><input type="radio" name="q5" value="B" id="q5b"><label for="q5b">B. <span class="matrix-container"><span class="matrix"><span>-6</span><span>-5</span><span>-9</span><span>-6</span></span></span></label></div>
+          <div class="option"><input type="radio" name="q5" value="C" id="q5c"><label for="q5c">C. <span class="matrix-container"><span class="matrix"><span>6</span><span>5</span><span>9</span><span>6</span></span></span></label></div>
+          <div class="option"><input type="radio" name="q5" value="D" id="q5d"><label for="q5d">D. <span class="matrix-container"><span class="matrix"><span>-6</span><span>5</span><span>9</span><span>-6</span></span></span></label></div>
+        </section>
+        <section class="question" aria-label="Soal 6">
+          <h2>6. Pada penyelesaian contoh soal materi, langkah operasi angka seletak pada elemen baris 1 kolom 1 dituliskan sebagai...</h2>
+          <div class="option"><input type="radio" name="q6" value="A" id="q6a"><label for="q6a">A. 8 - 6</label></div>
+          <div class="option"><input type="radio" name="q6" value="B" id="q6b"><label for="q6b">B. 8 - (-6)</label></div>
+          <div class="option"><input type="radio" name="q6" value="C" id="q6c"><label for="q6c">C. 8 + 6</label></div>
+          <div class="option"><input type="radio" name="q6" value="D" id="q6d"><label for="q6d">D. 8 - 5</label></div>
+        </section>
+        <section class="question" aria-label="Soal 7">
+          <h2>7. Berapakah hasil akhir dari elemen seletak baris 1 kolom 1 setelah dihitung dari operasi 8 - (-6)?</h2>
+          <div class="option"><input type="radio" name="q7" value="A" id="q7a"><label for="q7a">A. 2</label></div>
+          <div class="option"><input type="radio" name="q7" value="B" id="q7b"><label for="q7b">B. -2</label></div>
+          <div class="option"><input type="radio" name="q7" value="C" id="q7c"><label for="q7c">C. 14</label></div>
+          <div class="option"><input type="radio" name="q7" value="D" id="q7d"><label for="q7d">D. -14</label></div>
+        </section>
+        <section class="question" aria-label="Soal 8">
+          <h2>8. Pada baris 2 kolom 1 contoh penyelesaian materi, operasi hitung elemen yang seletak adalah 3 - (-9). Berapakah hasil akhirnya?</h2>
+          <div class="option"><input type="radio" name="q8" value="A" id="q8a"><label for="q8a">A. -6</label></div>
+          <div class="option"><input type="radio" name="q8" value="B" id="q8b"><label for="q8b">B. 12</label></div>
+          <div class="option"><input type="radio" name="q8" value="C" id="q8c"><label for="q8c">C. -12</label></div>
+          <div class="option"><input type="radio" name="q8" value="D" id="q8d"><label for="q8d">D. 6</label></div>
+        </section>
+        <section class="question" aria-label="Soal 9">
+          <h2>9. Hasil akhir operasi seletak dari elemen baris 2 kolom 2 yang dihitung melalui 1 - 6 menghasilkan nilai...</h2>
+          <div class="option"><input type="radio" name="q9" value="A" id="q9a"><label for="q9a">A. 5</label></div>
+          <div class="option"><input type="radio" name="q9" value="B" id="q9b"><label for="q9b">B. -5</label></div>
+          <div class="option"><input type="radio" name="q9" value="C" id="q9c"><label for="q9c">C. 7</label></div>
+          <div class="option"><input type="radio" name="q9" value="D" id="q9d"><label for="q9d">D. -7</label></div>
+        </section>
+        <section class="question" aria-label="Soal 10">
+          <h2>10. Berdasarkan lampiran lembar penyelesaian materi, matriks hasil akhir dari operasi A - B yang benar adalah...</h2>
+          <div class="option"><input type="radio" name="q10" value="A" id="q10a"><label for="q10a">A. <span class="matrix-container"><span class="matrix"><span>14</span><span>-1</span><span>12</span><span>-5</span></span></span></label></div>
+          <div class="option"><input type="radio" name="q10" value="B" id="q10b"><label for="q10b">B. <span class="matrix-container"><span class="matrix"><span>2</span><span>-1</span><span>-6</span><span>-5</span></span></span></label></div>
+          <div class="option"><input type="radio" name="q10" value="C" id="q10c"><label for="q10c">C. <span class="matrix-container"><span class="matrix"><span>14</span><span>9</span><span>12</span><span>7</span></span></span></label></div>
+          <div class="option"><input type="radio" name="q10" value="D" id="q10d"><label for="q10d">D. <span class="matrix-container"><span class="matrix"><span>2</span><span>9</span><span>12</span><span>-5</span></span></span></label></div>
+        </section>
+        <nav class="navigation" aria-label="Navigasi soal">
+          <button type="button" class="nav-link previous-link" id="previous" aria-label="Soal sebelumnya" hidden>← Sebelumnya</button>
+          <button type="button" class="nav-link next-link" id="next" aria-label="Soal berikutnya">Selanjutnya →</button>
+        </nav>
+        <p class="notice" id="notice" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <section class="result" id="result" aria-live="polite">
+      <h2>Quiz berhasil dikumpulkan!</h2>
+      <p id="score"></p>
+      <a href="pertemuan3.html" class="back-button">Kembali ke Materi</a>
+    </section>
+  </main>
+</div>
+<script>
+  (() => {
+    const questions = Array.from(document.querySelectorAll('.question'));
+    const number = document.getElementById('nomor');
+    const previous = document.getElementById('previous');
+    const next = document.getElementById('next');
+    const notice = document.getElementById('notice');
+    const quizContainer = document.getElementById('quiz-container');
+    const result = document.getElementById('result');
+    let current = 0;
+    const answerKey = ['B', 'B', 'B', 'A', 'A', 'B', 'C', 'B', 'B', 'A'];
+
+    function showQuestion(index) {
+      current = Math.max(0, Math.min(index, questions.length - 1));
+      questions.forEach((question, i) => question.classList.toggle('active', i === current));
+      number.textContent = String(current + 1);
+      previous.hidden = current === 0;
+      next.textContent = current === questions.length - 1 ? 'Kumpulkan Quiz' : 'Selanjutnya →';
+      notice.textContent = '';
+    }
+
+    previous.addEventListener('click', () => showQuestion(current - 1));
+    next.addEventListener('click', () => {
+      if (current < questions.length - 1) {
+        showQuestion(current + 1);
+      } else {
+        submitQuiz();
+      }
+    });
+
+    function submitQuiz() {
+      const answers = questions.map((_, i) => {
+        const selected = document.querySelector(`input[name="q${i + 1}"]:checked`);
+        return selected ? selected.value : null;
+      });
+      const unanswered = answers.findIndex(answer => answer === null);
+      if (unanswered !== -1) {
+        showQuestion(unanswered);
+        notice.textContent = `Soal ${unanswered + 1} belum dijawab. Silakan pilih jawaban sebelum mengumpulkan quiz.`;
+        return;
+      }
+      const correct = answers.reduce((total, answer, i) => total + (answer === answerKey[i] ? 1 : 0), 0);
+      const scoreValue = correct * 10;
+      document.getElementById('score').textContent = `Jawaban benar: ${correct} dari ${questions.length}. Nilai kamu: ${scoreValue}.`;
+      quizContainer.style.display = 'none';
+      result.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    showQuestion(0);
+  })();
+</script>
+</body>
+</html>

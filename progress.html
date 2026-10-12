@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Progress Belajar</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .container {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .back {
+            text-decoration: none;
+            font-size: 24px;
+            color: #222;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .total-card {
+            background: #1f2937;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .total-card h2 {
+            font-size: 40px;
+            margin: 10px 0;
+        }
+
+        .total-card p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .meeting-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .meeting-title {
+            font-weight: bold;
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .meeting-topic {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .status {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #1f2937;
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+        }
+
+        .bottom-menu a {
+            text-decoration: none;
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+<style id="fifi-theme-embedded">
+:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
+body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
+.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
+</style></head>
+
+<body>
+<section class="fifi-hero fifi-hero--progress" aria-label="Ilustrasi progress belajar"><div class="fifi-hero-copy"><span class="fifi-hero-title">PROGRESS BELAJAR</span><p>Lihat perkembanganmu di setiap pertemuan.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">📊</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">%</span></div></section>
+
+<div class="container">
+
+    <div class="header">
+
+        <a href="dashboard.html" class="back">
+            ←
+        </a>
+
+        <div>
+            <h1>📊 Progress Belajar</h1>
+            <p class="subtitle">Matematika — Kelas X SMA</p>
+        </div>
+
+    </div>
+
+
+    <!-- TOTAL PROGRESS -->
+
+    <div class="total-card">
+
+        <p>TOTAL PROGRESS</p>
+
+        <h2 id="totalProgress">0%</h2>
+
+        <p>Perkembangan belajar kamu</p>
+
+    </div>
+
+
+    <!-- PERTEMUAN 1 -->
+
+    <div class="meeting-card">
+
+        <div class="meeting-title">
+            Pertemuan 1
+        </div>
+
+        <div class="meeting-topic">
+            Persamaan Linear
+        </div>
+
+        <div class="status" id="status1">
+            Belum selesai
+        </div>
+
+        <div class="progress-bg">
+            <div class="progress-fill" id="bar1"></div>
+        </div>
+        <div class="quiz-score" id="score1">
+    Nilai Quiz: -
+</div>
+
+    </div>
+
+
+    <!-- PERTEMUAN 2 -->
+
+    <div class="meeting-card">
+
+        <div class="meeting-title">
+            Pertemuan 2
+        </div>
+
+        <div class="meeting-topic">
+            Pertidaksamaan Linear
+        </div>
+
+        <div class="status" id="status2">
+            Belum selesai
+        </div>
+
+        <div class="progress-bg">
+            <div class="progress-fill" id="bar2"></div>
+        </div>
+<div class="quiz-score" id="score2">
+    Nilai Quiz: -
+</div>
+    </div>
+
+
+    <!-- PERTEMUAN 3 -->
+
+    <div class="meeting-card">
+
+        <div class="meeting-title">
+            Pertemuan 3
+        </div>
+
+        <div class="meeting-topic">
+            Penerapan Persamaan Linear
+        </div>
+
+        <div class="status" id="status3">
+            Belum selesai
+        </div>
+
+        <div class="progress-bg">
+            <div class="progress-fill" id="bar3"></div>
+        </div>
+<div class="quiz-score" id="score3">
+    Nilai Quiz: -
+</div>
+    </div>
+
+</div>
+
+
+<!-- BOTTOM MENU -->
+
+<div class="bottom-menu">
+
+    <a href="dashboard.html">
+        🏠<br>
+        Home
+    </a>
+
+    <a href="mapel.html">
+        📚<br>
+        Materi
+    </a>
+
+    <a href="progress.html">
+        📊<br>
+        Progress
+    </a>
+
+</div>
+
+</script>
+
+<a href="dashboard.html"
+   style="
+       display:block;
+       text-align:center;
+       text-decoration:none;
+       background:#1f2937;
+       color:white;
+       padding:14px;
+       border-radius:10px;
+       margin-top:25px;
+       font-weight:bold;
+   ">
+    ← KEMBALI KE DASHBOARD
+</a>
+<script>
+
+function cekProgress() {
+
+    let selesai = 0;
+
+    // PERTEMUAN 1
+    const selesai1 =
+        localStorage.getItem("absensiPertemuan1") &&
+        localStorage.getItem("tugasPertemuan1") &&
+        localStorage.getItem("quizPertemuan1");
+
+    if (selesai1) {
+        document.getElementById("status1").textContent = "✓ SELESAI";
+        document.getElementById("status1").style.color = "green";
+        document.getElementById("bar1").style.width = "100%";
+        selesai++;
+    }
+
+    // PERTEMUAN 2
+    const selesai2 =
+        localStorage.getItem("absensiPertemuan2") &&
+        localStorage.getItem("tugasPertemuan2") &&
+        localStorage.getItem("quizPertemuan2");
+
+    if (selesai2) {
+        document.getElementById("status2").textContent = "✓ SELESAI";
+        document.getElementById("status2").style.color = "green";
+        document.getElementById("bar2").style.width = "100%";
+        selesai++;
+    }
+
+    // PERTEMUAN 3
+    const selesai3 =
+        localStorage.getItem("absensiPertemuan3") &&
+        localStorage.getItem("tugasPertemuan3") &&
+        localStorage.getItem("quizPertemuan3");
+
+    if (selesai3) {
+        document.getElementById("status3").textContent = "✓ SELESAI";
+        document.getElementById("status3").style.color = "green";
+        document.getElementById("bar3").style.width = "100%";
+        selesai++;
+    }
+
+    // TOTAL PROGRESS
+    const progress = [0, 33, 66, 100][selesai];
+
+    document.getElementById("totalProgress").textContent =
+        progress + "%";
+}
+// TAMPILKAN NILAI QUIZ
+
+const quiz1 = localStorage.getItem("quizPertemuan1");
+if (quiz1) {
+    const dataQuiz1 = JSON.parse(quiz1);
+    document.getElementById("score1").textContent =
+        "Nilai Quiz: " + dataQuiz1.score;
+}
+
+const quiz2 = localStorage.getItem("quizPertemuan2");
+if (quiz2) {
+    const dataQuiz2 = JSON.parse(quiz2);
+    document.getElementById("score2").textContent =
+        "Nilai Quiz: " + dataQuiz2.score;
+}
+
+const quiz3 = localStorage.getItem("quizPertemuan3");
+if (quiz3) {
+    const dataQuiz3 = JSON.parse(quiz3);
+    document.getElementById("score3").textContent =
+        "Nilai Quiz: " + dataQuiz3.score;
+}
+cekProgress();
+
+</script>
+</body>
+</html>

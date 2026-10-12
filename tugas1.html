@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tugas Pertemuan 1</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .app {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #d1d5db;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .info {
+            background: #f9fafb;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .soal {
+            border: 1px solid #ddd;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .soal h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .pertanyaan {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .pilihan {
+            display: block;
+            background: #f9fafb;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            padding: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .pilihan:hover {
+            background: #f3f4f6;
+        }
+
+        .pilihan input {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 9px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            border: none;
+            background: #1f2937;
+            color: white;
+            padding: 15px;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: #111827;
+        }
+
+        .success {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #166534;
+            line-height: 1.6;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+    </style>
+
+<style id="fifi-theme-embedded">
+:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
+body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
+.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
+</style></head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <a href="pertemuan.html">
+            ← Kembali
+        </a>
+
+        <h1>
+            📚 Tugas Pertemuan 1
+        </h1>
+
+        <p>
+            Penngertian Matriks
+        </p>
+
+    </header>
+<section class="fifi-hero fifi-hero--tasks" aria-label="Ilustrasi tugas pembelajaran"><div class="fifi-hero-copy"><span class="fifi-hero-title">TUGAS PEMBELAJARAN PERTEMUAN 1</span><p>Kerjakan dengan teliti dan periksa kembali jawabanmu.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">✏️</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">✓</span></div></section>
+
+
+    <div class="content">
+
+
+        <!-- INFORMASI -->
+
+        <div class="info">
+
+            <strong>
+                Informasi Tugas
+            </strong>
+
+            <br><br>
+
+            Mata Pelajaran: Matematika
+
+            <br>
+
+            Kelas: X SMA
+
+            <br>
+
+            Pertemuan: 1
+
+            <br>
+
+            Jumlah Soal: 10
+
+        </div>
+
+
+        <!-- PERINGATAN -->
+
+        <div class="warning">
+
+            ⚠️ <strong>Perhatian</strong>
+
+            <br>
+
+            Kerjakan semua soal dengan teliti.
+            Setelah tugas dikirim, jawaban tidak
+            akan ditampilkan kembali.
+
+        </div>
+
+
+        <form id="formTugas">
+
+
+            <!-- SOAL 1 -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 1
+                </h2>
+
+                <div class="pertanyaan">
+
+                    Pengertian dari matriks adalah..
+
+                </div>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal1"
+                        value="A">
+
+                    A. Kumpulan angka yang tidak memiliki aturan
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal1"
+                        value="B">
+
+                    B. Susunan bilangan yang diatur dalam baris dan kolom di dalam tanda kurung
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal1"
+                        value="C">
+
+                    C. Rumus untuk menghitung luas bangun datar
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal1"
+                        value="D">
+
+                    D. Hasil penjumlahan dari dua bilangan bulat
+
+                </label>
+
+            </div>
+
+
+
+            <!-- SOAL 2 -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 2
+                </h2>
+
+                <div class="pertanyaan">
+
+                    Ukuran atau ordo dari sebuah matriks ditentukan oleh banyaknya...
+
+                </div>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal2"
+                        value="A">
+
+                    A. Kolom saja
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal2"
+                        value="B">
+
+                    B. Baris saja
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal2"
+                        value="C">
+
+                    C. Baris dikali kolom
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal2"
+                        value="D">
+
+                    D. Jumlah seluruh elemen
+
+                </label>
+
+            </div>
+
+
+
+            <!-- SOAL 3 -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 3
+                </h2>
+
+                <div class="pertanyaan">
+
+                    Jika sebuah matriks memiliki 2 baris dan 3 kolom, maka ordo matriks tersebut adalah...
+
+                </div>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal3"
+                        value="A">
+
+                    A. 2 x 3
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal3"
+                        value="B">
+
+                    B. 3 x 2
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal3"
+                        value="C">
+
+                    C. 2 x 2
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal3"
+                        value="D">
+
+                    D. 3 x 3
+
+                </label>
+
+            </div>
+
+
+
+            <!-- SOAL 4 -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 4
+                </h2>
+
+                <div class="pertanyaan">
+
+                    Bagian dari matriks yang tersusun secara mendatar (horizontal) disebut... 
+
+                </div>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal4"
+                        value="A">
+
+                    A. Kolom
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal4"
+                        value="B">
+
+                    B. Ordo
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal4"
+                        value="C">
+
+                    C. Baris
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal4"
+                        value="D">
+
+                    D. Elemen
+
+                </label>
+
+            </div>
+
+
+
+            <!-- SOAL 5 -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 5
+                </h2>
+
+                <div class="pertanyaan">
+
+                    Bagian dari matriks yang tersusun secara tegak (vertikal) disebut... 
+
+                </div>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal5"
+                        value="A">
+
+                    A. Baris
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal5"
+                        value="B">
+
+                    B. Kolom
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal5"
+                        value="C">
+
+                    C. Ordo
+
+                </label>
+
+
+                <label class="pilihan">
+
+                    <input
+                        type="radio"
+                        name="soal5"
+                        value="D">
+
+                    D. Transpos
+
+                </label>
+
+            </div>
+
+
+
+            <!-- SOAL 6 URAIAN -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 6 — Uraian
+                </h2>
+
+                <div class="pertanyaan">
+
+                    <!-- Bagian Soal 6 -->
+<div class="soal-container" style="margin-bottom: 40px;">
+    <h3><strong>Soal 6</strong></h3>
+    <p style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
+        Jika diketahui matriks A = 
+        <table style="border-left: 2px solid black; border-right: 2px solid black; display: inline-table; text-align: center; border-spacing: 15px 5px; font-weight: bold; vertical-align: middle; border-radius: 8px;">
+            <tr>
+                <td>5</td>
+                <td>2</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>7</td>
+                <td>4</td>
+            </tr>
+        </table>
+        , sebutkan angka berapa saja yang berada pada baris pertama!
+    </p>
+    <p style="margin-top: 15px;">
+        <strong>Kunci Jawaban:</strong> Angka yang berada pada baris pertama adalah 5, 2, dan 9.
+    </p>
+</div>
+</div>
+         
+
+            </div>
+
+
+
+            <!-- SOAL 7 URAIAN -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 7 — Uraian
+                </h2>
+
+                <div class="pertanyaan">
+
+                    <!-- Bagian Soal 7 -->
+<div class="soal-container" style="margin-bottom: 40px;">
+    <h3><strong>Soal 7</strong></h3>
+    <p style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
+        Tentukan ordo (ukuran) dari matriks B = 
+        <table style="border-left: 2px solid black; border-right: 2px solid black; display: inline-table; text-align: center; border-spacing: 15px 5px; font-weight: bold; vertical-align: middle; border-radius: 8px;">
+            <tr>
+                <td>3</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>6</td>
+            </tr>
+        </table>
+        !
+    </p>
+    <p style="margin-top: 15px;">
+        <strong>Kunci Jawaban:</strong> Matriks B memiliki 3 baris dan 2 kolom, sehingga ordonya adalah 3 &times; 2.
+    </p>
+</div>
+</div>
+
+            </div>
+             <!-- SOAL 8 URAIAN -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 8 — Uraian
+                </h2>
+
+                <div class="pertanyaan">
+
+            <!-- Bagian Soal 8 -->
+<div class="soal-container" style="margin-bottom: 40px;">
+    <h3><strong>Soal 8</strong></h3>
+    <p style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
+        Pada matriks H = 
+        <table style="border-left: 2px solid black; border-right: 2px solid black; display: inline-table; text-align: center; border-spacing: 15px 5px; font-weight: bold; vertical-align: middle; border-radius: 8px;">
+            <tr>
+                <td>6</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>15</td>
+            </tr>
+        </table>
+        , tentukan angka yang menempati posisi kolom kedua!
+    </p>
+    <p style="margin-top: 15px;">
+        <strong>Kunci Jawaban:</strong> Angka yang berada pada kolom kedua (posisi tegak/vertikal di sebelah kanan) adalah 12 dan 15.
+    </p>
+</div>
+</div>
+             </div>
+             <!-- SOAL 9 URAIAN -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 9 — Uraian
+                </h2>
+
+                <div class="pertanyaan">
+             <!-- Bagian Soal 9 -->
+<div class="soal-container" style="margin-bottom: 40px;">
+    <h3><strong>Soal 9</strong></h3>
+    <p>
+        Dalam konsep matriks, apa perbedaan antara baris dan kolom? Jelaskan secara singkat!
+    </p>
+    <p style="margin-top: 15px;">
+        <strong>Kunci Jawaban:</strong> Baris adalah susunan bilangan yang ditulis secara mendatar (horizontal), sedangkan kolom adalah susunan bilangan yang ditulis secara tegak (vertikal).
+    </p>
+</div>
+</div>
+</div>
+             <!-- SOAL 10 URAIAN -->
+
+            <div class="soal">
+
+                <h2>
+                    Soal 10 — Uraian
+                </h2>
+
+                <div class="pertanyaan">
+<!-- Bagian Soal 10 -->
+<div class="soal-container" style="margin-bottom: 40px;">
+    <h3><strong>Soal 10</strong></h3>
+    <p>
+        Jika diketahui notasi elemen matriks adalah a<sub>ij</sub> (di mana i adalah baris dan j adalah kolom), tentukan posisi baris dan kolom dari elemen a<sub>12</sub>!
+    </p>
+    <p style="margin-top: 15px;">
+        <strong>Kunci Jawaban:</strong> Elemen a<sub>12</sub> artinya elemen tersebut terletak pada baris ke-1 dan kolom ke-2.
+    </p>
+</div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="submit-button">
+
+                📤 KIRIM TUGAS
+
+            </button>
+
+
+        </form>
+
+
+        <!-- SUCCESS -->
+
+        <div
+            class="success"
+            id="success">
+
+            <strong>
+                ✅ Tugas Berhasil Dikumpulkan!
+            </strong>
+
+            <br><br>
+
+            Jawaban kamu telah berhasil
+            disimpan.
+
+            <br><br>
+
+            <strong>
+                Jawaban tidak ditampilkan.
+            </strong>
+
+            <br>
+
+            Guru akan melakukan penilaian
+            terhadap tugas kamu.
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+document
+    .getElementById("formTugas")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        // Periksa pilihan ganda
+
+        const soalPilihan = [
+            "soal1",
+            "soal2",
+            "soal3",
+            "soal4",
+            "soal5"
+        ];
+
+
+        for (let soal of soalPilihan) {
+
+            const jawaban =
+                document.querySelector(
+                    `input[name="${soal}"]:checked`
+                );
+
+            if (!jawaban) {
+
+                alert(
+                    "Masih ada soal pilihan ganda yang belum dijawab."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        // Periksa uraian
+
+        const jawaban6 =
+            document
+            .getElementById("soal6")
+            .value
+            .trim();
+
+
+        const jawaban7 =
+            document
+            .getElementById("soal7")
+            .value
+            .trim();
+
+
+        if (jawaban6 === "" || jawaban7 === "") {
+
+            alert(
+                "Silakan isi semua soal uraian."
+            );
+
+            return;
+
+        }
+
+
+        // Simpan data sementara
+
+        const dataTugas = {
+
+            soal1:
+                document.querySelector(
+                    'input[name="soal1"]:checked'
+                ).value,
+
+            soal2:
+                document.querySelector(
+                    'input[name="soal2"]:checked'
+                ).value,
+
+            soal3:
+                document.querySelector(
+                    'input[name="soal3"]:checked'
+                ).value,
+
+            soal4:
+                document.querySelector(
+                    'input[name="soal4"]:checked'
+                ).value,
+
+            soal5:
+                document.querySelector(
+                    'input[name="soal5"]:checked'
+                ).value,
+
+            soal6: jawaban6,
+
+            soal7: jawaban7
+
+        };
+
+
+        localStorage.setItem(
+            "tugasPertemuan1",
+            JSON.stringify(dataTugas)
+        );
+
+
+        // Sembunyikan form
+
+        document
+            .getElementById("formTugas")
+            .style.display = "none";
+
+
+        // Tampilkan pesan
+
+        document
+            .getElementById("success")
+            .style.display = "block";
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+</script>
+
+<script src="js/auth.js"></script>
+</body>
+
+</html>

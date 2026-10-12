@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RPP Pertemuan 1</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .app {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #d1d5db;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .section p,
+        .section li {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .info {
+            background: #f9fafb;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info p {
+            margin-bottom: 7px;
+        }
+
+        .button {
+            display: block;
+            text-align: center;
+            background: #1f2937;
+            color: white;
+            text-decoration: none;
+            padding: 13px;
+            border-radius: 9px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+    </style>
+
+<style id="fifi-theme-embedded">
+:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
+body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
+.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
+</style></head>
+
+
+<body>
+
+<div class="app">
+
+
+    <header>
+
+        <a href="pertemuan.html">
+            ← Kembali
+        </a>
+
+        <h1>
+            RPP Pertemuan 1
+        </h1>
+
+        <p>
+            Pengertian Matriks
+        </p>
+
+    </header>
+<section class="fifi-hero fifi-hero--lesson-plan" aria-label="Ilustrasi rencana pembelajaran"><div class="fifi-hero-copy"><span class="fifi-hero-title">RENCANA PEMBELAJARAN PERTEMUAN 1</span><p>Lihat tujuan dan alur kegiatan pertemuan.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">📋</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">✓</span></div></section>
+
+
+    <div class="content">
+
+
+        <!-- IDENTITAS -->
+
+        <div class="info">
+
+            <p><strong>Mata Pelajaran:</strong> Matematika</p>
+
+            <p><strong>Kelas:</strong> XI SMA</p>
+
+            <p><strong>Materi:</strong> Pengertian Matriks</p>
+
+            <p><strong>Pertemuan:</strong> 1</p>
+
+            <p><strong>Alokasi Waktu:</strong> 2 × 45 menit</p>
+
+        </div>
+
+
+        <!-- TUJUAN -->
+
+        <div class="section">
+
+            <h2>
+                🎯 Tujuan Pembelajaran
+            </h2>
+
+            <p>
+                Setelah mengikuti pembelajaran,
+                siswa diharapkan mampu:
+            </p>
+
+            <ul>
+
+                <li>
+                Peserta didik dapat menjelaskan pengertian matriks.
+                </li>
+
+                <li>
+                Peserta didik dapat mengidentifikasi baris, kolom, dan elemen matriks.
+                </li>
+
+                <li>
+                Peserta didik dapat menentukan ordo matriks.
+                </li>
+
+                <li>
+                Peserta didik dapat menuliskan data sederhana dalam bentuk matriks.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- MATERI -->
+
+        <div class="section">
+
+            <h2>
+                📖 Materi Pembelajaran
+            </h2>
+
+            <p>
+            Matriks adalah susunan angka dalam baris (mendatar) dan kolom (tegak), berbentuk persegi atau persegi panjang. Matriks ditulis dengan kurung “( )” atau “[ ]”, dan biasanya diberi nama huruf kapital.
+            </p>
+
+            <br>
+
+            <p>
+                Contoh bentuk Matriks:
+            </p>
+
+            <br>
+
+            <p>
+            <div class="formula">
+
+                <div class="formula">
+    A = 
+    <table style="border-left: 3px solid black; border-right: 3px solid black; display: inline-table; text-align: center; border-spacing: 15px 10px; font-style: italic; vertical-align: middle;">
+        <tr>
+            <td>a₁₁</td>
+            <td>a₁₂</td>
+            <td>a₁₃</td>
+            <td>...</td>
+            <td>a₁ₙ</td>
+        </tr>
+        <tr>
+            <td>a₂₁</td>
+            <td>a₂₂</td>
+            <td>a₂₃</td>
+            <td>...</td>
+            <td>a₂ₙ</td>
+        </tr>
+        <tr>
+            <td>a₃₁</td>
+            <td>a₃₂</td>
+            <td>a₃₃</td>
+            <td>...</td>
+            <td>a₃ₙ</td>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>aₘ₁</td>
+            <td>aₘ₂</td>
+            <td>aₘ₃</td>
+            <td>...</td>
+            <td>aₘₙ</td>
+        </tr>
+    </table>
+            </p>
+
+        </div>
+
+
+        <!-- METODE -->
+
+        <div class="section">
+
+            <h2>
+                🧑‍🏫 Metode Pembelajaran
+            </h2>
+
+            <ul>
+
+                <li>Ceramah</li>
+
+                <li>Tanya jawab</li>
+
+                <li>Diskusi</li>
+
+                <li>Latihan soal</li>
+
+                <li>Pembelajaran mandiri</li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- KEGIATAN -->
+
+        <div class="section">
+
+            <h2>
+                📝 Kegiatan Pembelajaran
+            </h2>
+
+            <p>
+                <strong>Pendahuluan</strong>
+            </p>
+
+            <ul>
+
+                <li>Guru membuka pembelajaran.</li>
+
+                <li>Guru menyampaikan tujuan pembelajaran.</li>
+
+                <li>Siswa melakukan absensi.</li>
+
+            </ul>
+
+            <br>
+
+            <p>
+                <strong>Kegiatan Inti</strong>
+            </p>
+
+            <ul>
+
+                <li>Siswa mempelajari materi.</li>
+
+                <li>Guru memberikan contoh soal.</li>
+
+                <li>Siswa berdiskusi.</li>
+
+                <li>Siswa mengerjakan latihan.</li>
+
+            </ul>
+
+            <br>
+
+            <p>
+                <strong>Penutup</strong>
+            </p>
+
+            <ul>
+
+                <li>Guru memberikan kesimpulan.</li>
+
+                <li>Siswa mengerjakan tugas.</li>
+
+                <li>Guru memberikan evaluasi.</li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- PENILAIAN -->
+
+        <div class="section">
+
+            <h2>
+                📊 Penilaian
+            </h2>
+
+            <ul>
+
+                <li>Keaktifan siswa</li>
+
+                <li>Hasil tugas</li>
+
+                <li>Hasil quiz</li>
+
+                <li>Pemahaman materi</li>
+
+            </ul>
+
+        </div>
+
+
+        <a href="pertemuan.html" class="button">
+            KEMBALI KE PERTEMUAN
+        </a>
+
+
+    </div>
+
+</div>
+<script src="js/auth.js"></script>
+</body>
+
+</html>

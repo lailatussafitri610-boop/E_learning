@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Materi Pertemuan 1</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .app {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #d1d5db;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .formula {
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .example {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 12px;
+        }
+
+        .example p {
+            margin-bottom: 8px;
+        }
+
+        .important {
+            background: #fff7ed;
+            border-left: 4px solid #f97316;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .finish {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 25px;
+        }
+
+        .button {
+            display: block;
+            text-align: center;
+            background: #1f2937;
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 9px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+    </style>
+
+<style id="fifi-theme-embedded">
+:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
+body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
+.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
+</style></head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <a href="pertemuan.html">
+            ← Kembali
+        </a>
+
+        <h1>
+            📖 Materi Pertemuan 1
+        </h1>
+
+        <p>
+            Pengertian Matriks
+        </p>
+
+    </header>
+<section class="fifi-hero fifi-hero--materials" aria-label="Ilustrasi materi pembelajaran"><div class="fifi-hero-copy"><span class="fifi-hero-title">MATERI PEMBELAJARAN PERTEMUAN 1</span><p>Pahami konsep, lihat contoh, lalu coba latihan.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">📖</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">∑</span></div></section>
+
+
+    <div class="content">
+
+
+        <!-- PENDAHULUAN -->
+
+        <div class="section">
+
+            <h2>
+                📚 Pengertian matriks?
+            </h2>
+
+            <p>
+                Matriks adalah susunan angka dalam baris (mendatar) dan kolom (tegak), berbentuk persegi atau persegi panjang. Matriks ditulis dengan kurung “( )” atau “[ ]”, dan biasanya diberi nama huruf kapital.
+            
+            </p>
+
+            <br>
+
+            <p>
+                	Baris: angka yang tersusun mendatar.
+	Kolom: angka yang tersusun tegak.
+	Elemen: angka di dalam matriks, dilambangkan huruf kecil dengan indeks. Contoh: a_ij artinya angka pada baris ke-i dan kolom ke-j.
+	Ordo: ukuran matriks, ditulis m × n (m = jumlah baris, n = jumlah kolom). Banyak elemen = m × n.
+    Notasi: cara penulisan atau simbol khusus untuk menyatakan matriks.
+
+            </p>
+
+        </div>
+
+
+        <!-- BENTUK UMUM -->
+
+        <div class="section">
+
+            <h2>
+                📐 Bentuk Umum
+            </h2>
+
+            <p>
+                Bentuk umum Matriks
+                adalah:
+            </p>
+
+            <div class="formula">
+
+                <div class="formula">
+    A = 
+    <table style="border-left: 3px solid black; border-right: 3px solid black; display: inline-table; text-align: center; border-spacing: 15px 10px; font-style: italic; vertical-align: middle;">
+        <tr>
+            <td>a₁₁</td>
+            <td>a₁₂</td>
+            <td>a₁₃</td>
+            <td>...</td>
+            <td>a₁ₙ</td>
+        </tr>
+        <tr>
+            <td>a₂₁</td>
+            <td>a₂₂</td>
+            <td>a₂₃</td>
+            <td>...</td>
+            <td>a₂ₙ</td>
+        </tr>
+        <tr>
+            <td>a₃₁</td>
+            <td>a₃₂</td>
+            <td>a₃₃</td>
+            <td>...</td>
+            <td>a₃ₙ</td>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>aₘ₁</td>
+            <td>aₘ₂</td>
+            <td>aₘ₃</td>
+            <td>...</td>
+            <td>aₘₙ</td>
+        </tr>
+    </table>
+</div>
+
+            </div>
+
+            <p>
+                Keterangan:
+            </p> 
+
+            <br>
+
+            <p>
+                <strong></strong> 	Aₘₓₙ : Matriks A berordo m × n, dengan m = banyak baris dan n = banyak kolom. Bilangan m dan n adalah bilangan asli.
+	aᵢⱼ : Elemen matriks A pada baris ke-i dan kolom ke-j, dengan i = 1,2,…,m dan j = 1,2,…, n.
+
+            </p>
+
+        </div>
+
+
+        <!-- CONTOH -->
+
+        <div class="section">
+
+            <h2>
+                💡 Contoh Matriks
+            </h2>
+
+            <div class="example">
+
+                <p>
+                    <div class="formula">
+    A = 
+    <table style="border-left: 3px solid black; border-right: 3px solid black; display: inline-table; text-align: center; border-spacing: 20px 10px; font-weight: bold; vertical-align: middle;">
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>0</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>3</td>
+            <td>9</td>
+        </tr>
+    </table>
+</div>
+
+            </div>
+
+
+
+        <!-- CARA MENYELESAIKAN -->
+
+        <div class="section">
+
+            <h2>
+                🧮 Keterangan
+            </h2>
+
+            <p>
+                <div class="formula">
+    A = 
+    <table style="border-left: 3px solid black; border-right: 3px solid black; display: inline-table; text-align: center; border-spacing: 20px 10px; font-weight: bold; vertical-align: middle;">
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>0</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>3</td>
+            <td>9</td>
+        </tr>
+    </table>
+</div>
+
+<p>
+    Keterangan dari contoh matriks di atas:
+</p>
+<br>
+<p>
+    <strong>A</strong> = Nama matriks (selalu menggunakan huruf kapital).
+</p>
+<p>
+    <strong>Baris Matriks</strong> = Susunan angka yang horizontal (mendatar). Contoh baris ke-1 adalah 2, 4, 1.
+</p>
+<p>
+    <strong>Kolom Matriks</strong> = Susunan angka yang vertikal (tegak). Contoh kolom ke-1 adalah 2, 5, 8.
+</p>
+<p>
+    <strong>Ordo Matriks</strong> = Ukuran matriks (baris x kolom). Matriks di atas berordo 3x3 karena memiliki 3 baris dan 3 kolom.
+</p>
+<p>
+    <strong>Elemen Matriks</strong> = Angka-angka di dalam matriks. Contohnya, angka 7 adalah elemen pada baris ke-2 kolom ke-3.
+</p>
+
+        </div>
+
+
+        <!-- CATATAN -->
+
+        <div class="section">
+
+        </div>
+
+
+        <!-- KESIMPULAN -->
+
+        <div class="section">
+
+            <h2>
+                ✅ Kesimpulan
+            </h2>
+
+            <p>
+                <div class="content" style="margin-top: 30px; border-top: 2px dashed #ccc; padding-top: 20px;">
+    <h3><strong>Kesimpulan Materi Matriks</strong></h3>
+    <ul>
+        <li>Matriks adalah kumpulan bilangan yang disusun dalam bentuk <strong>baris (mendatar)</strong> dan <strong>kolom (tegak)</strong> di dalam kurung siku atau kurung biasa.</li>
+        <li>Setiap matriks diberi nama menggunakan <strong>huruf kapital</strong> (contoh: A, B, C).</li>
+        <li>Ukuran matriks ditentukan oleh ordonya, yaitu <strong>(jumlah baris × jumlah kolom)</strong>.</li>
+        <li>Angka-angka yang ada di dalam matriks disebut sebagai <strong>elemen atau anggota</strong> matriks.</li>
+    </ul>
+</div>
+
+        </div>
+
+
+        <!-- SELESAI -->
+
+        <div class="finish">
+
+            <h3>
+                🎓 Materi selesai dipelajari?
+            </h3>
+
+            <p style="margin-top:10px;">
+                Setelah memahami materi, kamu dapat
+                melanjutkan ke contoh soal dan tugas.
+            </p>
+
+        </div>
+
+
+        <a href="pertemuan.html" class="button">
+            LANJUTKAN PEMBELAJARAN
+        </a>
+
+
+    </div>
+
+</div>
+<script src="js/auth.js"></script>
+</body>
+
+</html>

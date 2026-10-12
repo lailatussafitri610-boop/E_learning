@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - E-Learning SMA</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #eaf4fb;
+            color: #203b52;
+            font-family: Arial, sans-serif;
+        }
+
+        .app {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: auto;
+            padding-bottom: 65px;
+            background: #f8fcff;
+            box-shadow: 0 0 36px rgba(28, 58, 44, .08);
+        }
+
+        header {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 20px;
+            color: white;
+            background: #285b7b;
+        }
+
+        header::after {
+            position: absolute;
+            z-index: -1;
+            top: -55px;
+            bottom: -55px;
+            left: -35%;
+            width: 32%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(164, 210, 235, .23),
+                transparent
+            );
+            content: "";
+            pointer-events: none;
+            transform: skewX(-18deg);
+            animation: header-sheen 8s ease-in-out infinite;
+        }
+
+        header p {
+            margin-top: 5px;
+            color: #d9eaf5;
+        }
+
+        .content {
+            padding: 20px;
+            background: #f8fcff;
+        }
+
+        .title {
+            margin-bottom: 15px;
+            color: #214a67;
+        }
+
+        .card {
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #d8e9f5;
+            border-radius: 15px;
+            background: #fff;
+            box-shadow: 0 4px 14px rgba(30, 60, 46, .045);
+            animation: card-enter 550ms ease-out both;
+            transition: box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        .card:hover {
+            border-color: #bad5e7;
+            box-shadow: 0 8px 22px rgba(31, 41, 55, .07);
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            color: #244e6b;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            color: #5b6f7d;
+        }
+
+        .study-illustration {
+            position: relative;
+            display: flex;
+            min-height: 230px;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 8px 0 20px;
+            border: 1px solid #cfe4f2;
+            border-radius: 14px;
+            color: #214a67;
+            background: linear-gradient(
+                145deg,
+                #e5f3fb,
+                #f5fbff 58%,
+                #d9edf9
+            );
+        }
+
+        .learning-heading {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            left: 0;
+            color: #285b7b;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-align: center;
+        }
+
+        .learning-art {
+            width: min(390px, 95%);
+            height: 160px;
+            overflow: visible;
+        }
+
+        .learning-person,
+        .learning-device,
+        .learning-book,
+        .learning-sparkle {
+            transform-box: fill-box;
+        }
+
+        .learning-person {
+            transform-origin: center bottom;
+            animation: device-float 5s ease-in-out infinite;
+        }
+
+        .learning-device {
+            transform-origin: center;
+            animation: device-float 4s ease-in-out infinite;
+        }
+
+        .learning-book {
+            transform-origin: center;
+            animation: book-hover 3.4s ease-in-out infinite;
+        }
+
+        .learning-sparkle {
+            transform-origin: center;
+            animation: sparkle 2.4s ease-in-out infinite;
+        }
+
+        .learning-subcaption {
+            position: absolute;
+            right: 0;
+            bottom: 12px;
+            left: 0;
+            margin: 0 !important;
+            color: #5b6f7d !important;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .button {
+            display: block;
+            padding: 13px;
+            border-radius: 8px;
+            color: white;
+            background: #3b7fa8;
+            box-shadow: 0 3px 8px rgba(34, 78, 56, .14);
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 180ms ease, transform 180ms ease;
+        }
+
+        .button:hover {
+            background: #2c678a;
+            transform: translateY(-1px);
+        }
+
+        .button:focus-visible {
+            outline: 3px solid #79a8c8;
+            outline-offset: 3px;
+        }
+
+        #progressBar {
+            background: #5598c5 !important;
+        }
+
+        .bottom-menu {
+            position: fixed;
+            z-index: 9999;
+            bottom: 0;
+            left: 50%;
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            align-items: center;
+            justify-content: space-around;
+            padding: 6px 0;
+            border-top: 1px solid #477696;
+            background: #285b7b;
+            box-shadow: 0 -4px 16px rgba(23, 48, 37, .13);
+            transform: translateX(-50%);
+        }
+
+        .bottom-menu a {
+            flex: 1;
+            padding: 4px 0;
+            color: #eff8fd;
+            text-align: center;
+            text-decoration: none;
+            transition: color 180ms ease, background-color 180ms ease;
+        }
+
+        .bottom-menu a:hover {
+            color: #c4e3f5;
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .bottom-menu .icon {
+            font-size: 20px;
+        }
+
+        .bottom-menu span {
+            font-size: 11px;
+        }
+
+        @keyframes device-float {
+            0%, 100% { transform: translateY(1px); }
+            50% { transform: translateY(-3px); }
+        }
+
+        @keyframes book-hover {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-5px) rotate(2deg); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: .55; transform: scale(.9); }
+            50% { opacity: 1; transform: scale(1.08); }
+        }
+
+        @keyframes card-enter {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes header-sheen {
+            0%, 15% { left: -35%; opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: .7; }
+            100% { left: 115%; opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+<style id="fifi-theme-embedded">
+:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
+body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
+.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
+</style></head>
+
+<body>
+    <div class="app">
+        <header>
+            <h1>Halo, <span id="namaSiswa">Siswa</span> 👋</h1>
+            <p>Selamat datang di E-Learning SMA</p>
+        </header>
+
+        <main class="content">
+            <h2 class="title">Mata Pelajaran</h2>
+
+            <section class="card">
+                <h3>📐 Matematika</h3>
+                <p>Kelas XI SMA</p>
+                <p>Progress belajar: <span id="progressText">0%</span></p>
+
+                <div style="width:100%; height:12px; background:#e5e7eb; border-radius:10px; overflow:hidden; margin:10px 0 20px;">
+                    <div id="progressBar" style="width:0%; height:100%; border-radius:10px; transition:width 0.5s;"></div>
+                </div>
+
+                <p style="font-size:12px; color:#777; margin:-10px 0 20px;">
+                    Progress dihitung dari pertemuan yang sudah menyelesaikan absensi, tugas, dan quiz.
+                </p>
+
+                <div class="study-illustration" role="img" aria-label="Ilustrasi animasi e-learning dengan laptop, siswa, dan buku">
+                    <span class="learning-heading">BELAJAR JADI LEBIH SERU</span>
+
+                    <svg class="learning-art" viewBox="0 0 440 200" aria-hidden="true">
+                        <ellipse cx="220" cy="185" rx="143" ry="9" fill="#b9dced" opacity=".65"/>
+                        <circle cx="90" cy="76" r="27" fill="#d5ebf7" opacity=".8"/>
+                        <circle cx="351" cy="71" r="36" fill="#dceffa" opacity=".9"/>
+
+                        <g class="learning-sparkle" fill="#5598c5">
+                            <path d="M75 53l4 9 9 4-9 4-4 9-4-9-9-4 9-4 4-9Z"/>
+                            <path d="M354 41l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z"/>
+                            <circle cx="328" cy="103" r="3"/>
+                        </g>
+
+                        <g class="learning-person">
+                            <path d="M171 148c3-32 20-48 49-48s47 16 50 48v27H171v-27Z" fill="#5a9ac1"/>
+                            <path d="M211 98h19v18c-5 8-14 8-19 0V98Z" fill="#efc7a7"/>
+                            <ellipse cx="220" cy="76" rx="28" ry="32" fill="#f3c9aa"/>
+                            <path d="M192 77c-4-29 12-45 31-44 19 1 29 15 26 34-7-9-17-14-28-14-8 10-18 15-29 15v9Z" fill="#263f54"/>
+                            <path d="M202 76c3 2 6 2 9 0m18 0c3 2 6 2 9 0" fill="none" stroke="#334a5d" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M215 88c3 3 8 3 11 0" fill="none" stroke="#bc806c" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M177 131c11-10 24-15 43-15s33 5 44 15" fill="none" stroke="#d8edf8" stroke-width="3" opacity=".8"/>
+                        </g>
+
+                        <g class="learning-device">
+                            <rect x="143" y="118" width="154" height="66" rx="8" fill="#315f7d"/>
+                            <rect x="150" y="125" width="140" height="51" rx="4" fill="#f9fdff"/>
+                            <rect x="158" y="133" width="41" height="34" rx="4" fill="#d9edf8"/>
+                            <circle cx="178" cy="145" r="6" fill="#efc7a7"/>
+                            <path d="M167 162c1-8 5-12 11-12s10 4 11 12" fill="#5598c5"/>
+                            <rect x="205" y="135" width="68" height="5" rx="2.5" fill="#5598c5"/>
+                            <rect x="205" y="145" width="54" height="4" rx="2" fill="#bfd9e9"/>
+                            <rect x="205" y="154" width="62" height="4" rx="2" fill="#bfd9e9"/>
+                            <path d="m132 185 12-7h152l12 7c2 2 0 4-3 4H135c-3 0-5-2-3-4Z" fill="#80b1cf"/>
+                            <path d="M202 182h36" stroke="#dff0fa" stroke-width="2" stroke-linecap="round"/>
+                        </g>
+
+                        <g transform="translate(326 125)">
+                            <g class="learning-book">
+                                <path d="M0 9c8-4 16-2 23 2v31c-7-4-15-6-23-2V9Z" fill="#fff" stroke="#4b86aa" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M46 9c-8-4-16-2-23 2v31c7-4 15-6 23-2V9Z" fill="#e5f3fb" stroke="#4b86aa" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M23 11v31M6 17c5-1 9 0 13 2m-13 5c5-1 9 0 13 2m14-9c-5-1-9 0-13 2m13 5c-5-1-9 0-13 2" fill="none" stroke="#8ab5d0" stroke-width="1.6" stroke-linecap="round"/>
+                            </g>
+                        </g>
+
+                        <g class="learning-sparkle" transform="translate(110 124)">
+                            <path d="M0 0 3 7l7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" fill="#83b8d7"/>
+                        </g>
+                    </svg>
+
+                    <p class="learning-subcaption">Ayo lanjutkan materi Matematikamu</p>
+                </div>
+
+                <a href="mapel.html" class="button">MULAI BELAJAR</a>
+            </section>
+        </main>
+
+        <nav class="bottom-menu" aria-label="Menu utama">
+            <a href="dashboard.html">
+                <div class="icon">🏠</div>
+                <span>Home</span>
+            </a>
+            <a href="mapel.html">
+                <div class="icon">📚</div>
+                <span>Materi</span>
+            </a>
+            <a href="progress.html">
+                <div class="icon">📊</div>
+                <span>Progress</span>
+            </a>
+            <a href="profil.html">
+                <div class="icon">👤</div>
+                <span>Profil</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function hitungProgress() {
+            let selesai = 0;
+
+            const p1 =
+                localStorage.getItem("absensiPertemuan1") &&
+                localStorage.getItem("tugasPertemuan1") &&
+                localStorage.getItem("quizPertemuan1");
+
+            const p2 =
+                localStorage.getItem("absensiPertemuan2") &&
+                localStorage.getItem("tugasPertemuan2") &&
+                localStorage.getItem("quizPertemuan2");
+
+            const p3 =
+                localStorage.getItem("absensiPertemuan3") &&
+                localStorage.getItem("tugasPertemuan3") &&
+                localStorage.getItem("quizPertemuan3");
+
+            if (p1) selesai++;
+            if (p2) selesai++;
+            if (p3) selesai++;
+
+            let progress = selesai * 33;
+            if (selesai === 3) progress = 100;
+
+            document.getElementById("progressText").textContent =
+                progress + "%";
+
+            document.getElementById("progressBar").style.width =
+                progress + "%";
+        }
+
+        hitungProgress();
+
+        const namaSiswa = localStorage.getItem("namaSiswa");
+
+        if (!namaSiswa) {
+            window.location.href = "index.html";
+        } else {
+            document.getElementById("namaSiswa").textContent = namaSiswa;
+        }
+    </script>
+</body>
+</html>

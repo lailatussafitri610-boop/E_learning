@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <title>Login - E-Learning SMA</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .container {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 35px;
+        }
+
+        .login-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 25px 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #1f2937;
+        }
+
+        .button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            background: #1f2937;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #111827;
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+    </style>
+
+<style id="fifi-theme-embedded">
+:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
+body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
+.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
+</style><style id="fifi-login-layout-fix">
+.container{align-items:stretch}.fifi-hero--login{width:100%;min-height:108px;margin:0 0 24px;padding:14px 16px}.fifi-hero--login .fifi-hero-copy{max-width:calc(100% - 86px)}.fifi-hero--login .fifi-hero-art{width:78px;height:76px;flex-basis:78px}.fifi-hero--login .fifi-icon{font-size:38px}.container h1{color:#214a67;letter-spacing:.02em}.container .subtitle{color:#5b6f7d;margin-bottom:26px}.login-card{background:#fff;box-shadow:0 8px 24px rgba(37,91,123,.07)}
+</style></head>
+
+<body>
+
+
+<div class="container">
+    <section class="fifi-hero fifi-hero--login" aria-label="Ilustrasi selamat datang"><div class="fifi-hero-copy"><span class="fifi-hero-title">SELAMAT DATANG</span><p>Masuk untuk melanjutkan kegiatan belajar.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">🎓</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">✦</span></div></section>
+
+
+    
+
+    <h1>
+        E-LEARNING SMA
+    </h1>
+
+    <p class="subtitle">
+        Belajar lebih mudah, kapan saja dan di mana saja.
+    </p>
+
+
+    <div class="login-card">
+
+        <label for="nama">
+            Nama Siswa
+        </label>
+
+        <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan nama kamu"
+            autocomplete="name"
+        >
+
+        <p id="error" class="error">
+            Silakan masukkan nama terlebih dahulu.
+        </p>
+
+        <button class="button" onclick="login()">
+            MASUK
+        </button>
+
+    </div>
+
+
+    <p class="footer">
+        E-Learning Matematika Kelas X SMA
+    </p>
+
+</div>
+
+
+<script>
+
+    function login() {
+
+        const namaInput =
+            document.getElementById("nama");
+
+        const error =
+            document.getElementById("error");
+
+        const nama =
+            namaInput.value.trim();
+
+
+        // Cek nama
+        if (nama === "") {
+
+            error.style.display = "block";
+
+            return;
+        }
+
+
+        // Simpan nama siswa
+        localStorage.setItem(
+            "namaSiswa",
+            nama
+        );
+
+
+        // Masuk ke Dashboard
+        window.location.href =
+            "dashboard.html";
+    }
+
+</script>
+<script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js")
+            .then(function() {
+                console.log("Service Worker berhasil terdaftar");
+            })
+            .catch(function(error) {
+                console.log("Service Worker gagal:", error);
+            });
+    }
+</script>
+</body>
+</html>
