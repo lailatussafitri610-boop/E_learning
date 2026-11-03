@@ -1,137 +1,1032 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Tugas Pertemuan 3 - E-Learning SMA</title>
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
-        .container { max-width: 500px; min-height: 100vh; margin: auto; background: white; padding-bottom: 30px; }
-        .header { background: #1f2937; color: white; padding: 20px; }
-        .back { color: white; text-decoration: none; font-size: 14px; }
-        .header h1 { margin-top: 15px; font-size: 24px; }
-        .header p { margin-top: 5px; color: #d1d5db; }
-        .content { padding: 20px; }
-        .info { background: #f3f4f6; padding: 15px; border-radius: 10px; margin-bottom: 15px; line-height: 1.7; }
-        .warning { background: #fff7ed; border: 1px solid #fed7aa; padding: 14px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; line-height: 1.6; }
-        .question { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 18px; margin-bottom: 18px; }
-        .question h2 { font-size: 15px; line-height: 1.6; margin-bottom: 12px; font-weight: bold; }
-        .option { margin: 10px 0; padding: 12px; background: white; border: 1px solid #ddd; border-radius: 7px; display: flex; align-items: center; }
-        .option label { margin-left: 10px; font-size: 14px; cursor: pointer; width: 100%; display: inline-flex; align-items: center; }
-        .essay-label { display: block; font-size: 14px; margin: 8px 0; font-weight: bold; color: #4b5563; }
-        textarea { width: 100%; min-height: 100px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; resize: vertical; }
-        .submit-button { width: 100%; border: none; background: #1f2937; color: white; padding: 15px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; }
-        .success { display: none; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 20px; border-radius: 10px; text-align: center; }
-        .back-button { display: block; background: #1f2937; color: white; text-decoration: none; padding: 13px; border-radius: 8px; margin-top: 18px; font-weight: bold; }
-        
-        /* CSS Singkat Matriks */
-        .matrix-container { display: inline-flex; align-items: center; font-size: 14px; font-weight: bold; vertical-align: middle; margin: 4px 0; }
-        .matrix { position: relative; display: inline-grid; grid-template-columns: repeat(2, auto); gap: 4px 10px; padding: 4px 8px; margin: 0 4px; text-align: center; }
-        .matrix::before, .matrix::after { content: ""; position: absolute; top: 0; bottom: 0; width: 5px; border: 2px solid black; }
-        .matrix::before { left: 0; border-right: none; }
-        .matrix::after { right: 0; border-left: none; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .app {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #d1d5db;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .info {
+            background: #f9fafb;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .soal {
+            border: 1px solid #ddd;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .soal h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .pertanyaan {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .pilihan {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f9fafb;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            padding: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: normal;
+        }
+
+        .pilihan:hover {
+            background: #f3f4f6;
+        }
+
+        .pilihan input {
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .essay-label {
+            display: block;
+            font-size: 14px;
+            margin: 8px 0;
+            font-weight: bold;
+            color: #4b5563;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 9px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #3b7fa8;
+            box-shadow: 0 0 0 2px rgba(59,127,168,.12);
+        }
+
+        .submit-button {
+            width: 100%;
+            border: none;
+            background: #1f2937;
+            color: white;
+            padding: 15px;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: #111827;
+        }
+
+        .success {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #166534;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .back-button {
+            display: block;
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 9px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* TAMPILAN MATRIKS */
+
+        .matrix-container {
+            display: inline-flex;
+            align-items: center;
+            vertical-align: middle;
+            margin: 4px 0;
+            font-size: 15px;
+            font-weight: normal;
+        }
+
+        .matrix {
+            position: relative;
+            display: inline-grid;
+            grid-template-columns: repeat(2, auto);
+            gap: 5px 12px;
+            padding: 5px 12px;
+            margin: 0 4px;
+            text-align: center;
+            min-width: 48px;
+            min-height: 52px;
+            align-items: center;
+        }
+
+        .matrix::before,
+        .matrix::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            border: 2px solid #203b52;
+        }
+
+        .matrix::before {
+            left: 0;
+            border-right: none;
+        }
+
+        .matrix::after {
+            right: 0;
+            border-left: none;
+        }
+
+        .operasi-matriks {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        /* TEMA BIRU */
+
+        :root {
+            --fifi-blue-950: #214a67;
+            --fifi-blue-900: #285b7b;
+            --fifi-blue-700: #3b7fa8;
+            --fifi-blue-100: #eaf4fb;
+            --fifi-blue-50: #f8fcff;
+            --fifi-ink: #203b52;
+            --fifi-line: #d8e9f5;
+        }
+
+        body {
+            background-color: var(--fifi-blue-100);
+            color: var(--fifi-ink);
+        }
+
+        .app {
+            background-color: var(--fifi-blue-50);
+        }
+
+        header {
+            background-color: var(--fifi-blue-900);
+            color: white;
+        }
+
+        .info,
+        .soal {
+            border-color: var(--fifi-line);
+        }
+
+        .info {
+            background: #f8fcff;
+        }
+
+        .pilihan {
+            border-color: var(--fifi-line);
+            background: #f8fcff;
+        }
+
+        .pilihan:hover {
+            background: #eaf4fb;
+        }
+
+        .submit-button,
+        .back-button {
+            background: var(--fifi-blue-700);
+            color: white;
+        }
+
+        .submit-button:hover,
+        .back-button:hover {
+            background: var(--fifi-blue-900);
+        }
+
+        /* HERO */
+
+        .fifi-hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 122px;
+            overflow: hidden;
+            margin: 14px 20px 18px;
+            padding: 16px 18px;
+            border: 1px solid #cfe4f2;
+            border-radius: 16px;
+            background: linear-gradient(
+                125deg,
+                #e5f3fb,
+                #f7fcff 60%,
+                #d9edf9
+            );
+            color: var(--fifi-blue-950);
+        }
+
+        .fifi-hero-copy {
+            max-width: calc(100% - 108px);
+        }
+
+        .fifi-hero-title {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--fifi-blue-900);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .07em;
+        }
+
+        .fifi-hero-copy p {
+            margin: 0;
+            color: #58758a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .fifi-hero-art {
+            position: relative;
+            display: grid;
+            width: 94px;
+            height: 86px;
+            flex: 0 0 94px;
+            place-items: center;
+            pointer-events: none;
+        }
+
+        .fifi-orb {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px solid rgba(85,152,197,.25);
+            border-radius: 50%;
+            background: rgba(255,255,255,.75);
+            box-shadow: 0 8px 20px rgba(58,119,157,.12);
+        }
+
+        .fifi-icon {
+            position: relative;
+            font-size: 43px;
+            line-height: 1;
+            filter: drop-shadow(0 4px 3px rgba(47,99,131,.15));
+            animation: fifi-float 3.6s ease-in-out infinite;
+        }
+
+        .fifi-badge {
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            display: grid;
+            width: 26px;
+            height: 26px;
+            place-items: center;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #dff1fb;
+            color: #347fa8;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .fifi-sparkle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            color: #66a5ca;
+            font-size: 16px;
+            animation: fifi-twinkle 2.8s ease-in-out infinite;
+        }
+
+        @keyframes fifi-float {
+            0%, 100% { transform: translateY(1px); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @keyframes fifi-twinkle {
+            0%, 100% {
+                opacity: .5;
+                transform: scale(.9);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        @media(max-width:480px) {
+            .fifi-hero {
+                margin-left: 14px;
+                margin-right: 14px;
+                padding: 14px;
+            }
+
+            .fifi-hero-art {
+                width: 76px;
+                flex-basis: 76px;
+            }
+
+            .fifi-hero-copy {
+                max-width: calc(100% - 84px);
+            }
+        }
+
+        @media(prefers-reduced-motion: reduce) {
+            .fifi-icon,
+            .fifi-sparkle {
+                animation: none;
+            }
+        }
     </style>
-<style id="fifi-theme-embedded">
-:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
-body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
-.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
-</style></head>
+</head>
+
 <body>
-<section class="fifi-hero fifi-hero--tasks" aria-label="Ilustrasi tugas pembelajaran"><div class="fifi-hero-copy"><span class="fifi-hero-title">TUGAS PEMBELAJARAN PERTEMUAN 3</span><p>Kerjakan dengan teliti dan periksa kembali jawabanmu.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">✏️</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">✓</span></div></section>
-<div class="container">
-    <div class="header">
-        <a href="pertemuan3.html" class="back">← Kembali</a>
+
+<div class="app">
+
+    <!-- HEADER -->
+
+    <header>
+        <a href="pertemuan3.html">
+            ← Kembali
+        </a>
+
         <h1>📚 Tugas Pertemuan 3</h1>
+
         <p>Operasi Pengurangan Matriks</p>
-    </div>
+    </header>
+
+    <!-- HERO -->
+
+    <section class="fifi-hero" aria-label="Ilustrasi tugas pembelajaran">
+        <div class="fifi-hero-copy">
+            <span class="fifi-hero-title">
+                TUGAS PEMBELAJARAN PERTEMUAN 3
+            </span>
+            <p>
+                Kerjakan dengan teliti dan periksa kembali jawabanmu.
+            </p>
+        </div>
+
+        <div class="fifi-hero-art" aria-hidden="true">
+            <span class="fifi-orb"></span>
+            <span class="fifi-icon">✏️</span>
+            <span class="fifi-sparkle">✦</span>
+            <span class="fifi-badge">✓</span>
+        </div>
+    </section>
 
     <div class="content">
-        <div id="formContainer">
-            <div class="info">
-                <strong>Mata Pelajaran:</strong> Matematika<br>
-                <strong>Kelas:</strong> XI SMA<br>
-                <strong>Jumlah Soal:</strong> 10 (5 Pilihan Ganda & 5 Uraian)
+
+        <!-- INFORMASI -->
+
+        <div class="info">
+            <strong>Informasi Tugas</strong>
+            <br><br>
+
+            Mata Pelajaran: Matematika<br>
+            Kelas: XI SMA<br>
+            Pertemuan: 3<br>
+            Materi: Operasi Pengurangan Matriks<br>
+            Jumlah Soal: 10 (5 Pilihan Ganda dan 5 Uraian)
+        </div>
+
+        <!-- PERINGATAN -->
+
+        <div class="warning">
+            ⚠️ <strong>Perhatian</strong>
+            <br>
+            Perhatikan kesesuaian letak elemen matriks dan
+            ketepatan operasi tanda negatif. Kerjakan semua
+            soal dengan teliti sebelum mengirim tugas.
+        </div>
+
+        <form id="tugasForm">
+
+            <!-- PILIHAN GANDA -->
+
+            <!-- SOAL 1 -->
+
+            <div class="soal">
+                <h2>Soal 1</h2>
+
+                <div class="pertanyaan">
+                    Dua matriks atau lebih dapat dikurangkan apabila
+                    memiliki syarat berupa...
+                </div>
+
+                <label class="pilihan">
+                    <input type="radio" name="q1" value="A">
+                    A. Nilai determinan sama
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q1" value="B">
+                    B. Ukuran ordo yang sama
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q1" value="C">
+                    C. Jumlah elemen ganjil
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q1" value="D">
+                    D. Banyaknya baris adalah satu
+                </label>
             </div>
-            <div class="warning">⚠️ Perhatikan kesesuaian letak elemen matriks dan ketepatan operasi tanda negatif Anda.</div>
 
-            <form id="tugasForm">
-                <!-- PILIHAN GANDA -->
-                <div class="question">
-                    <h2>1. Dua matriks atau lebih dapat dikurangkan apabila memiliki syarat berupa...</h2>
-                    <div class="option"><input type="radio" name="q1" value="A" id="q1a"><label for="q1a">A. Nilai determinan sama</label></div>
-                    <div class="option"><input type="radio" name="q1" value="B" id="q1b"><label for="q1b">B. Ukuran ordo yang sama</label></div>
-                    <div class="option"><input type="radio" name="q1" value="C" id="q1c"><label for="q1c">C. Jumlah elemen ganjil</label></div>
-                    <div class="option"><input type="radio" name="q1" value="D" id="q1d"><label for="q1d">D. Banyaknya baris adalah satu</label></div>
+            <!-- SOAL 2 -->
+
+            <div class="soal">
+                <h2>Soal 2</h2>
+
+                <div class="pertanyaan">
+                    Diketahui matriks A =
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>7</span><span>5</span>
+                            <span>3</span><span>1</span>
+                        </span>
+                    </span>
+                    dan B =
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>4</span><span>2</span>
+                            <span>1</span><span>0</span>
+                        </span>
+                    </span>.
+                    Hasil dari A - B adalah...
                 </div>
 
-                <div class="question">
-                    <h2>2. Diketahui matriks A = <div class="matrix-container"><div class="matrix"><div>7</div><div>5</div><div>3</div><div>1</div></div></div> dan B = <div class="matrix-container"><div class="matrix"><div>4</div><div>2</div><div>1</div><div>0</div></div></div>. Hasil dari A - B adalah...</h2>
-                    <div class="option"><input type="radio" name="q2" value="A" id="q2a"><label for="q2a">A. <div class="matrix-container"><div class="matrix"><div>3</div><div>3</div><div>2</div><div>1</div></div></div></label></div>
-                    <div class="option"><input type="radio" name="q2" value="B" id="q2b"><label for="q2b">B. <div class="matrix-container"><div class="matrix"><div>11</div><div>7</div><div>4</div><div>1</div></div></div></label></div>
-                    <div class="option"><input type="radio" name="q2" value="C" id="q2c"><label for="q2c">C. <div class="matrix-container"><div class="matrix"><div>3</div><div>3</div><div>1</div><div>0</div></div></div></label></div>
-                    <div class="option"><input type="radio" name="q2" value="D" id="q2d"><label for="q2d">D. <div class="matrix-container"><div class="matrix"><div>3</div><div>3</div><div>2</div><div>0</div></div></div></label></div>
+                <label class="pilihan">
+                    <input type="radio" name="q2" value="A">
+                    A.
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>3</span><span>3</span>
+                            <span>2</span><span>1</span>
+                        </span>
+                    </span>
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q2" value="B">
+                    B.
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>11</span><span>7</span>
+                            <span>4</span><span>1</span>
+                        </span>
+                    </span>
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q2" value="C">
+                    C.
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>3</span><span>3</span>
+                            <span>1</span><span>0</span>
+                        </span>
+                    </span>
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q2" value="D">
+                    D.
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>3</span><span>3</span>
+                            <span>2</span><span>0</span>
+                        </span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- SOAL 3 -->
+
+            <div class="soal">
+                <h2>Soal 3</h2>
+
+                <div class="pertanyaan">
+                    Hasil pengurangan dari
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>2</span><span>-3</span>
+                            <span>6</span><span>0</span>
+                        </span>
+                    </span>
+                    -
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>-1</span><span>4</span>
+                            <span>2</span><span>5</span>
+                        </span>
+                    </span>
+                    adalah...
                 </div>
 
-                <div class="question">
-                    <h2>3. Hasil pengurangan dari <div class="matrix-container"><div class="matrix"><div>2</div><div>-3</div><div>6</div><div>0</div></div></div> - <div class="matrix-container"><div class="matrix"><div>-1</div><div>4</div><div>2</div><div>5</div></div></div> adalah...</h2>
-                    <div class="option"><input type="radio" name="q3" value="A" id="q3a"><label for="q3a">A. <div class="matrix-container"><div class="matrix"><div>3</div><div>1</div><div>4</div><div>5</div></div></div></label></div>
-                    <div class="option"><input type="radio" name="q3" value="B" id="q3b"><label for="q3b">B. <div class="matrix-container"><div class="matrix"><div>1</div><div>-7</div><div>4</div><div>-5</div></div></div></label></div>
-                    <div class="option"><input type="radio" name="q3" value="C" id="q3c"><label for="q3c">C. <div class="matrix-container"><div class="matrix"><div>3</div><div>-7</div><div>4</div><div>-5</div></div></div></label></div>
-                    <div class="option"><input type="radio" name="q3" value="D" id="q3d"><label for="q3d">D. <div class="matrix-container"><div class="matrix"><div>3</div><div>-7</div><div>8</div><div>5</div></div></div></label></div>
+                <label class="pilihan">
+                    <input type="radio" name="q3" value="A">
+                    A.
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>3</span><span>1</span>
+                            <span>4</span><span>5</span>
+                        </span>
+                    </span>
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q3" value="B">
+                    B.
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>1</span><span>-7</span>
+                            <span>4</span><span>-5</span>
+                        </span>
+                    </span>
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q3" value="C">
+                    C.
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>3</span><span>-7</span>
+                            <span>4</span><span>-5</span>
+                        </span>
+                    </span>
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q3" value="D">
+                    D.
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>3</span><span>-7</span>
+                            <span>8</span><span>5</span>
+                        </span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- SOAL 4 -->
+
+            <div class="soal">
+                <h2>Soal 4</h2>
+
+                <div class="pertanyaan">
+                    Berdasarkan rumus A - B = A + (-B), bentuk
+                    matriks dalam kurung (-B) diartikan sebagai...
                 </div>
 
-                <div class="question">
-                    <h2>4. Berdasarkan rumus A - B = A + (-B), bentuk matriks dalam kurung (-B) diartikan sebagai...</h2>
-                    <div class="option"><input type="radio" name="q4" value="A" id="q4a"><label for="q4a">A. Matriks transpose</label></div>
-                    <div class="option"><input type="radio" name="q4" value="B" id="q4b"><label for="q4b">B. Matriks nol</label></div>
-                    <div class="option"><input type="radio" name="q4" value="C" id="q4c"><label for="q4c">C. Matriks lawan yang tandanya berkebalikan</label></div>
-                    <div class="option"><input type="radio" name="q4" value="D" id="q4d"><label for="q4d">D. Matriks identitas</label></div>
+                <label class="pilihan">
+                    <input type="radio" name="q4" value="A">
+                    A. Matriks transpose
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q4" value="B">
+                    B. Matriks nol
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q4" value="C">
+                    C. Matriks lawan yang tandanya berkebalikan
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q4" value="D">
+                    D. Matriks identitas
+                </label>
+            </div>
+
+            <!-- SOAL 5 -->
+
+            <div class="soal">
+                <h2>Soal 5</h2>
+
+                <div class="pertanyaan">
+                    Diketahui
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>a</span><span>4</span>
+                            <span>-1</span><span>b</span>
+                        </span>
+                    </span>
+                    -
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>2</span><span>1</span>
+                            <span>3</span><span>5</span>
+                        </span>
+                    </span>
+                    =
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>6</span><span>3</span>
+                            <span>-4</span><span>2</span>
+                        </span>
+                    </span>.
+                    Nilai variabel a dan b berturut-turut adalah...
                 </div>
 
-                <div class="question">
-                    <h2>5. Diketahui <div class="matrix-container"><div class="matrix"><div>a</div><div>4</div><div>-1</div><div>b</div></div></div> - <div class="matrix-container"><div class="matrix"><div>2</div><div>1</div><div>3</div><div>5</div></div></div> = <div class="matrix-container"><div class="matrix"><div>6</div><div>3</div><div>-4</div><div>2</div></div></div>. Nilai variabel a dan b berturut-turut adalah...</h2>
-                    <div class="option"><input type="radio" name="q5" value="A" id="q5a"><label for="q5a">A. a = 8 dan b = 7</label></div>
-                    <div class="option"><input type="radio" name="q5" value="B" id="q5b"><label for="q5b">B. a = 4 dan b = -3</label></div>
-                    <div class="option"><input type="radio" name="q5" value="C" id="q5c"><label for="q5c">C. a = 4 dan b = 7</label></div>
-                    <div class="option"><input type="radio" name="q5" value="D" id="q5d"><label for="q5d">D. a = 8 dan b = -3</label></div>
+                <label class="pilihan">
+                    <input type="radio" name="q5" value="A">
+                    A. a = 8 dan b = 7
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q5" value="B">
+                    B. a = 4 dan b = -3
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q5" value="C">
+                    C. a = 4 dan b = 7
+                </label>
+
+                <label class="pilihan">
+                    <input type="radio" name="q5" value="D">
+                    D. a = 8 dan b = -3
+                </label>
+            </div>
+
+            <!-- SOAL URAIAN -->
+
+            <!-- SOAL 6 -->
+
+            <div class="soal">
+                <h2>Soal 6</h2>
+
+                <div class="pertanyaan">
+                    Tuliskan penjelasan analisis Anda mengapa
+                    dua buah matriks yang ukuran ordonya berbeda
+                    tidak bisa dikurangkan!
                 </div>
 
-                <!-- ESSAY -->
-                <div class="question">
-                    <h2>6. Tuliskan penjelasan analisis Anda mengapa dua buah matriks yang ukuran ordonya berbeda tidak bisa dikurangkan!</h2>
-                    <label class="essay-label" for="q6">Jawaban Anda:</label>
-                    <textarea id="q6" name="q6" placeholder="Tuliskan alasan analisis Anda..."></textarea>
+                <label class="essay-label" for="q6">
+                    Jawaban Anda:
+                </label>
+
+                <textarea
+                    id="q6"
+                    name="q6"
+                    placeholder="Tuliskan alasan analisis Anda..."
+                ></textarea>
+            </div>
+
+            <!-- SOAL 7 -->
+
+            <div class="soal">
+                <h2>Soal 7</h2>
+
+                <div class="pertanyaan">
+                    Hitung dan tunjukkan langkah penyelesaian akhir
+                    dari operasi pengurangan matriks berikut:
+                    <div class="operasi-matriks">
+                        <span class="matrix-container">
+                            <span class="matrix">
+                                <span>12</span><span>-4</span>
+                                <span>8</span><span>9</span>
+                            </span>
+                        </span>
+
+                        <span>-</span>
+
+                        <span class="matrix-container">
+                            <span class="matrix">
+                                <span>5</span><span>6</span>
+                                <span>-2</span><span>3</span>
+                            </span>
+                        </span>
+                    </div>
                 </div>
 
-                <div class="question">
-                    <h2>7. Hitung dan tunjukkan langkah penyelesaian akhir dari operasi pengurangan matriks berikut:<br><div class="matrix-container"><div class="matrix"><div>12</div><div>-4</div><div>8</div><div>9</div></div> - <div class="matrix"><div>5</div><div>6</div><div>-2</div><div>3</div></div></div></h2>
-                    <label class="essay-label" for="q7">Jawaban beserta cara hitung:</label>
-                    <textarea id="q7" name="q7" placeholder="Tuliskan proses hitung komponen elemen seletak..."></textarea>
+                <label class="essay-label" for="q7">
+                    Jawaban beserta cara hitung:
+                </label>
+
+                <textarea
+                    id="q7"
+                    name="q7"
+                    placeholder="Tuliskan proses hitung komponen elemen seletak..."
+                ></textarea>
+            </div>
+
+            <!-- SOAL 8 -->
+
+            <div class="soal">
+                <h2>Soal 8</h2>
+
+                <div class="pertanyaan">
+                    Jika diketahui sebuah matriks memiliki nilai
+                    K =
+                    <span class="matrix-container">
+                        <span class="matrix">
+                            <span>-3</span><span>7</span>
+                            <span>5</span><span>-1</span>
+                        </span>
+                    </span>,
+                    tentukan bentuk dari matriks lawannya (-K)!
                 </div>
 
-                <div class="question">
-<!-- SOAL 8 -->
-<div class="question">
-    <h2>8. Jika diketahui sebuah matriks memiliki nilai K = <div class="matrix-container"><div class="matrix"><div>-3</div><div>7</div><div>5</div><div>-1</div></div></div>, tentukan bentuk dari matriks lawannya (-K)!</h2>
-    <label class="essay-label" for="q8">Jawaban Anda:</label>
-    <textarea id="q8" name="q8" placeholder="Tulis susunan entri matriks hasil perubahannya..."></textarea>
+                <label class="essay-label" for="q8">
+                    Jawaban Anda:
+                </label>
+
+                <textarea
+                    id="q8"
+                    name="q8"
+                    placeholder="Tulis susunan entri matriks hasil perubahannya..."
+                ></textarea>
+            </div>
+
+            <!-- SOAL 9 -->
+
+            <div class="soal">
+                <h2>Soal 9</h2>
+
+                <div class="pertanyaan">
+                    Carilah nilai variabel x dari persamaan operasi
+                    pengurangan matriks berikut:
+
+                    <div class="operasi-matriks">
+                        <span class="matrix-container">
+                            <span class="matrix">
+                                <span>10</span><span>6</span>
+                                <span>x</span><span>4</span>
+                            </span>
+                        </span>
+
+                        <span>-</span>
+
+                        <span class="matrix-container">
+                            <span class="matrix">
+                                <span>4</span><span>2</span>
+                                <span>3</span><span>1</span>
+                            </span>
+                        </span>
+
+                        <span>=</span>
+
+                        <span class="matrix-container">
+                            <span class="matrix">
+                                <span>6</span><span>4</span>
+                                <span>7</span><span>3</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <label class="essay-label" for="q9">
+                    Jawaban beserta langkah hitung:
+                </label>
+
+                <textarea
+                    id="q9"
+                    name="q9"
+                    placeholder="Tuliskan cara mendapatkan nilai variabel x..."
+                ></textarea>
+            </div>
+
+            <!-- SOAL 10 -->
+
+            <div class="soal">
+                <h2>Soal 10</h2>
+
+                <div class="pertanyaan">
+                    Diketahui operasi matriks M - N. Berdasarkan
+                    rumus A - B = A + (-B), jelaskan penerapan logis
+                    perubahan operasi tersebut menjadi penjumlahan
+                    matriks lawannya!
+                </div>
+
+                <label class="essay-label" for="q10">
+                    Jawaban Anda:
+                </label>
+
+                <textarea
+                    id="q10"
+                    name="q10"
+                    placeholder="Tuliskan penjelasan pemahaman konsep Anda..."
+                ></textarea>
+            </div>
+
+            <!-- TOMBOL KIRIM -->
+
+            <button type="submit" class="submit-button">
+                📤 KIRIM TUGAS
+            </button>
+
+        </form>
+
+        <!-- PESAN BERHASIL -->
+
+        <div class="success" id="success">
+
+            <div style="font-size: 45px;">
+                ✅
+            </div>
+
+            <h2>Tugas Berhasil Dikumpulkan!</h2>
+
+            <br>
+
+            Jawaban kamu sudah berhasil disimpan.
+
+            <br>
+
+            Kunci jawaban tidak ditampilkan.
+
+            <br><br>
+
+            Terima kasih sudah mengerjakan tugas.
+
+            <a href="pertemuan3.html" class="back-button">
+                KEMBALI KE PERTEMUAN 3
+            </a>
+
+        </div>
+
+    </div>
 </div>
 
-<!-- SOAL 9 -->
-<div class="question">
-    <h2>9. Carilah nilai variabel x dari persamaan operasi pengurangan matriks berikut:<br><div class="matrix-container"><div class="matrix"><div>10</div><div>6</div><div>x</div><div>4</div></div> - <div class="matrix"><div>4</div><div>2</div><div>3</div><div>1</div></div> = <div class="matrix"><div>6</div><div>4</div><div>7</div><div>3</div></div></div></h2>
-    <label class="essay-label" for="q9">Jawaban beserta langkah hitung:</label>
-    <textarea id="q9" name="q9" placeholder="Tuliskan cara mendapatkan nilai variabel x..."></textarea>
-</div>
+<script>
+document
+    .getElementById("tugasForm")
+    .addEventListener("submit", function(event) {
 
-<!-- SOAL 10 -->
-<div class="question">
-    <h2>10. Diketahui operasi matriks M - N. Berdasarkan rumus A - B = A + (-B), jelaskan penerapan logis perubahan operasi tersebut menjadi penjumlahan matriks lawannya!</h2>
-    <label class="essay-label" for="q10">Jawaban Anda:</label>
-    <textarea id="q10" name="q10" placeholder="Tuliskan penjelasan pemahaman konsep Anda..."></textarea>
-</div>
-<!-- Tempel kode ini persis di bawah penutup kotak soal nomor 10 Anda -->
-<div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); text-align: center; margin-top: 20px;">
-    <button type="submit" style="width: 100%; background: #1e2538; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; text-transform: uppercase;">KUMPULKAN TUGAS</button>
-</div>
+        event.preventDefault();
+
+        // MEMERIKSA 5 SOAL PILIHAN GANDA
+
+        for (let i = 1; i <= 5; i++) {
+
+            const answer = document.querySelector(
+                'input[name="q' + i + '"]:checked'
+            );
+
+            if (!answer) {
+                alert(
+                    "Soal pilihan ganda nomor " + i + " belum dijawab."
+                );
+                return;
+            }
+        }
+
+        // MEMERIKSA 5 SOAL URAIAN
+
+        for (let i = 6; i <= 10; i++) {
+
+            const answer = document
+                .getElementById("q" + i)
+                .value
+                .trim();
+
+            if (answer === "") {
+                alert(
+                    "Soal uraian nomor " + i + " belum diisi."
+                );
+
+                document.getElementById("q" + i).focus();
+                return;
+            }
+        }
+
+        // MENGAMBIL JAWABAN
+
+        const dataTugas = {};
+
+        for (let i = 1; i <= 5; i++) {
+            dataTugas["soal" + i] = document.querySelector(
+                'input[name="q' + i + '"]:checked'
+            ).value;
+        }
+
+        for (let i = 6; i <= 10; i++) {
+            dataTugas["soal" + i] = document
+                .getElementById("q" + i)
+                .value
+                .trim();
+        }
+
+        dataTugas.waktu = new Date().toLocaleString("id-ID");
+        dataTugas.pertemuan = 3;
+        dataTugas.materi = "Operasi Pengurangan Matriks";
+
+        // MENYIMPAN JAWABAN
+
+        localStorage.setItem(
+            "tugasPertemuan3",
+            JSON.stringify(dataTugas)
+        );
+
+        // MENYEMBUNYIKAN FORM
+
+        document.getElementById("tugasForm").style.display =
+            "none";
+
+        // MENAMPILKAN PESAN BERHASIL
+
+        document.getElementById("success").style.display =
+            "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+</script>
+
+<script src="js/auth.js"></script>
+
+</body>
+</html>

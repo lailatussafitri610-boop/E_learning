@@ -1,9 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materi Pertemuan 3 - E-Learning SMA</title>
+
+    <title>Materi Pertemuan 3</title>
 
     <style>
         * {
@@ -18,7 +21,7 @@
             color: #222;
         }
 
-        .container {
+        .app {
             max-width: 500px;
             min-height: 100vh;
             margin: auto;
@@ -26,25 +29,25 @@
             padding-bottom: 30px;
         }
 
-        .header {
+        header {
             background: #1f2937;
             color: white;
             padding: 20px;
         }
 
-        .back {
+        header a {
             color: white;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        .header h1 {
-            margin-top: 15px;
-            font-size: 24px;
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
         }
 
-        .header p {
-            margin-top: 5px;
+        header p {
+            margin-top: 8px;
             color: #d1d5db;
         }
 
@@ -53,88 +56,87 @@
         }
 
         .section {
-            margin-bottom: 22px;
+            margin-bottom: 25px;
         }
 
         .section h2 {
-            font-size: 19px;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin-bottom: 12px;
         }
 
         .section p {
-            font-size: 15px;
+            color: #555;
             line-height: 1.7;
         }
 
-        .example {
+        .formula {
             background: #f3f4f6;
-            border-left: 4px solid #1f2937;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .example {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 18px;
             margin-top: 12px;
-            border-radius: 6px;
+            overflow-x: auto;
         }
 
         .example p {
             margin-bottom: 8px;
         }
 
-        .step {
-            background: #fafafa;
-            border: 1px solid #e5e7eb;
-            padding: 14px;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-
         .important {
             background: #fff7ed;
-            border: 1px solid #fed7aa;
+            border-left: 4px solid #f97316;
             padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 22px;
+            border-radius: 8px;
+            margin-top: 15px;
+            line-height: 1.7;
         }
 
         .finish {
-            background: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            padding: 15px;
-            border-radius: 10px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 18px;
             margin-top: 25px;
         }
 
         .button {
             display: block;
+            text-align: center;
             background: #1f2937;
             color: white;
-            text-align: center;
-            padding: 13px;
-            border-radius: 8px;
             text-decoration: none;
+            padding: 14px;
+            border-radius: 9px;
             font-weight: bold;
-            margin-top: 15px;
-        }
-
-        /* CSS Tambahan untuk Tampilan Matriks */
-        .matrix-container {
-            display: inline-flex;
-            align-items: center;
-            margin: 10px 0;
-            font-size: 16px;
-            font-weight: bold;
+            margin-top: 20px;
         }
 
         .matrix {
+            display: inline-flex;
+            align-items: stretch;
             position: relative;
-            display: inline-grid;
-            grid-template-columns: repeat(2, auto);
-            gap: 5px 15px;
-            padding: 5px 10px;
-            margin: 0 5px;
-            text-align: center;
+            padding: 0 10px;
+            vertical-align: middle;
         }
 
-        .matrix::before, .matrix::after {
-            content: "";
+        .matrix table {
+            text-align: center;
+            border-spacing: 15px 5px;
+            font-weight: bold;
+        }
+
+        .matrix-bracket {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -142,149 +144,589 @@
             border: 2px solid black;
         }
 
-        .matrix::before {
+        .matrix-bracket.left {
             left: 0;
             border-right: none;
         }
 
-        .matrix::after {
+        .matrix-bracket.right {
             right: 0;
             border-left: none;
         }
+
+        .matrix-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .step {
+            background: #fafafa;
+            border: 1px solid #e5e7eb;
+            padding: 14px;
+            border-radius: 12px;
+            margin-top: 12px;
+            overflow-x: auto;
+        }
+
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        @media(max-width: 480px) {
+            .matrix table {
+                border-spacing: 10px 5px;
+            }
+        }
     </style>
-<style id="fifi-theme-embedded">
-:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
-body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
-.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
-</style></head>
+
+    <style id="fifi-theme-embedded">
+        :root {
+            --fifi-blue-950: #214a67;
+            --fifi-blue-900: #285b7b;
+            --fifi-blue-700: #3b7fa8;
+            --fifi-blue-100: #eaf4fb;
+            --fifi-blue-50: #f8fcff;
+            --fifi-ink: #203b52;
+            --fifi-line: #d8e9f5;
+        }
+
+        body {
+            background-color: var(--fifi-blue-100) !important;
+            color: var(--fifi-ink);
+        }
+
+        .app,
+        .container {
+            background-color: var(--fifi-blue-50) !important;
+        }
+
+        header {
+            background-color: var(--fifi-blue-900) !important;
+            color: #fff !important;
+        }
+
+        header h1,
+        header h2,
+        header p {
+            color: inherit;
+        }
+
+        .section,
+        .example,
+        .step {
+            border-color: var(--fifi-line);
+        }
+
+        .button,
+        .btn,
+        button,
+        input[type=submit] {
+            background-color: var(--fifi-blue-700);
+            border-color: var(--fifi-blue-700);
+            color: #fff;
+        }
+
+        .button:hover,
+        .btn:hover,
+        button:hover,
+        input[type=submit]:hover {
+            background-color: var(--fifi-blue-900);
+            border-color: var(--fifi-blue-900);
+        }
+
+        .fifi-hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 122px;
+            overflow: hidden;
+            margin: 14px 20px 18px;
+            padding: 16px 18px;
+            border: 1px solid #cfe4f2;
+            border-radius: 16px;
+            background: linear-gradient(125deg, #e5f3fb, #f7fcff 60%, #d9edf9);
+            color: var(--fifi-blue-950);
+        }
+
+        .content > .fifi-hero {
+            margin: 0 0 18px;
+        }
+
+        .fifi-hero-copy {
+            max-width: calc(100% - 108px);
+        }
+
+        .fifi-hero-title {
+            display: block;
+            margin: 0 0 6px;
+            color: var(--fifi-blue-900);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .07em;
+        }
+
+        .fifi-hero-copy p {
+            margin: 0;
+            color: #58758a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .fifi-hero-art {
+            position: relative;
+            display: grid;
+            width: 94px;
+            height: 86px;
+            flex: 0 0 94px;
+            place-items: center;
+            pointer-events: none;
+        }
+
+        .fifi-orb {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px solid rgba(85, 152, 197, .25);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .75);
+            box-shadow: 0 8px 20px rgba(58, 119, 157, .12);
+        }
+
+        .fifi-icon {
+            position: relative;
+            font-size: 43px;
+            line-height: 1;
+            filter: drop-shadow(0 4px 3px rgba(47, 99, 131, .15));
+            animation: fifi-float 3.6s ease-in-out infinite;
+        }
+
+        .fifi-badge {
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            display: grid;
+            width: 26px;
+            height: 26px;
+            place-items: center;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #dff1fb;
+            color: #347fa8;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .fifi-sparkle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            color: #66a5ca;
+            font-size: 16px;
+            animation: fifi-twinkle 2.8s ease-in-out infinite;
+        }
+
+        @keyframes fifi-float {
+            0%, 100% {
+                transform: translateY(1px);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes fifi-twinkle {
+            0%, 100% {
+                opacity: .5;
+                transform: scale(.9);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        @media(max-width: 480px) {
+            .fifi-hero {
+                margin-left: 14px;
+                margin-right: 14px;
+                padding: 14px;
+            }
+
+            .fifi-hero-art {
+                width: 76px;
+                flex-basis: 76px;
+            }
+
+            .fifi-hero-copy {
+                max-width: calc(100% - 84px);
+            }
+        }
+
+        @media(prefers-reduced-motion: reduce) {
+            .fifi-icon,
+            .fifi-sparkle {
+                animation: none;
+            }
+        }
+    </style>
+</head>
 
 <body>
-<section class="fifi-hero fifi-hero--materials" aria-label="Ilustrasi materi pembelajaran"><div class="fifi-hero-copy"><span class="fifi-hero-title">MATERI PEMBELAJARAN PERTEMUAN 3</span><p>Pahami konsep, lihat contoh, lalu coba latihan.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">📖</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">∑</span></div></section>
 
-<div class="container">
+<div class="app">
 
-    <div class="header">
-        <a href="pertemuan3.html" class="back">← Kembali</a>
-        <h1>📖 Materi Pertemuan 3</h1>
-        <p>Operasi Pengurangan Matriks</p>
-    </div>
+    <!-- HEADER -->
+
+    <header>
+        <a href="pertemuan3.html">
+            ← Kembali
+        </a>
+
+        <h1>
+            📖 Materi Pertemuan 3
+        </h1>
+
+        <p>
+            Operasi Pengurangan Matriks
+        </p>
+    </header>
+
+    <!-- HERO -->
+
+    <section class="fifi-hero fifi-hero--materials" aria-label="Ilustrasi materi pembelajaran">
+
+        <div class="fifi-hero-copy">
+            <span class="fifi-hero-title">
+                MATERI PEMBELAJARAN PERTEMUAN 3
+            </span>
+
+            <p>
+                Pahami konsep, lihat contoh, lalu coba latihan.
+            </p>
+        </div>
+
+        <div class="fifi-hero-art" aria-hidden="true">
+            <span class="fifi-orb"></span>
+            <span class="fifi-icon">📖</span>
+            <span class="fifi-sparkle">✦</span>
+            <span class="fifi-badge">∑</span>
+        </div>
+
+    </section>
 
     <div class="content">
 
+        <!-- TUJUAN PEMBELAJARAN -->
+
         <div class="section">
-            <h2>🎯 Apa yang Akan Dipelajari?</h2>
+
+            <h2>
+                🎯 Apa yang Akan Dipelajari?
+            </h2>
+
             <p>
-                Pada pertemuan ini kita akan belajar mengenai konsep 
-                <strong>operasi pengurangan matriks</strong> beserta syarat dan 
+                Pada pertemuan ini kita akan belajar mengenai konsep
+                <strong>operasi pengurangan matriks</strong> beserta syarat dan
                 cara menyelesaikannya dengan benar.
             </p>
+
         </div>
 
-        <div class="section">
-            <h2>1. 🔎 Syarat Pengurangan Matriks</h2>
-            <p>
-                Operasi pengurangan matriks hanya dapat dilakukan jika dua buah 
-                matriks atau lebih memiliki <strong>ordo yang sama</strong>. 
-                Pengurangan dapat dilakukan dengan cara mengurangkan elemen-elemen yang seletak.
-            </p>
-        </div>
+        <!-- SYARAT PENGURANGAN -->
 
         <div class="section">
-            <h2>2. ✏️ Definisi Pengurangan</h2>
+
+            <h2>
+                🔎 1. Syarat Pengurangan Matriks
+            </h2>
+
             <p>
-                Misalkan A dan B adalah matriks-matriks yang berordo m×n. 
-                Pengurangan matriks A dengan matriks B didefinisikan sebagai jumlah antara matriks A dengan matriks -B.
+                Operasi pengurangan matriks hanya dapat dilakukan jika dua buah
+                matriks atau lebih memiliki <strong>ordo yang sama</strong>.
+                Pengurangan dapat dilakukan dengan cara mengurangkan elemen-elemen
+                yang seletak.
             </p>
+
+        </div>
+
+        <!-- DEFINISI -->
+
+        <div class="section">
+
+            <h2>
+                ✏️ 2. Definisi Pengurangan Matriks
+            </h2>
+
+            <p>
+                Misalkan A dan B adalah matriks-matriks yang berordo m × n.
+                Pengurangan matriks A dengan matriks B didefinisikan sebagai
+                jumlah antara matriks A dengan matriks -B.
+            </p>
+
             <div class="important">
-                <p>Ingat, Matriks <strong>-B</strong> adalah lawan dari matriks B. Ditulis:</p>
-                <p style="text-align: center; font-size: 18px; margin-top: 5px;">
-                    <strong>A - B = A + (-B)</strong>
+
+                <p>
+                    Ingat, matriks <strong>-B</strong> adalah lawan dari matriks B.
+                    Sehingga berlaku:
                 </p>
+
+                <div class="formula">
+                    A - B = A + (-B)
+                </div>
+
             </div>
+
             <p>
-                Matriks dalam kurung merupakan matriks yang entry-nya berlawanan dengan setiap entry yang bersesuaian pada matriks B.
+                Matriks -B merupakan matriks yang setiap elemennya berlawanan
+                tanda dengan elemen yang bersesuaian pada matriks B.
             </p>
+
         </div>
 
-        <div class="section">
-            <h2>3. 🧮 Contoh Soal & Penyelesaian</h2>
-            <p>Diberikan dua matriks berikut:</p>
-            
-            <div class="step">
-                <div class="matrix-container">
-                    A = 
-                    <div class="matrix">
-                        <div>8</div><div>4</div>
-                        <div>3</div><div>1</div>
-                    </div>
-                    dan B = 
-                    <div class="matrix">
-                        <div>-6</div><div>5</div>
-                        <div>-9</div><div>6</div>
-                    </div>
-                </div>
-            </div>
+        <!-- CONTOH SOAL -->
 
-            <p style="margin-top: 15px;"><strong>Penyelesaian langkah demi langkah:</strong></p>
+        <div class="section">
+
+            <h2>
+                🧮 3. Contoh Soal dan Penyelesaian
+            </h2>
+
+            <p>
+                Diberikan dua matriks berikut:
+            </p>
 
             <div class="example">
-                <div class="matrix-container">
-                    A - B = 
-                    <div class="matrix">
-                        <div>8</div><div>4</div>
-                        <div>3</div><div>1</div>
+
+                <p><strong>Diketahui:</strong></p>
+
+                <div class="matrix-row">
+
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <strong>A =</strong>
+
+                        <div class="matrix">
+                            <span class="matrix-bracket left"></span>
+                            <table>
+                                <tr><td>8</td><td>4</td></tr>
+                                <tr><td>3</td><td>1</td></tr>
+                            </table>
+                            <span class="matrix-bracket right"></span>
+                        </div>
                     </div>
-                    -
-                    <div class="matrix">
-                        <div>-6</div><div>5</div>
-                        <div>-9</div><div>6</div>
+
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <strong>B =</strong>
+
+                        <div class="matrix">
+                            <span class="matrix-bracket left"></span>
+                            <table>
+                                <tr><td>-6</td><td>5</td></tr>
+                                <tr><td>-9</td><td>6</td></tr>
+                            </table>
+                            <span class="matrix-bracket right"></span>
+                        </div>
                     </div>
+
                 </div>
 
-                <div class="matrix-container" style="margin-top: 15px;">
-                    = 
-                    <div class="matrix" style="grid-template-columns: repeat(2, auto); gap: 5px 10px;">
-                        <div>8 - (-6)</div><div>4 - 5</div>
-                        <div>3 - (-9)</div><div>1 - 6</div>
-                    </div>
-                </div>
+                <p>
+                    Tentukan hasil dari A - B!
+                </p>
 
-                <div class="matrix-container" style="margin-top: 15px;">
-                    = 
-                    <div class="matrix">
-                        <div>14</div><div>-1</div>
-                        <div>12</div><div>-5</div>
-                    </div>
-                </div>
             </div>
+
+            <p style="margin-top:18px;">
+                <strong>Langkah-langkah penyelesaian:</strong>
+            </p>
+
+            <!-- LANGKAH 1 -->
+
+            <div class="step">
+
+                <p class="step-title">
+                    Langkah 1: Tuliskan operasi pengurangan
+                </p>
+
+                <div class="matrix-row">
+
+                    <strong>A - B =</strong>
+
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>8</td><td>4</td></tr>
+                            <tr><td>3</td><td>1</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+
+                    <strong>-</strong>
+
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>-6</td><td>5</td></tr>
+                            <tr><td>-9</td><td>6</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- LANGKAH 2 -->
+
+            <div class="step">
+
+                <p class="step-title">
+                    Langkah 2: Kurangkan elemen yang seletak
+                </p>
+
+                <div class="matrix-row">
+
+                    <strong>=</strong>
+
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>8 - (-6)</td><td>4 - 5</td></tr>
+                            <tr><td>3 - (-9)</td><td>1 - 6</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- LANGKAH 3 -->
+
+            <div class="step">
+
+                <p class="step-title">
+                    Langkah 3: Hitung setiap elemen
+                </p>
+
+                <div class="matrix-row">
+
+                    <strong>=</strong>
+
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>14</td><td>-1</td></tr>
+                            <tr><td>12</td><td>-5</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="important">
+                <strong>Hasil akhir:</strong>
+
+                <div class="formula">
+                    A - B =
+                    <span class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>14</td><td>-1</td></tr>
+                            <tr><td>12</td><td>-5</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </span>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="important">
-            <strong>💡 INGAT!</strong>
-            <p style="margin-top: 8px;">
-                Kunci utama pengurangan matriks:
-            </p>
-            <p style="margin-top: 8px;">
-                <strong>
-                    Pastikan ordo sama → Cari lawan matriks B (-B) → Kurangkan elemen yang seletak
-                </strong>
-            </p>
+        <!-- CATATAN PENTING -->
+
+        <div class="section">
+
+            <h2>
+                💡 Hal yang Perlu Diingat
+            </h2>
+
+            <div class="important">
+
+                <p>
+                    Kunci utama dalam pengurangan matriks:
+                </p>
+
+                <ul style="padding-left:20px;margin-top:10px;line-height:1.8;">
+                    <li>Pastikan kedua matriks memiliki ordo yang sama.</li>
+                    <li>Kurangkan elemen-elemen yang seletak.</li>
+                    <li>Perhatikan tanda positif dan negatif.</li>
+                    <li>Ingat bahwa mengurangi bilangan negatif sama dengan menjumlahkan bilangan positif.</li>
+                </ul>
+
+            </div>
+
         </div>
+
+        <!-- KESIMPULAN -->
+
+        <div class="section">
+
+            <h2>
+                ✅ Kesimpulan
+            </h2>
+
+            <p>
+                Pengurangan matriks adalah operasi mengurangkan elemen-elemen
+                yang seletak dari dua matriks yang memiliki ordo sama.
+                Operasi ini dapat dilakukan dengan menjumlahkan matriks pertama
+                dengan lawan dari matriks kedua.
+            </p>
+
+            <div class="formula">
+                A - B = A + (-B)
+            </div>
+
+            <p>
+                Jadi, hal terpenting dalam pengurangan matriks adalah memastikan
+                ordonya sama dan melakukan operasi pada elemen yang seletak.
+            </p>
+
+        </div>
+
+        <!-- SELESAI -->
 
         <div class="finish">
-            <strong>✅ Materi selesai dipelajari?</strong>
-            <p style="margin-top: 8px;">
-                Jika sudah memahami operasi pengurangan matriks ini, silakan lanjutkan ke latihan soal.
+
+            <h3>
+                🎓 Materi selesai dipelajari?
+            </h3>
+
+            <p style="margin-top:10px;">
+                Jika sudah memahami operasi pengurangan matriks ini,
+                silakan lanjutkan ke contoh soal untuk menguji pemahamanmu.
             </p>
 
-            <a href="contoh-soal3.html" class="button">
-                LANJUT KE CONTOH SOAL
-            </a>
         </div>
+
+        <a href="contoh-soal3.html" class="button">
+            LANJUT KE CONTOH SOAL →
+        </a>
 
     </div>
 
 </div>
+
 <script src="js/auth.js"></script>
+
 </body>
 </html>

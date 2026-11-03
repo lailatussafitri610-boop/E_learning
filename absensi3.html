@@ -1,10 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Absensi Pertemuan 3 - E-Learning SMA</title>
+    <title>Absensi - E-Learning SMA</title>
 
     <style>
         * {
@@ -19,32 +21,33 @@
             color: #222;
         }
 
-        .container {
+        .app {
             max-width: 500px;
             min-height: 100vh;
             margin: auto;
             background: white;
+            padding-bottom: 30px;
         }
 
-        .header {
+        header {
             background: #1f2937;
             color: white;
             padding: 20px;
         }
 
-        .back {
+        header a {
             color: white;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        .header h1 {
-            margin-top: 15px;
-            font-size: 24px;
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
         }
 
-        .header p {
-            margin-top: 5px;
+        header p {
+            margin-top: 8px;
             color: #d1d5db;
         }
 
@@ -53,18 +56,27 @@
         }
 
         .info {
-            background: #f3f4f6;
+            background: #f9fafb;
+            border: 1px solid #ddd;
+            border-radius: 12px;
             padding: 15px;
-            border-radius: 10px;
             margin-bottom: 20px;
-            line-height: 1.7;
+        }
+
+        .info p {
+            margin-bottom: 7px;
+            line-height: 1.5;
+        }
+
+        .info p:last-child {
+            margin-bottom: 0;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        label {
+        .form-group label.title {
             display: block;
             font-weight: bold;
             margin-bottom: 8px;
@@ -72,26 +84,30 @@
 
         input[type="text"] {
             width: 100%;
-            padding: 13px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 15px;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 9px;
+            font-size: 16px;
         }
 
-        .status {
-            border: 1px solid #e5e7eb;
+        .status-option {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 15px;
+            padding: 14px;
+            margin-bottom: 10px;
+            cursor: pointer;
         }
 
-        .radio {
-            padding: 10px 0;
+        .status-option input {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
         }
 
-        .radio label {
-            display: inline;
-            font-weight: normal;
-            margin-left: 8px;
+        .status-option:hover {
+            background: #f9fafb;
         }
 
         .button {
@@ -100,197 +116,416 @@
             background: #1f2937;
             color: white;
             padding: 14px;
-            border-radius: 8px;
-            font-size: 15px;
+            border-radius: 9px;
             font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
         }
 
-        .success {
-            display: none;
-            background: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            border-radius: 10px;
-            padding: 18px;
-            line-height: 1.7;
+        .button:hover {
+            background: #111827;
         }
 
-        .success h2 {
-            margin-bottom: 10px;
-            font-size: 20px;
+        .message {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            line-height: 1.5;
         }
 
         .back-button {
             display: block;
-            background: #1f2937;
+            width: 100%;
+            background: #3b7fa8;
             color: white;
             text-align: center;
             text-decoration: none;
-            padding: 13px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 9px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 15px;
+        }
+
+        .back-button:hover {
+            background: #285b7b;
         }
     </style>
-<style id="fifi-theme-embedded">
-:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
-body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
-.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
-</style></head>
+
+    <style id="fifi-theme-embedded">
+        :root {
+            --fifi-blue-950: #214a67;
+            --fifi-blue-900: #285b7b;
+            --fifi-blue-700: #3b7fa8;
+            --fifi-blue-100: #eaf4fb;
+            --fifi-blue-50: #f8fcff;
+            --fifi-ink: #203b52;
+            --fifi-line: #d8e9f5;
+        }
+
+        body {
+            background-color: var(--fifi-blue-100) !important;
+            color: var(--fifi-ink);
+        }
+
+        .app {
+            background-color: var(--fifi-blue-50) !important;
+        }
+
+        header {
+            background-color: var(--fifi-blue-900) !important;
+            color: #fff !important;
+        }
+
+        header h1,
+        header h2,
+        header p {
+            color: inherit;
+        }
+
+        .info {
+            border-color: var(--fifi-line);
+        }
+
+        .button,
+        button {
+            background-color: var(--fifi-blue-700);
+            border-color: var(--fifi-blue-700);
+            color: #fff;
+        }
+
+        .button:hover,
+        button:hover {
+            background-color: var(--fifi-blue-900);
+            border-color: var(--fifi-blue-900);
+        }
+
+        .back-button {
+            background-color: var(--fifi-blue-700);
+        }
+
+        .back-button:hover {
+            background-color: var(--fifi-blue-900);
+        }
+
+        .fifi-hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 122px;
+            overflow: hidden;
+            margin: 14px 20px 18px;
+            padding: 16px 18px;
+            border: 1px solid #cfe4f2;
+            border-radius: 16px;
+            background: linear-gradient(
+                125deg,
+                #e5f3fb,
+                #f7fcff 60%,
+                #d9edf9
+            );
+            color: var(--fifi-blue-950);
+        }
+
+        .fifi-hero-copy {
+            max-width: calc(100% - 108px);
+        }
+
+        .fifi-hero-title {
+            display: block;
+            margin: 0 0 6px;
+            color: var(--fifi-blue-900);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .07em;
+        }
+
+        .fifi-hero-copy p {
+            margin: 0;
+            color: #58758a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .fifi-hero-art {
+            position: relative;
+            display: grid;
+            width: 94px;
+            height: 86px;
+            flex: 0 0 94px;
+            place-items: center;
+            pointer-events: none;
+        }
+
+        .fifi-orb {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px solid rgba(85,152,197,.25);
+            border-radius: 50%;
+            background: rgba(255,255,255,.75);
+            box-shadow: 0 8px 20px rgba(58,119,157,.12);
+        }
+
+        .fifi-icon {
+            position: relative;
+            font-size: 43px;
+            line-height: 1;
+            filter: drop-shadow(0 4px 3px rgba(47,99,131,.15));
+            animation: fifi-float 3.6s ease-in-out infinite;
+        }
+
+        .fifi-badge {
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            display: grid;
+            width: 26px;
+            height: 26px;
+            place-items: center;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #e4f5eb;
+            color: #33895d;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .fifi-sparkle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            color: #66a5ca;
+            font-size: 16px;
+            animation: fifi-twinkle 2.8s ease-in-out infinite;
+        }
+
+        @keyframes fifi-float {
+            0%, 100% {
+                transform: translateY(1px);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes fifi-twinkle {
+            0%, 100% {
+                opacity: .5;
+                transform: scale(.9);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        @media(max-width:480px) {
+            .fifi-hero {
+                margin-left: 14px;
+                margin-right: 14px;
+                padding: 14px;
+            }
+
+            .fifi-hero-art {
+                width: 76px;
+                flex-basis: 76px;
+            }
+
+            .fifi-hero-copy {
+                max-width: calc(100% - 84px);
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .fifi-icon,
+            .fifi-sparkle {
+                animation: none;
+            }
+        }
+    </style>
+</head>
 
 <body>
-<section class="fifi-hero fifi-hero--attendance" aria-label="Ilustrasi presensi"><div class="fifi-hero-copy"><span class="fifi-hero-title">PRESENSI PERTEMUAN 3</span><p>Catat kehadiranmu untuk pertemuan ini.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">📅</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">✓</span></div></section>
 
-<div class="container">
+<div class="app">
 
-    <div class="header">
+    <!-- HEADER -->
 
-        <a href="pertemuan3.html" class="back">
+    <header>
+
+        <a href="pertemuan3.html">
             ← Kembali
         </a>
 
-        <h1>🧑‍🎓 Absensi</h1>
+        <h1>
+            🧑‍🎓 Absensi
+        </h1>
 
-        <p>Pertemuan 3 - Operasi Pengurangan Matriks</p>
+        <p>
+            Pertemuan 3 - Operasi Pengurangan Matriks
+        </p>
 
-    </div>
+    </header>
+
+    <!-- HERO -->
+
+    <section class="fifi-hero fifi-hero--attendance"
+        aria-label="Ilustrasi presensi">
+
+        <div class="fifi-hero-copy">
+
+            <span class="fifi-hero-title">
+                PRESENSI PERTEMUAN 3
+            </span>
+
+            <p>
+                Catat kehadiranmu untuk pertemuan ini.
+            </p>
+
+        </div>
+
+        <div class="fifi-hero-art" aria-hidden="true">
+
+            <span class="fifi-orb"></span>
+
+            <span class="fifi-icon">📅</span>
+
+            <span class="fifi-sparkle">✦</span>
+
+            <span class="fifi-badge">✓</span>
+
+        </div>
+
+    </section>
 
     <div class="content">
 
+        <!-- INFORMASI -->
+
         <div class="info">
 
-            <strong>Mata Pelajaran:</strong> Matematika<br>
+            <p>
+                <strong>Mata Pelajaran:</strong>
+                Matematika
+            </p>
 
-            <strong>Kelas:</strong> XI SMA<br>
+            <p>
+                <strong>Kelas:</strong>
+                XI SMA
+            </p>
 
-            <strong>Pertemuan:</strong> 3<br>
+            <p>
+                <strong>Pertemuan:</strong>
+                3
+            </p>
 
-            <strong>Materi:</strong> Operasi Pengurangan Matriks
+            <p>
+                <strong>Materi:</strong>
+                Operasi Pengurangan Matriks
+            </p>
 
         </div>
 
-        <form id="absensiForm">
+        <!-- NAMA -->
 
-            <div class="form-group">
+        <div class="form-group">
 
-                <label for="nama">
-                    Nama Lengkap
-                </label>
+            <label class="title" for="nama">
+                Nama Siswa
+            </label>
+
+            <input
+                type="text"
+                id="nama"
+                placeholder="Masukkan nama kamu"
+            >
+
+        </div>
+
+        <!-- STATUS -->
+
+        <div class="form-group">
+
+            <label class="title">
+                Status Kehadiran
+            </label>
+
+            <label class="status-option">
 
                 <input
-                    type="text"
-                    id="nama"
-                    placeholder="Masukkan nama lengkap"
+                    type="radio"
+                    name="status"
+                    value="Hadir"
                 >
 
-            </div>
+                <span>
+                    ✅ Hadir
+                </span>
 
-            <div class="form-group">
+            </label>
 
-                <label>
-                    Status Kehadiran
-                </label>
+            <label class="status-option">
 
-                <div class="status">
+                <input
+                    type="radio"
+                    name="status"
+                    value="Izin"
+                >
 
-                    <div class="radio">
+                <span>
+                    📝 Izin
+                </span>
 
-                        <input
-                            type="radio"
-                            name="status"
-                            value="Hadir"
-                            id="hadir"
-                        >
+            </label>
 
-                        <label for="hadir">
-                            Hadir
-                        </label>
+            <label class="status-option">
 
-                    </div>
+                <input
+                    type="radio"
+                    name="status"
+                    value="Sakit"
+                >
 
-                    <div class="radio">
+                <span>
+                    🤒 Sakit
+                </span>
 
-                        <input
-                            type="radio"
-                            name="status"
-                            value="Izin"
-                            id="izin"
-                        >
-
-                        <label for="izin">
-                            Izin
-                        </label>
-
-                    </div>
-
-                    <div class="radio">
-
-                        <input
-                            type="radio"
-                            name="status"
-                            value="Sakit"
-                            id="sakit"
-                        >
-
-                        <label for="sakit">
-                            Sakit
-                        </label>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <button
-                type="submit"
-                class="button"
-            >
-                SIMPAN ABSENSI
-            </button>
-
-        </form>
-
-        <div
-            id="success"
-            class="success"
-        >
-
-            <h2>✅ Absensi Berhasil</h2>
-
-            <p>
-                Nama:
-                <strong id="hasilNama"></strong>
-            </p>
-
-            <p>
-                Status:
-                <strong id="hasilStatus"></strong>
-            </p>
-
-            <p>
-                Pertemuan:
-                <strong>3</strong>
-            </p>
-
-            <p>
-                Materi:
-                <strong>Penerapan Persamaan Linear</strong>
-            </p>
-
-            <p>
-                Waktu:
-                <strong id="hasilWaktu"></strong>
-            </p>
-
-            <a
-                href="pertemuan3.html"
-                class="back-button"
-            >
-                KEMBALI KE PERTEMUAN 3
-            </a>
+            </label>
 
         </div>
+
+        <!-- BUTTON -->
+
+        <button
+            class="button"
+            id="simpanButton"
+            onclick="simpanAbsensi()"
+        >
+            SIMPAN ABSENSI
+        </button>
+
+        <!-- MESSAGE -->
+
+        <div
+            class="message"
+            id="message"
+        ></div>
+
+        <a
+            href="pertemuan3.html"
+            class="back-button"
+            id="backButton"
+            style="display:none;"
+        >
+            KEMBALI KE PERTEMUAN 3
+        </a>
 
     </div>
 
@@ -298,82 +533,86 @@ body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,
 
 <script>
 
-document
-    .getElementById("absensiForm")
-    .addEventListener("submit", function(event) {
+function simpanAbsensi() {
 
-        event.preventDefault();
+    const nama =
+        document.getElementById("nama").value.trim();
 
-        const nama =
-            document
-            .getElementById("nama")
-            .value
-            .trim();
-
-        const status =
-            document
-            .querySelector(
-                'input[name="status"]:checked'
-            );
-
-        if (nama === "") {
-
-            alert("Silakan masukkan nama lengkap.");
-
-            return;
-
-        }
-
-        if (!status) {
-
-            alert("Silakan pilih status kehadiran.");
-
-            return;
-
-        }
-
-        const data = {
-
-            nama: nama,
-
-            status: status.value,
-
-            pertemuan: 3,
-
-            materi: "Penerapan Persamaan Linear",
-
-            waktu: new Date().toLocaleString("id-ID")
-
-        };
-
-        localStorage.setItem(
-            "absensiPertemuan3",
-            JSON.stringify(data)
+    const status =
+        document.querySelector(
+            'input[name="status"]:checked'
         );
 
-        document
-            .getElementById("hasilNama")
-            .textContent = data.nama;
+    // Periksa nama
 
-        document
-            .getElementById("hasilStatus")
-            .textContent = data.status;
+    if (nama === "") {
 
-        document
-            .getElementById("hasilWaktu")
-            .textContent = data.waktu;
+        alert("Silakan masukkan nama terlebih dahulu.");
 
-        document
-            .getElementById("absensiForm")
-            .style.display = "none";
+        return;
 
-        document
-            .getElementById("success")
-            .style.display = "block";
+    }
 
-    });
+    // Periksa status
+
+    if (!status) {
+
+        alert("Silakan pilih status kehadiran.");
+
+        return;
+
+    }
+
+    // Simpan data absensi
+
+    const data = {
+
+        nama: nama,
+
+        status: status.value,
+
+        pertemuan: 3,
+
+        materi: "Operasi Pengurangan Matriks",
+
+        waktu: new Date().toLocaleString("id-ID")
+
+    };
+
+    localStorage.setItem(
+        "absensiPertemuan3",
+        JSON.stringify(data)
+    );
+
+    // Tampilkan pesan berhasil
+
+    const message =
+        document.getElementById("message");
+
+    message.style.display = "block";
+
+    message.innerHTML = `
+        <strong>✅ Absensi berhasil!</strong>
+        <br><br>
+        Nama: ${data.nama}
+        <br>
+        Status: ${data.status}
+        <br>
+        Pertemuan: ${data.pertemuan}
+        <br>
+        Materi: ${data.materi}
+        <br>
+        Waktu: ${data.waktu}
+    `;
+
+    document.getElementById("backButton").style.display =
+        "block";
+
+}
 
 </script>
+
 <script src="js/auth.js"></script>
+
 </body>
 </html>

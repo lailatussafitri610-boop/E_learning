@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Contoh Soal Pertemuan 2</title>
+    <title>Contoh Soal Pertemuan 2 - E-Learning SMA</title>
 
     <style>
         * {
@@ -19,297 +19,569 @@
             color: #222;
         }
 
-        .container {
+        .app {
             max-width: 500px;
             min-height: 100vh;
             margin: auto;
             background: white;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
             padding: 20px;
         }
 
-        .back {
+        header a {
+            color: white;
             text-decoration: none;
-            color: #555;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        h1 {
-            margin-top: 15px;
-            font-size: 24px;
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
         }
 
-        .subtitle {
-            color: #777;
-            margin-top: 5px;
+        header p {
+            margin-top: 8px;
+            color: #d1d5db;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .soal {
+            border: 1px solid #ddd;
+            border-radius: 14px;
+            padding: 18px;
             margin-bottom: 20px;
         }
 
-        .question-box {
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 18px;
+        .soal h2 {
+            font-size: 19px;
             margin-bottom: 15px;
         }
 
-        .question {
+        .pertanyaan {
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .matrix-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .matrix {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            padding: 5px 12px;
             font-weight: bold;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            color: #000;
         }
 
-        .options {
-            line-height: 1.8;
-            font-size: 14px;
-            margin-bottom: 15px;
+        .matrix table {
+            border-spacing: 12px 5px;
+            text-align: center;
         }
 
-        .answer {
+        .matrix::before,
+        .matrix::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 7px;
+            border-top: 2px solid #222;
+            border-bottom: 2px solid #222;
+        }
+
+        .matrix::before {
+            left: 0;
+            border-left: 2px solid #222;
+        }
+
+        .matrix::after {
+            right: 0;
+            border-right: 2px solid #222;
+        }
+
+        .operator {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .jawaban {
             background: #f0fdf4;
-            border-left: 4px solid #16a34a;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            line-height: 1.6;
+            border-left: 4px solid #22c55e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+
+        .jawaban p {
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .jawaban-title {
+            font-weight: bold;
+            color: #237a45;
+            margin-bottom: 12px;
+        }
+
+        .langkah {
+            margin-bottom: 15px;
+        }
+
+        .langkah:last-child {
+            margin-bottom: 0;
+        }
+
+        .langkah-label {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .hasil {
+            font-weight: bold;
+            color: #237a45;
         }
 
         .button {
             display: block;
             text-align: center;
-            text-decoration: none;
             background: #1f2937;
             color: white;
+            text-decoration: none;
             padding: 14px;
             border-radius: 9px;
             font-weight: bold;
             margin-top: 20px;
         }
+
+        @media (max-width: 380px) {
+            .matrix table {
+                border-spacing: 8px 5px;
+            }
+
+            .matrix-row {
+                gap: 7px;
+            }
+        }
     </style>
-<style id="fifi-theme-embedded">
-:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
-body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
-.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
-</style></head>
+
+    <style id="fifi-theme-embedded">
+        :root {
+            --fifi-blue-950: #214a67;
+            --fifi-blue-900: #285b7b;
+            --fifi-blue-700: #3b7fa8;
+            --fifi-blue-100: #eaf4fb;
+            --fifi-blue-50: #f8fcff;
+            --fifi-ink: #203b52;
+            --fifi-line: #d8e9f5;
+        }
+
+        body {
+            background-color: var(--fifi-blue-100) !important;
+            color: var(--fifi-ink);
+        }
+
+        .app,
+        .container {
+            background-color: var(--fifi-blue-50) !important;
+        }
+
+        header {
+            background-color: var(--fifi-blue-900) !important;
+            color: #fff !important;
+        }
+
+        header h1,
+        header h2,
+        header p {
+            color: inherit;
+        }
+
+        .soal {
+            border-color: var(--fifi-line);
+        }
+
+        .button,
+        .btn,
+        button,
+        input[type=submit] {
+            background-color: var(--fifi-blue-700);
+            border-color: var(--fifi-blue-700);
+            color: #fff;
+        }
+
+        .button:hover,
+        .btn:hover,
+        button:hover,
+        input[type=submit]:hover {
+            background-color: var(--fifi-blue-900);
+            border-color: var(--fifi-blue-900);
+        }
+
+        .bottom-menu {
+            background-color: var(--fifi-blue-900) !important;
+        }
+
+        .fifi-hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 122px;
+            overflow: hidden;
+            margin: 14px 20px 18px;
+            padding: 16px 18px;
+            border: 1px solid #cfe4f2;
+            border-radius: 16px;
+            background: linear-gradient(
+                125deg,
+                #e5f3fb,
+                #f7fcff 60%,
+                #d9edf9
+            );
+            color: var(--fifi-blue-950);
+        }
+
+        .content > .fifi-hero {
+            margin: 0 0 18px;
+        }
+
+        .fifi-hero-copy {
+            max-width: calc(100% - 108px);
+        }
+
+        .fifi-hero-title {
+            display: block;
+            margin: 0 0 6px;
+            color: var(--fifi-blue-900);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .07em;
+        }
+
+        .fifi-hero-copy p {
+            margin: 0;
+            color: #58758a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .fifi-hero-art {
+            position: relative;
+            display: grid;
+            width: 94px;
+            height: 86px;
+            flex: 0 0 94px;
+            place-items: center;
+            pointer-events: none;
+        }
+
+        .fifi-orb {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px solid rgba(85, 152, 197, .25);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .75);
+            box-shadow: 0 8px 20px rgba(58, 119, 157, .12);
+        }
+
+        .fifi-icon {
+            position: relative;
+            font-size: 43px;
+            line-height: 1;
+            filter: drop-shadow(0 4px 3px rgba(47, 99, 131, .15));
+            animation: fifi-float 3.6s ease-in-out infinite;
+        }
+
+        .fifi-badge {
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            display: grid;
+            width: 26px;
+            height: 26px;
+            place-items: center;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #dff1fb;
+            color: #347fa8;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .fifi-sparkle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            color: #66a5ca;
+            font-size: 16px;
+            animation: fifi-twinkle 2.8s ease-in-out infinite;
+        }
+
+        @keyframes fifi-float {
+            0%, 100% {
+                transform: translateY(1px);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes fifi-twinkle {
+            0%, 100% {
+                opacity: .5;
+                transform: scale(.9);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fifi-hero {
+                margin-left: 14px;
+                margin-right: 14px;
+                padding: 14px;
+            }
+
+            .fifi-hero-art {
+                width: 76px;
+                flex-basis: 76px;
+            }
+
+            .fifi-hero-copy {
+                max-width: calc(100% - 84px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fifi-icon,
+            .fifi-sparkle {
+                animation: none;
+            }
+        }
+    </style>
+</head>
 
 <body>
-<section class="fifi-hero fifi-hero--examples" aria-label="Ilustrasi contoh soal"><div class="fifi-hero-copy"><span class="fifi-hero-title">CONTOH SOAL PERTEMUAN 2</span><p>Ikuti langkah penyelesaian secara bertahap.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">💡</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">∑</span></div></section>
 
-<div class="container">
+<div class="app">
 
-    <a href="pertemuan2.html" class="back">
-        ← Kembali ke Pertemuan 2
-    </a>
+    <!-- HEADER -->
+    <header>
+        <a href="pertemuan2.html">
+            ← Kembali
+        </a>
 
-    <h1>Contoh Soal</h1>
+        <h1>📝 Contoh Soal</h1>
+        <p>Penjumlahan Matriks</p>
+    </header>
 
-    <p class="subtitle">
-        Penjumlahan Matriks
-    </p>
-
-
-    <!-- SOAL 1 -->
-
-    <div class="question-box">
-
-        <div class="question">
-    <div class="content" style="margin-top: 30px; font-size: 18px; font-weight: normal; color: #333;">
-    
-    <!-- Bagian Pertanyaan Soal (Angka 1 sudah menyatu rapi) -->
-    <div style="margin-bottom: 25px; line-height: 1.8;">
-        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 15px;">
-            <span style="font-weight: bold;">1. Diketahui Matriks A =</span>
-            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                    <tr><td>2</td><td>3</td></tr>
-                    <tr><td>4</td><td>5</td></tr>
-                </table>
-                <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-            </div>
-            <span style="font-weight: bold;">, dan Matriks B =</span>
-            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                    <tr><td>1</td><td>2</td></tr>
-                    <tr><td>3</td><td>4</td></tr>
-                </table>
-                <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-            </div>
-        </div>
-        <p style="font-weight: normal;">Tentukan nilai dari <strong>A + B</strong>!</p>
-    </div>
-
-    <!-- Bagian Jawaban Soal (Teks Jawab & langkah dijamin normal tidak tebal semua) -->
-    <div style="background: #fafafa; padding: 20px; border-radius: 8px; border-left: 4px solid #2e7d32;">
-        <p style="margin-top: 0; font-weight: bold; color: #2e7d32;">Jawab:</p>
-        
-        <!-- Langkah 1 -->
-        <div style="margin-bottom: 15px;">
-            <div style="display: inline-flex; align-items: center; gap: 8px;">
-                <span style="font-weight: bold; color: #000;">A + B =</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                        <tr><td>2</td><td>3</td></tr>
-                        <tr><td>4</td><td>5</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-                </div>
-                <span style="font-size: 20px; font-weight: bold; color: #000;">+</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                        <tr><td>1</td><td>2</td></tr>
-                        <tr><td>3</td><td>4</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-                </div>
-            </div>
+    <!-- HERO -->
+    <section class="fifi-hero fifi-hero--examples"
+             aria-label="Ilustrasi contoh soal">
+        <div class="fifi-hero-copy">
+            <span class="fifi-hero-title">
+                CONTOH SOAL PERTEMUAN 2
+            </span>
+            <p>Ikuti langkah penyelesaian secara bertahap.</p>
         </div>
 
-        <!-- Langkah 2 -->
-        <div style="margin-bottom: 15px;">
-            <div style="display: inline-flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px; font-weight: bold; color: transparent;">A + B </span>
-                <span style="font-size: 20px; font-weight: bold; color: #000;">=</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 5px; font-weight: bold; color: #000;">
-                        <tr><td>2 + 1</td><td>3 + 2</td></tr>
-                        <tr><td>4 + 3</td><td>5 + 4</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-                </div>
-            </div>
+        <div class="fifi-hero-art" aria-hidden="true">
+            <span class="fifi-orb"></span>
+            <span class="fifi-icon">💡</span>
+            <span class="fifi-sparkle">✦</span>
+            <span class="fifi-badge">∑</span>
         </div>
+    </section>
 
-        <!-- Langkah 3 -->
-        <div>
-            <div style="display: inline-flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px; font-weight: bold; color: transparent;">A + B </span>
-                <span style="font-size: 20px; font-weight: bold; color: #000;">=</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                        <tr><td>3</td><td>5</td></tr>
-                        <tr><td>7</td><td>9</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
+    <div class="content">
+
+        <!-- SOAL 1 -->
+        <div class="soal">
+            <h2>Soal 1</h2>
+
+            <div class="pertanyaan">
+                Diketahui matriks A dan matriks B berikut.
+                
+                <div class="matrix-row">
+                    <strong>A =</strong>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>2</td><td>3</td></tr>
+                            <tr><td>4</td><td>5</td></tr>
+                        </table>
+                    </div>
+
+                    <strong>, dan B =</strong>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>1</td><td>2</td></tr>
+                            <tr><td>3</td><td>4</td></tr>
+                        </table>
+                    </div>
                 </div>
+
+                Tentukan nilai dari <strong>A + B</strong>!
             </div>
-        </div>
 
-    </div>
-</div>
+            <div class="jawaban">
+                <p class="jawaban-title">✅ Jawab:</p>
 
-        
-
-    </div>
-    </div>
-
-
-    <!-- SOAL 2 -->
-
-    <div class="question-box">
-
-        <div class="question">
-            <div class="content" style="margin-top: 30px; font-size: 18px; font-weight: normal; color: #333;">
-    
-    <!-- Bagian Pertanyaan Soal -->
-    <div style="margin-bottom: 25px; line-height: 1.8;">
-        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 15px;">
-            <span style="font-weight: bold;">2. Diketahui Matriks A =</span>
-            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                    <tr><td>2</td><td>3</td></tr>
-                    <tr><td>4</td><td>-1</td></tr>
-                </table>
-                <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-            </div>
-            <span style="font-weight: bold;">, dan Matriks B =</span>
-            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                    <tr><td>5</td><td>2</td></tr>
-                    <tr><td>3</td><td>6</td></tr>
-                </table>
-                <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-            </div>
-        </div>
-        <p>Tentukan nilai dari <strong>A + B</strong>!</p>
-    </div>
-
-    <!-- Bagian Penyelesaian / Jawaban -->
-    <div style="background: #fafafa; padding: 20px; border-radius: 8px; border-left: 4px solid #0066cc;">
-        <p style="margin-top: 0; font-weight: bold; color: #0066cc;">Penyelesaian:</p>
-        <p style="font-style: italic; color: #666; margin-bottom: 20px;">*Setiap elemen dijumlahkan dengan elemen yang posisinya sama.*</p>
-        
-        <!-- Langkah 1 -->
-        <div style="margin-bottom: 15px;">
-            <div style="display: inline-flex; align-items: center; gap: 8px;">
-                <span style="font-weight: bold; color: #000;">A + B =</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                        <tr><td>2</td><td>3</td></tr>
-                        <tr><td>4</td><td>-1</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
+                <div class="langkah">
+                    <p class="langkah-label">Langkah 1: Tuliskan matriks A dan B.</p>
+                    <div class="matrix-row">
+                        <strong>A + B =</strong>
+                        <div class="matrix">
+                            <table>
+                                <tr><td>2</td><td>3</td></tr>
+                                <tr><td>4</td><td>5</td></tr>
+                            </table>
+                        </div>
+                        <span class="operator">+</span>
+                        <div class="matrix">
+                            <table>
+                                <tr><td>1</td><td>2</td></tr>
+                                <tr><td>3</td><td>4</td></tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <span style="font-size: 20px; font-weight: bold; color: #000;">+</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                        <tr><td>5</td><td>2</td></tr>
-                        <tr><td>3</td><td>6</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
+
+                <div class="langkah">
+                    <p class="langkah-label">Langkah 2: Jumlahkan elemen yang seletak.</p>
+                    <div class="matrix-row">
+                        <strong>=</strong>
+                        <div class="matrix">
+                            <table>
+                                <tr><td>2 + 1</td><td>3 + 2</td></tr>
+                                <tr><td>4 + 3</td><td>5 + 4</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="langkah">
+                    <p class="langkah-label">Langkah 3: Hitung hasil penjumlahan.</p>
+                    <div class="matrix-row">
+                        <strong>=</strong>
+                        <div class="matrix">
+                            <table>
+                                <tr><td>3</td><td>5</td></tr>
+                                <tr><td>7</td><td>9</td></tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Langkah 2 (Proses Hitung) -->
-        <div style="margin-bottom: 15px;">
-            <div style="display: inline-flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px; font-weight: bold; color: transparent;">A + B </span>
-                <span style="font-size: 20px; font-weight: bold; color: #000;">=</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 5px; font-weight: bold; color: #000;">
-                        <tr><td>2 + 5</td><td>3 + 2</td></tr>
-                        <tr><td>4 + 3</td><td>-1 + 6</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
+        <!-- SOAL 2 -->
+        <div class="soal">
+            <h2>Soal 2</h2>
+
+            <div class="pertanyaan">
+                Diketahui matriks A dan matriks B berikut.
+
+                <div class="matrix-row">
+                    <strong>A =</strong>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>2</td><td>3</td></tr>
+                            <tr><td>4</td><td>-1</td></tr>
+                        </table>
+                    </div>
+
+                    <strong>, dan B =</strong>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>5</td><td>2</td></tr>
+                            <tr><td>3</td><td>6</td></tr>
+                        </table>
+                    </div>
                 </div>
+
+                Tentukan nilai dari <strong>A + B</strong>!
+            </div>
+
+            <div class="jawaban">
+                <p class="jawaban-title">✅ Penyelesaian:</p>
+                <p><em>Setiap elemen dijumlahkan dengan elemen yang posisinya sama.</em></p>
+
+                <div class="langkah">
+                    <p class="langkah-label">Langkah 1: Tuliskan matriks A dan B.</p>
+                    <div class="matrix-row">
+                        <strong>A + B =</strong>
+                        <div class="matrix">
+                            <table>
+                                <tr><td>2</td><td>3</td></tr>
+                                <tr><td>4</td><td>-1</td></tr>
+                            </table>
+                        </div>
+                        <span class="operator">+</span>
+                        <div class="matrix">
+                            <table>
+                                <tr><td>5</td><td>2</td></tr>
+                                <tr><td>3</td><td>6</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="langkah">
+                    <p class="langkah-label">Langkah 2: Jumlahkan elemen yang seletak.</p>
+                    <div class="matrix-row">
+                        <strong>=</strong>
+                        <div class="matrix">
+                            <table>
+                                <tr><td>2 + 5</td><td>3 + 2</td></tr>
+                                <tr><td>4 + 3</td><td>-1 + 6</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="langkah">
+                    <p class="langkah-label">Langkah 3: Hitung hasil penjumlahan.</p>
+                    <div class="matrix-row">
+                        <strong>=</strong>
+                        <div class="matrix">
+                            <table>
+                                <tr><td>7</td><td>5</td></tr>
+                                <tr><td>7</td><td>5</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="hasil">Jadi, hasil A + B adalah matriks tersebut.</p>
             </div>
         </div>
 
-        <!-- Langkah 3 (Hasil Akhir) -->
-        <div>
-            <div style="display: inline-flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px; font-weight: bold; color: transparent;">A + B </span>
-                <span style="font-size: 20px; font-weight: bold; color: #000;">=</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold; color: #000;">
-                        <tr><td>7</td><td>5</td></tr>
-                        <tr><td>7</td><td>5</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-                </div>
-            </div>
-        </div>
+        <a href="absensi2.html" class="button">
+            LANJUT KE ABSENSI →
+        </a>
 
     </div>
 </div>
 
-
-
-    <a href="absensi2.html" class="button">
-        LANJUT KE ABSENSI →
-    </a>
-
-</div>
 <script src="js/auth.js"></script>
 </body>
 </html>

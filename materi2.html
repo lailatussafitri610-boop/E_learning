@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,65 +21,76 @@
             color: #222;
         }
 
-        .container {
+        .app {
             max-width: 500px;
             min-height: 100vh;
             margin: auto;
             background: white;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
             padding: 20px;
         }
 
-        .back {
+        header a {
+            color: white;
             text-decoration: none;
-            color: #555;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        h1 {
-            margin-top: 15px;
-            font-size: 24px;
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
         }
 
-        .subtitle {
-            color: #777;
-            margin-top: 5px;
-            margin-bottom: 20px;
+        header p {
+            margin-top: 8px;
+            color: #d1d5db;
+        }
+
+        .content {
+            padding: 20px;
         }
 
         .section {
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
 
         .section h2 {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 12px;
         }
 
         .section p {
+            color: #555;
             line-height: 1.7;
-            font-size: 15px;
-            color: #444;
         }
 
         .formula {
-            background: #f1f5f9;
-            padding: 15px;
-            border-radius: 8px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 18px;
             text-align: center;
             font-size: 18px;
             font-weight: bold;
-            margin: 12px 0;
+            margin: 15px 0;
+            overflow-x: auto;
         }
 
         .example {
-            background: #f8fafc;
-            padding: 15px;
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 18px;
             margin-top: 12px;
-            line-height: 1.7;
-            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .example p {
+            margin-bottom: 8px;
         }
 
         .important {
@@ -85,459 +98,721 @@
             border-left: 4px solid #f97316;
             padding: 15px;
             border-radius: 8px;
-            line-height: 1.6;
-            font-size: 14px;
+            margin-top: 15px;
+            line-height: 1.7;
         }
 
-        .success {
+        .finish {
             background: #f0fdf4;
-            border-left: 4px solid #16a34a;
-            padding: 15px;
-            border-radius: 8px;
-            line-height: 1.6;
-            font-size: 14px;
-            margin-bottom: 20px;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 25px;
         }
 
         .button {
             display: block;
             text-align: center;
-            text-decoration: none;
             background: #1f2937;
             color: white;
+            text-decoration: none;
             padding: 14px;
             border-radius: 9px;
             font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .matrix {
+            display: inline-flex;
+            align-items: stretch;
+            position: relative;
+            padding: 0 10px;
+            vertical-align: middle;
+        }
+
+        .matrix table {
+            text-align: center;
+            border-spacing: 15px 5px;
+            font-weight: bold;
+        }
+
+        .matrix-bracket {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            border: 2px solid black;
+        }
+
+        .matrix-bracket.left {
+            left: 0;
+            border-right: none;
+        }
+
+        .matrix-bracket.right {
+            right: 0;
+            border-left: none;
+        }
+
+        .matrix-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .property {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .property-example {
+            background: #fafafa;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 15px 0 25px;
+            overflow-x: auto;
+        }
+
+        .property-example p {
+            margin-bottom: 12px;
+        }
+
+        .conclusion-list {
+            padding-left: 22px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .conclusion-list li {
+            margin-bottom: 8px;
         }
     </style>
-<style id="fifi-theme-embedded">
-:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
-body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
-.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
-</style></head>
+
+    <style id="fifi-theme-embedded">
+        :root {
+            --fifi-blue-950: #214a67;
+            --fifi-blue-900: #285b7b;
+            --fifi-blue-700: #3b7fa8;
+            --fifi-blue-100: #eaf4fb;
+            --fifi-blue-50: #f8fcff;
+            --fifi-ink: #203b52;
+            --fifi-line: #d8e9f5;
+        }
+
+        body {
+            background-color: var(--fifi-blue-100) !important;
+            color: var(--fifi-ink);
+        }
+
+        .app,
+        .container {
+            background-color: var(--fifi-blue-50) !important;
+        }
+
+        header {
+            background-color: var(--fifi-blue-900) !important;
+            color: #fff !important;
+        }
+
+        header h1,
+        header h2,
+        header p {
+            color: inherit;
+        }
+
+        .section,
+        .example {
+            border-color: var(--fifi-line);
+        }
+
+        .button,
+        .btn,
+        button,
+        input[type=submit] {
+            background-color: var(--fifi-blue-700);
+            border-color: var(--fifi-blue-700);
+            color: #fff;
+        }
+
+        .button:hover,
+        .btn:hover,
+        button:hover,
+        input[type=submit]:hover {
+            background-color: var(--fifi-blue-900);
+            border-color: var(--fifi-blue-900);
+        }
+
+        .fifi-hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 122px;
+            overflow: hidden;
+            margin: 14px 20px 18px;
+            padding: 16px 18px;
+            border: 1px solid #cfe4f2;
+            border-radius: 16px;
+            background: linear-gradient(125deg, #e5f3fb, #f7fcff 60%, #d9edf9);
+            color: var(--fifi-blue-950);
+        }
+
+        .content > .fifi-hero {
+            margin: 0 0 18px;
+        }
+
+        .fifi-hero-copy {
+            max-width: calc(100% - 108px);
+        }
+
+        .fifi-hero-title {
+            display: block;
+            margin: 0 0 6px;
+            color: var(--fifi-blue-900);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .07em;
+        }
+
+        .fifi-hero-copy p {
+            margin: 0;
+            color: #58758a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .fifi-hero-art {
+            position: relative;
+            display: grid;
+            width: 94px;
+            height: 86px;
+            flex: 0 0 94px;
+            place-items: center;
+            pointer-events: none;
+        }
+
+        .fifi-orb {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px solid rgba(85, 152, 197, .25);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .75);
+            box-shadow: 0 8px 20px rgba(58, 119, 157, .12);
+        }
+
+        .fifi-icon {
+            position: relative;
+            font-size: 43px;
+            line-height: 1;
+            filter: drop-shadow(0 4px 3px rgba(47, 99, 131, .15));
+            animation: fifi-float 3.6s ease-in-out infinite;
+        }
+
+        .fifi-badge {
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            display: grid;
+            width: 26px;
+            height: 26px;
+            place-items: center;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #dff1fb;
+            color: #347fa8;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .fifi-sparkle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            color: #66a5ca;
+            font-size: 16px;
+            animation: fifi-twinkle 2.8s ease-in-out infinite;
+        }
+
+        @keyframes fifi-float {
+            0%, 100% { transform: translateY(1px); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @keyframes fifi-twinkle {
+            0%, 100% {
+                opacity: .5;
+                transform: scale(.9);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        @media(max-width: 480px) {
+            .fifi-hero {
+                margin-left: 14px;
+                margin-right: 14px;
+                padding: 14px;
+            }
+
+            .fifi-hero-art {
+                width: 76px;
+                flex-basis: 76px;
+            }
+
+            .fifi-hero-copy {
+                max-width: calc(100% - 84px);
+            }
+
+            .matrix table {
+                border-spacing: 10px 5px;
+            }
+        }
+
+        @media(prefers-reduced-motion: reduce) {
+            .fifi-icon,
+            .fifi-sparkle {
+                animation: none;
+            }
+        }
+    </style>
+</head>
 
 <body>
-<section class="fifi-hero fifi-hero--materials" aria-label="Ilustrasi materi pembelajaran"><div class="fifi-hero-copy"><span class="fifi-hero-title">MATERI PEMBELAJARAN PERTEMUAN 2</span><p>Pahami konsep, lihat contoh, lalu coba latihan.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">📖</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">∑</span></div></section>
 
-<div class="container">
+<div class="app">
 
-    <a href="pertemuan2.html" class="back">
-        ← Kembali ke Pertemuan 2
-    </a>
+    <!-- HEADER -->
 
-    <h1>Materi Pertemuan 2</h1>
+    <header>
+        <a href="pertemuan2.html">
+            ← Kembali
+        </a>
 
-    <p class="subtitle">
-        Penjumlahan Matriks
-    </p>
-
-
-    <!-- PENGERTIAN -->
-
-    <div class="section">
-
-        <h2>📖 Pengertian Penjumlahan Matriks</h2>
+        <h1>
+            📖 Materi Pertemuan 2
+        </h1>
 
         <p>
-            Operasi penjumlahan matriks hanya dapat dilakukan jika keduanya memiliki ordo yang sama. Penjumlahan matriks dapat dilakukan dengan cara menjumlahkan elemen-elemen yang seletak.
+            Penjumlahan Matriks
         </p>
+    </header>
 
-        <div class="example" style="margin-top: 25px; font-size: 18px;">
-    <h3><strong>Contoh:</strong></h3>
-    
-    <!-- Baris 1: Diketahui Matriks A dan B -->
-    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 25px;">
-        <!-- Baris 1: Diketahui Matriks A dan B (Sudah Dikelompokkan Agar Tidak Terpisah) -->
-    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 25px;">
-        
-        <!-- Kelompok A -->
-        <div style="display: inline-flex; align-items: center; gap: 12px;">
-            <span>Diketahui A =</span>
-            <!-- Matriks A -->
-            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold;">
-                    <tr><td>1</td><td>4</td><td>3</td></tr>
-                    <tr><td>5</td><td>1</td><td>8</td></tr>
-                </table>
-                <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-            </div>
+    <!-- HERO -->
+
+    <section class="fifi-hero fifi-hero--materials" aria-label="Ilustrasi materi pembelajaran">
+        <div class="fifi-hero-copy">
+            <span class="fifi-hero-title">
+                MATERI PEMBELAJARAN PERTEMUAN 2
+            </span>
+            <p>
+                Pahami konsep, lihat contoh, lalu coba latihan.
+            </p>
         </div>
 
-        <!-- Kelompok B -->
-        <div style="display: inline-flex; align-items: center; gap: 12px;">
-            <span>dan B =</span>
-            <!-- Matriks B -->
-            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold;">
-                    <tr><td>2</td><td>7</td><td>6</td></tr>
-                    <tr><td>-1</td><td>3</td><td>5</td></tr>
-                </table>
-                <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
+        <div class="fifi-hero-art" aria-hidden="true">
+            <span class="fifi-orb"></span>
+            <span class="fifi-icon">📖</span>
+            <span class="fifi-sparkle">✦</span>
+            <span class="fifi-badge">∑</span>
+        </div>
+    </section>
+
+    <div class="content">
+
+        <!-- PENGERTIAN -->
+
+        <div class="section">
+
+            <h2>
+                📚 Pengertian Penjumlahan Matriks
+            </h2>
+
+            <p>
+                Operasi penjumlahan matriks hanya dapat dilakukan jika kedua matriks memiliki ordo yang sama. Penjumlahan matriks dilakukan dengan cara menjumlahkan elemen-elemen yang seletak.
+            </p>
+
+            <div class="example">
+
+                <h3>💡 Contoh:</h3>
+
+                <p style="margin-top: 12px;">
+                    Diketahui dua buah matriks A dan B:
+                </p>
+
+                <div class="matrix-row">
+
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <strong>A =</strong>
+                        <div class="matrix">
+                            <span class="matrix-bracket left"></span>
+                            <table>
+                                <tr><td>1</td><td>4</td><td>3</td></tr>
+                                <tr><td>5</td><td>1</td><td>8</td></tr>
+                            </table>
+                            <span class="matrix-bracket right"></span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <strong>B =</strong>
+                        <div class="matrix">
+                            <span class="matrix-bracket left"></span>
+                            <table>
+                                <tr><td>2</td><td>7</td><td>6</td></tr>
+                                <tr><td>-1</td><td>3</td><td>5</td></tr>
+                            </table>
+                            <span class="matrix-bracket right"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <p>
+                    Maka penjumlahan A + B adalah:
+                </p>
+
+                <div class="matrix-row">
+
+                    <strong>A + B =</strong>
+
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>1</td><td>4</td><td>3</td></tr>
+                            <tr><td>5</td><td>1</td><td>8</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+
+                    <strong>+</strong>
+
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>2</td><td>7</td><td>6</td></tr>
+                            <tr><td>-1</td><td>3</td><td>5</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+
+                </div>
+
+                <div class="matrix-row">
+
+                    <strong>=</strong>
+
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>3</td><td>11</td><td>9</td></tr>
+                            <tr><td>4</td><td>4</td><td>13</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+
+                </div>
+
+                <div class="important">
+                    <strong>Ingat!</strong>
+                    Penjumlahan dilakukan dengan menjumlahkan angka yang berada pada posisi atau letak yang sama.
+                </div>
+
             </div>
 
         </div>
-        </div>
 
-        
-    </div>
+        <!-- SIFAT-SIFAT -->
 
-    <!-- Baris 2: Operasi Penjumlahan A + B -->
-    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 25px;">
-        <span>A + B =</span>
+        <div class="section">
 
-        <!-- Matriks A -->
-        <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-            <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold;">
-                <tr><td>1</td><td>4</td><td>3</td></tr>
-                <tr><td>5</td><td>1</td><td>8</td></tr>
-            </table>
-            <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-        </div>
+            <h2>
+                🔢 Sifat-Sifat Operasi Penjumlahan Matriks
+            </h2>
 
-        <span style="font-weight: bold; font-size: 22px;">+</span>
-
-        <!-- Matriks B -->
-        <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-            <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold;">
-                <tr><td>2</td><td>7</td><td>6</td></tr>
-                <tr><td>-1</td><td>3</td><td>5</td></tr>
-            </table>
-            <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-        </div>
-    </div>
-
-    <!-- Baris 3: Hasil Akhir -->
-    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
-        <span style="font-weight: bold; font-size: 22px;">=</span>
-
-        <!-- Matriks Hasil -->
-        <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-            <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold;">
-                <tr><td>3</td><td>11</td><td>9</td></tr>
-                <tr><td>4</td><td>4</td><td>13</td></tr>
-            </table>
-            <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-        </div>
-    </div>
-</div>
-
-    </div>
-
-
-    <!-- SIMBOL -->
-
-    <div class="section">
-
-        <h2>🔢 Sifat-sifat operasi penjumlahan matriks:</h2>
-
-        <!-- Bagian 2: Sifat-Sifat Penjumlahan Matriks -->
-<div class="div class-section" style="margin-top: 20px;">
-
-    <div style="margin-top: 20px; font-size: 17px; line-height: 1.6; text-align: justify;">
-        
-        <!-- Poin A -->
-        <p style="margin-bottom: 20px;">
-            <strong>a. Sifat komutatif :</strong> A + B = B + A
-        </p>
-        
-        <!-- Poin B -->
-        <p style="margin-bottom: 20px;">
-            <strong>b. Sifat Asosiatif :</strong> A + (B + C) = (A + B) + C
-        </p>
-        
-        <!-- Poin C -->
-        <p style="margin-bottom: 20px;">
-            <strong>c. Terdapat unsur identitas penjumlahan matriks yaitu matriks O</strong> (matriks yang semua elemennya bernilai nol) sedemikian rupa sehingga jika sebuah matriks (misalkan matriks A) dijumlahkan dengan matriks O, maka hasilnya sama dengan matriks A itu sendiri. 
-            <br>
-            Sehingga berlaku : <span class="formula" style="display: inline-block; padding: 2px 8px; font-weight: bold;">A + 0 = 0 + A = A</span>
-        </p>
-        
-        <!-- Poin D -->
-        <p style="margin-bottom: 20px;">
-            <strong>d. Untuk setiap matriks A terdapat lawan matriks A yaitu matriks -A</strong> (matriks yang semua elemennya bernilai sama dengan matriks A namun berlainan tanda/bernilai negatif) sehingga jika sebuah matriks A dijumlahkan dengan matriks -A, maka hasilnya matriks O (matriks yang semua elemennya bernilai nol). 
-            <br>
-            Sehingga berlaku : <span class="formula" style="display: inline-block; padding: 2px 8px; font-weight: bold;">A + (-A) = (-A) + A = 0</span>. 
-            <br>
-            Matriks -A juga sering disebut sebagai invers penjumlahan atau invers aditif dari matriks A.
-        </p>
-        <!-- Contoh untuk Poin D (Invers Aditif) -->
-    <div style="margin-left: 20px; margin-top: 15px; margin-bottom: 35px; background: #fafafa; padding: 20px; border-radius: 8px; font-size: 17px;">
-        <p><strong>Contoh:</strong></p>
-        
-        <p style="margin-bottom: 15px;">Jika diketahui sebuah matriks A sebagai berikut:</p>
-        
-        <!-- Matriks A (Berdiri Sendiri di Tengah) -->
-        <div style="display: flex; justify-content: center; margin: 15px 0;">
-            <div style="display: inline-flex; align-items: center; gap: 12px;">
-                <span style="font-weight: bold;">A =</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 15px 6px; font-weight: bold;">
-                        <tr><td>3</td><td>-2</td><td>4</td></tr>
-                        <tr><td>7</td><td>3</td><td>-6</td></tr>
-                        <tr><td>-4</td><td>5</td><td>-2</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-                </div>
-            </div>
-        </div>
-        
-        <p style="margin-top: 20px; margin-bottom: 15px;">Maka invers aditif (lawan) dari matriks A adalah:</p>
-        
-        <!-- Matriks -A (Berdiri Sendiri di Tengah) -->
-        <div style="display: flex; justify-content: center; margin: 15px 0;">
-            <div style="display: inline-flex; align-items: center; gap: 12px;">
-                <span style="font-weight: bold;">-A =</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 15px 6px; font-weight: bold;">
-                        <tr><td>-3</td><td>2</td><td>-4</td></tr>
-                        <tr><td>-7</td><td>-3</td><td>6</td></tr>
-                        <tr><td>4</td><td>-5</td><td>2</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-                </div>
-            </div>
-        </div>
-        
-        <p style="margin-top: 20px; text-align: center; font-weight: bold; color: #333;">
-            Hal ini dikarenakan memenuhi syarat: A + (-A) = (-A) + A = O
-        </p>
-    </div>
-    
-    <!-- e. Poin E (Transpos Matriks) -->
-    <p style="margin-bottom: 15px; font-size: 17px; line-height: 1.6;">
-        <strong>e. Transpos jumlah dua matriks sama dengan jumlah transpos kedua matriks yaitu: 
-        <span style="background: #eef2f7; padding: 2px 6px; border-radius: 4px;">(A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup></span></strong>
-    </p>
-
-    <!-- Contoh Pembuktian Poin E -->
-    <div style="margin-left: 20px; margin-top: 10px; margin-bottom: 20px; background: #fafafa; padding: 20px; border-radius: 8px; font-size: 17px;">
-        <p><strong>Contoh:</strong></p>
-        <p style="margin-bottom: 15px;">Diketahui dua buah matriks:</p>
-        
-        <!-- Baris Matriks A dan B yang Berdampingan Rapi -->
-        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; margin: 20px 0;">
-            <!-- Blok Matriks A -->
-            <div style="display: inline-flex; align-items: center; gap: 10px;">
-            <span style="font-weight: bold;">Matriks A =</span>
-            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-            <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold;">
-            <tr><td>6</td><td>11</td></tr>
-            <tr><td>5</td><td>6</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-                </div>
-                </div>
-                <!-- Blok Matriks B -->
-            <div style="display: inline-flex; align-items: center; gap: 10px;">
-            <span style="font-weight: bold;">dan Matriks B =</span>
-            <div style="display: inline-flex; align-items: center; position: relative; padding: 0 10px;">
-            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-right: none;"></div>
-            <table style="text-align: center; border-spacing: 15px 5px; font-weight: bold;">
-            <tr><td>2</td><td>1</td></tr>
-            <tr><td>5</td><td>4</td></tr>
-            </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 6px; border: 2px solid black; border-left: none;"></div>
-                </div>
-            </div>
-        </div>
-        <p style="margin-top: 5px; text-align: center;">Buktikanlah bahwa rumus pecahan transpos <strong>(A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup></strong> adalah benar!</p>
-            </div>
-            <!-- Bagian Penyelesaian Pembuktian Poin E -->
-    <div style="margin-left: 20px; margin-top: 15px; margin-bottom: 35px; background: #fafafa; padding: 20px; border-radius: 8px; font-size: 17px;">
-        <p><strong>Penyelesaian:</strong></p>
-        <p style="margin-bottom: 25px;">Untuk membuktikan <strong>(A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup></strong>, kita hitung masing-masing ruas secara berurutan:</p>
-
-        <!-- 1. RUAS KIRI -->
-        <div style="margin-bottom: 30px; border-bottom: 1px dashed #ccc; padding-bottom: 20px;">
-            <p style="font-weight: bold; color: #111213; margin-bottom: 15px;">1. Ruas Kiri: (A + B)<sup>T</sup></p>
-            
-            <!-- Langkah 1 -->
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-                <span>(</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>6</td><td>11</td></tr>
-                        <tr><td>5</td><td>6</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
-                </div>
-                <span>+</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>2</td><td>1</td></tr>
-                        <tr><td>5</td><td>4</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
-                </div>
-                <span>)<sup>T</sup></span>
-            </div>
-
-            <!-- Langkah 2 -->
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-                <span>= (</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>6 + 2</td><td>11 + 1</td></tr>
-                        <tr><td>5 + 5</td><td>6 + 4</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
-                </div>
-                <span>)<sup>T</sup></span>
-            </div>
-
-            <!-- Langkah 3 -->
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-                <span>=</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>8</td><td>12</td></tr>
-                        <tr><td>10</td><td>10</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
-                </div>
-                <span><sup>T</sup></span>
-            </div>
-
-            <!-- Langkah 4 -->
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span>=</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>8</td><td>10</td></tr>
-                        <tr><td>12</td><td>10</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. RUAS KANAN -->
-        <div style="margin-bottom: 20px;">
-            <p style="font-weight: bold; color: #131414; margin-bottom: 15px;">2. Ruas Kanan: A<sup>T</sup> + B<sup>T</sup></p>
-            
-            <!-- Langkah 1 -->
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>6</td><td>5</td></tr>
-                        <tr><td>11</td><td>6</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
-                </div>
-                <span>+</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>2</td><td>5</td></tr>
-                        <tr><td>1</td><td>4</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+            <div class="property">
+                <strong>a. Sifat Komutatif</strong>
+                <p>
+                    Urutan penjumlahan dua matriks dapat ditukar tanpa mengubah hasilnya.
+                </p>
+                <div class="formula">
+                    A + B = B + A
                 </div>
             </div>
 
-            <!-- Langkah 2 -->
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-                <span>=</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>6 + 2</td><td>5 + 5</td></tr>
-                        <tr><td>11 + 1</td><td>6 + 4</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+            <div class="property">
+                <strong>b. Sifat Asosiatif</strong>
+                <p>
+                    Pengelompokan tiga matriks atau lebih dalam penjumlahan tidak mengubah hasilnya.
+                </p>
+                <div class="formula">
+                    A + (B + C) = (A + B) + C
                 </div>
             </div>
 
-            <!-- Langkah 3 -->
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span>=</span>
-                <div style="display: inline-flex; align-items: center; position: relative; padding: 0 8px;">
-                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-right: none;"></div>
-                    <table style="text-align: center; border-spacing: 12px 4px; font-weight: bold;">
-                        <tr><td>8</td><td>10</td></tr>
-                        <tr><td>12</td><td>10</td></tr>
-                    </table>
-                    <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 4px; border: 2px solid black; border-left: none;"></div>
+            <div class="property">
+                <strong>c. Identitas Penjumlahan</strong>
+                <p>
+                    Matriks nol (O) merupakan unsur identitas penjumlahan. Jika suatu matriks dijumlahkan dengan matriks nol, hasilnya tetap matriks itu sendiri.
+                </p>
+                <div class="formula">
+                    A + O = O + A = A
                 </div>
             </div>
+
+            <div class="property">
+                <strong>d. Invers Aditif (Lawan Matriks)</strong>
+                <p>
+                    Setiap matriks A memiliki lawan, yaitu matriks -A. Matriks -A diperoleh dengan mengubah tanda setiap elemen pada matriks A. Jika keduanya dijumlahkan, hasilnya adalah matriks nol.
+                </p>
+                <div class="formula">
+                    A + (-A) = (-A) + A = O
+                </div>
+            </div>
+
+            <!-- CONTOH INVERS ADITIF -->
+
+            <div class="property-example">
+
+                <h3>💡 Contoh Invers Aditif</h3>
+
+                <p>
+                    Diketahui matriks A:
+                </p>
+
+                <div class="matrix-row">
+                    <strong>A =</strong>
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>3</td><td>-2</td><td>4</td></tr>
+                            <tr><td>7</td><td>3</td><td>-6</td></tr>
+                            <tr><td>-4</td><td>5</td><td>-2</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+                </div>
+
+                <p>
+                    Maka lawan dari matriks A adalah:
+                </p>
+
+                <div class="matrix-row">
+                    <strong>-A =</strong>
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>-3</td><td>2</td><td>-4</td></tr>
+                            <tr><td>-7</td><td>-3</td><td>6</td></tr>
+                            <tr><td>4</td><td>-5</td><td>2</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+                </div>
+
+                <p style="text-align:center;font-weight:bold;">
+                    A + (-A) = O
+                </p>
+
+            </div>
+
+            <div class="property">
+                <strong>e. Sifat Transpos Penjumlahan</strong>
+                <p>
+                    Transpos dari hasil penjumlahan dua matriks sama dengan penjumlahan dari masing-masing transpos matriks tersebut.
+                </p>
+
+                <div class="formula">
+                    (A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup>
+                </div>
+            </div>
+
+            <!-- CONTOH TRANSPOS -->
+
+            <div class="property-example">
+
+                <h3>💡 Contoh Pembuktian Sifat Transpos</h3>
+
+                <p>Diketahui dua matriks:</p>
+
+                <div class="matrix-row">
+
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <strong>A =</strong>
+                        <div class="matrix">
+                            <span class="matrix-bracket left"></span>
+                            <table>
+                                <tr><td>6</td><td>11</td></tr>
+                                <tr><td>5</td><td>6</td></tr>
+                            </table>
+                            <span class="matrix-bracket right"></span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <strong>B =</strong>
+                        <div class="matrix">
+                            <span class="matrix-bracket left"></span>
+                            <table>
+                                <tr><td>2</td><td>1</td></tr>
+                                <tr><td>5</td><td>4</td></tr>
+                            </table>
+                            <span class="matrix-bracket right"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <p>
+                    Akan dibuktikan bahwa:
+                </p>
+
+                <div class="formula">
+                    (A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup>
+                </div>
+
+                <p><strong>1. Ruas Kiri: (A + B)<sup>T</sup></strong></p>
+
+                <div class="matrix-row">
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>6 + 2</td><td>11 + 1</td></tr>
+                            <tr><td>5 + 5</td><td>6 + 4</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+                    <strong><sup>T</sup></strong>
+                </div>
+
+                <div class="matrix-row">
+                    <strong>=</strong>
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>8</td><td>12</td></tr>
+                            <tr><td>10</td><td>10</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+                    <strong><sup>T</sup></strong>
+                </div>
+
+                <div class="matrix-row">
+                    <strong>=</strong>
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>8</td><td>10</td></tr>
+                            <tr><td>12</td><td>10</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+                </div>
+
+                <p><strong>2. Ruas Kanan: A<sup>T</sup> + B<sup>T</sup></strong></p>
+
+                <div class="matrix-row">
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>6</td><td>5</td></tr>
+                            <tr><td>11</td><td>6</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+
+                    <strong>+</strong>
+
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>2</td><td>5</td></tr>
+                            <tr><td>1</td><td>4</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+                </div>
+
+                <div class="matrix-row">
+                    <strong>=</strong>
+                    <div class="matrix">
+                        <span class="matrix-bracket left"></span>
+                        <table>
+                            <tr><td>8</td><td>10</td></tr>
+                            <tr><td>12</td><td>10</td></tr>
+                        </table>
+                        <span class="matrix-bracket right"></span>
+                    </div>
+                </div>
+
+                <div class="important">
+                    <strong>Kesimpulan:</strong>
+                    Hasil ruas kiri dan ruas kanan sama. Jadi, terbukti bahwa
+                    (A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup>.
+                </div>
+
+            </div>
+
         </div>
 
         <!-- KESIMPULAN -->
-        <p style="margin-top: 25px; text-align: center; font-weight: bold; background: #eef2f7; padding: 10px; border-radius: 6px; color: #151615;">
-            Kesimpulan: Karena hasil Ruas Kiri dan Ruas Kanan sama, maka terbukti bahwa (A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup>.
-        </p>
-    
-    </div>
 
-        </div>
-        </div>
+        <div class="section">
 
-        
-    </div>
+            <h2>
+                ✅ Kesimpulan
+            </h2>
 
+            <p>
+                Penjumlahan matriks merupakan operasi menjumlahkan elemen-elemen yang seletak dari dua matriks atau lebih dengan syarat matriks-matriks tersebut memiliki ordo yang sama.
+            </p>
 
-    <!-- KESIMPULAN -->
+            <br>
 
-    <div class="section">
+            <p>
+                Lima sifat operasi penjumlahan matriks yang perlu diingat:
+            </p>
 
-        <h2>💡 Kesimpulan</h2>
-
-        <p>
-            Penjumlahan matriks adalah operasi menggabungkan dua atau lebih matriks dengan menjumlahkan elemen-elemen yang seletak, dengan syarat matriks-matriks tersebut harus memiliki ordo (ukuran baris dan kolom) yang sama
-        </p>
-
-        <br>
-
-        <p>
-            Ingat lima sifat operasi matriks:
-        </p>
-
-        <div class="formula">
-
-            Sifat komutatif, Sifat Asosiatif, Elemen Identitas Aditif (Matriks Nol), Invers Penjumlahan (Lawan Matriks), Transpos jumlah dua matriks  
+            <ul class="conclusion-list">
+                <li>Sifat komutatif.</li>
+                <li>Sifat asosiatif.</li>
+                <li>Identitas penjumlahan (matriks nol).</li>
+                <li>Invers aditif (lawan matriks).</li>
+                <li>Sifat transpos penjumlahan.</li>
+            </ul>
 
         </div>
 
-        <p>
-            
-        </p>
+        <!-- SELESAI -->
+
+        <div class="finish">
+
+            <h3>
+                🎓 Materi selesai dipelajari?
+            </h3>
+
+            <p style="margin-top:10px;">
+                Setelah memahami materi, kamu dapat melanjutkan ke contoh soal untuk menguji pemahamanmu.
+            </p>
+
+        </div>
+
+        <a href="contoh-soal2.html" class="button">
+            LANJUT KE CONTOH SOAL →
+        </a>
 
     </div>
-
-
-    <!-- SELESAI -->
-
-    <div class="success">
-
-        ✅ <strong>Materi selesai dipelajari?</strong>
-
-        <br><br>
-
-        Jika sudah memahami materi di atas,
-        lanjutkan ke contoh soal untuk menguji pemahamanmu.
-
-    </div>
-
-
-    <a href="contoh-soal2.html" class="button">
-        LANJUT KE CONTOH SOAL →
-    </a>
 
 </div>
+
 <script src="js/auth.js"></script>
+
 </body>
 </html>

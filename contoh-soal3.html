@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,7 +19,7 @@
             color: #222;
         }
 
-        .container {
+        .app {
             max-width: 500px;
             min-height: 100vh;
             margin: auto;
@@ -26,25 +27,25 @@
             padding-bottom: 30px;
         }
 
-        .header {
+        header {
             background: #1f2937;
             color: white;
             padding: 20px;
         }
 
-        .back {
+        header a {
             color: white;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        .header h1 {
-            margin-top: 15px;
-            font-size: 24px;
+        header h1 {
+            margin-top: 20px;
+            font-size: 25px;
         }
 
-        .header p {
-            margin-top: 5px;
+        header p {
+            margin-top: 8px;
             color: #d1d5db;
         }
 
@@ -52,220 +53,613 @@
             padding: 20px;
         }
 
-        .question {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 18px;
-        }
-
-        .question h2 {
-            font-size: 16px;
-            margin-bottom: 12px;
-            font-weight: bold;
-            line-height: 1.5;
-        }
-
-        .option {
-            background: white;
+        .soal {
             border: 1px solid #ddd;
-            padding: 12px;
-            border-radius: 7px;
-            margin: 7px 0;
-            display: flex;
-            align-items: center;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 20px;
         }
 
-        .answer {
-            background: #ecfdf5;
-            border-left: 4px solid #10b981;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 6px;
-            font-size: 14px;
+        .soal h2 {
+            font-size: 19px;
+            margin-bottom: 15px;
             line-height: 1.6;
         }
 
-        .button {
-            display: block;
-            background: #1f2937;
-            color: white;
-            text-align: center;
-            padding: 13px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
+        .pertanyaan {
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #333;
         }
 
-        /* CSS Tambahan untuk Format Visual Matriks */
+        .matrix-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
         .matrix-container {
             display: inline-flex;
             align-items: center;
             font-size: 15px;
             font-weight: bold;
             vertical-align: middle;
-            margin: 5px 0;
+            margin: 4px 0;
         }
 
         .matrix {
             position: relative;
             display: inline-grid;
             grid-template-columns: repeat(2, auto);
-            gap: 4px 12px;
-            padding: 4px 8px;
+            gap: 5px 13px;
+            padding: 5px 12px;
             margin: 0 4px;
             text-align: center;
+            color: #000;
+            font-weight: bold;
         }
 
-        .matrix::before, .matrix::after {
+        .matrix::before,
+        .matrix::after {
             content: "";
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 5px;
-            border: 2px solid black;
+            width: 7px;
+            border-top: 2px solid #222;
+            border-bottom: 2px solid #222;
         }
 
         .matrix::before {
             left: 0;
-            border-right: none;
+            border-left: 2px solid #222;
         }
 
         .matrix::after {
             right: 0;
-            border-left: none;
+            border-right: 2px solid #222;
+        }
+
+        .option {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            line-height: 1.6;
+        }
+
+        .answer {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 14px;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+
+        .answer strong {
+            color: #237a45;
+        }
+
+        .answer-title {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .answer p {
+            margin-bottom: 8px;
+        }
+
+        .solution-step {
+            margin-top: 10px;
+        }
+
+        .button {
+            display: block;
+            text-align: center;
+            background: #1f2937;
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 9px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 380px) {
+            .matrix {
+                gap: 5px 9px;
+                padding: 5px 10px;
+                font-size: 13px;
+            }
+
+            .matrix-container {
+                font-size: 13px;
+            }
+
+            .soal {
+                padding: 15px;
+            }
         }
     </style>
-<style id="fifi-theme-embedded">
-:root{--fifi-blue-950:#214a67;--fifi-blue-900:#285b7b;--fifi-blue-700:#3b7fa8;--fifi-blue-100:#eaf4fb;--fifi-blue-50:#f8fcff;--fifi-ink:#203b52;--fifi-line:#d8e9f5}
-body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,.container{background-color:var(--fifi-blue-50)!important}header{background-color:var(--fifi-blue-900)!important;color:#fff!important}header h1,header h2,header p{color:inherit}.card,.section,.meeting,.meeting-card,.question-box,.info,.profile-card,.info-card,.task-card,.example,.login-card,.result-card{border-color:var(--fifi-line)}.button,.btn,button,input[type=submit]{background-color:var(--fifi-blue-700);border-color:var(--fifi-blue-700);color:#fff}.button:hover,.btn:hover,button:hover,input[type=submit]:hover{background-color:var(--fifi-blue-900);border-color:var(--fifi-blue-900)}.bottom-menu{background-color:var(--fifi-blue-900)!important}
-.fifi-hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:122px;overflow:hidden;margin:14px 20px 18px;padding:16px 18px;border:1px solid #cfe4f2;border-radius:16px;background:linear-gradient(125deg,#e5f3fb,#f7fcff 60%,#d9edf9);color:var(--fifi-blue-950)}.content>.fifi-hero{margin:0 0 18px}.fifi-hero-copy{max-width:calc(100% - 108px)}.fifi-hero-title{display:block;margin:0 0 6px;color:var(--fifi-blue-900);font-size:13px;font-weight:800;letter-spacing:.07em}.fifi-hero-copy p{margin:0;color:#58758a;font-size:13px;line-height:1.5}.fifi-hero-art{position:relative;display:grid;width:94px;height:86px;flex:0 0 94px;place-items:center;pointer-events:none}.fifi-orb{position:absolute;width:70px;height:70px;border:1px solid rgba(85,152,197,.25);border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(58,119,157,.12)}.fifi-icon{position:relative;font-size:43px;line-height:1;filter:drop-shadow(0 4px 3px rgba(47,99,131,.15));animation:fifi-float 3.6s ease-in-out infinite}.fifi-badge{position:absolute;right:4px;bottom:4px;display:grid;width:26px;height:26px;place-items:center;border:2px solid white;border-radius:50%;background:#dff1fb;color:#347fa8;font-size:15px;font-weight:800}.fifi-sparkle{position:absolute;top:4px;left:4px;color:#66a5ca;font-size:16px;animation:fifi-twinkle 2.8s ease-in-out infinite}.fifi-hero--attendance .fifi-badge{background:#e4f5eb;color:#33895d}@keyframes fifi-float{0%,100%{transform:translateY(1px)}50%{transform:translateY(-4px)}}@keyframes fifi-twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:480px){.fifi-hero{margin-left:14px;margin-right:14px;padding:14px}.fifi-hero-art{width:76px;flex-basis:76px}.fifi-hero-copy{max-width:calc(100% - 84px)}}@media(prefers-reduced-motion:reduce){.fifi-icon,.fifi-sparkle{animation:none}}
-</style></head>
+
+    <style id="fifi-theme-embedded">
+        :root {
+            --fifi-blue-950: #214a67;
+            --fifi-blue-900: #285b7b;
+            --fifi-blue-700: #3b7fa8;
+            --fifi-blue-100: #eaf4fb;
+            --fifi-blue-50: #f8fcff;
+            --fifi-ink: #203b52;
+            --fifi-line: #d8e9f5;
+        }
+
+        body {
+            background-color: var(--fifi-blue-100) !important;
+            color: var(--fifi-ink);
+        }
+
+        .app,
+        .container {
+            background-color: var(--fifi-blue-50) !important;
+        }
+
+        header {
+            background-color: var(--fifi-blue-900) !important;
+            color: #fff !important;
+        }
+
+        header h1,
+        header h2,
+        header p {
+            color: inherit;
+        }
+
+        .soal {
+            border-color: var(--fifi-line);
+        }
+
+        .button,
+        .btn,
+        button,
+        input[type=submit] {
+            background-color: var(--fifi-blue-700);
+            border-color: var(--fifi-blue-700);
+            color: #fff;
+        }
+
+        .button:hover,
+        .btn:hover,
+        button:hover,
+        input[type=submit]:hover {
+            background-color: var(--fifi-blue-900);
+            border-color: var(--fifi-blue-900);
+        }
+
+        .bottom-menu {
+            background-color: var(--fifi-blue-900) !important;
+        }
+
+        .fifi-hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 122px;
+            overflow: hidden;
+            margin: 14px 20px 18px;
+            padding: 16px 18px;
+            border: 1px solid #cfe4f2;
+            border-radius: 16px;
+            background: linear-gradient(
+                125deg,
+                #e5f3fb,
+                #f7fcff 60%,
+                #d9edf9
+            );
+            color: var(--fifi-blue-950);
+        }
+
+        .content > .fifi-hero {
+            margin: 0 0 18px;
+        }
+
+        .fifi-hero-copy {
+            max-width: calc(100% - 108px);
+        }
+
+        .fifi-hero-title {
+            display: block;
+            margin: 0 0 6px;
+            color: var(--fifi-blue-900);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .07em;
+        }
+
+        .fifi-hero-copy p {
+            margin: 0;
+            color: #58758a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .fifi-hero-art {
+            position: relative;
+            display: grid;
+            width: 94px;
+            height: 86px;
+            flex: 0 0 94px;
+            place-items: center;
+            pointer-events: none;
+        }
+
+        .fifi-orb {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px solid rgba(85, 152, 197, .25);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .75);
+            box-shadow: 0 8px 20px rgba(58, 119, 157, .12);
+        }
+
+        .fifi-icon {
+            position: relative;
+            font-size: 43px;
+            line-height: 1;
+            filter: drop-shadow(0 4px 3px rgba(47, 99, 131, .15));
+            animation: fifi-float 3.6s ease-in-out infinite;
+        }
+
+        .fifi-badge {
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            display: grid;
+            width: 26px;
+            height: 26px;
+            place-items: center;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #dff1fb;
+            color: #347fa8;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .fifi-sparkle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            color: #66a5ca;
+            font-size: 16px;
+            animation: fifi-twinkle 2.8s ease-in-out infinite;
+        }
+
+        @keyframes fifi-float {
+            0%, 100% {
+                transform: translateY(1px);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes fifi-twinkle {
+            0%, 100% {
+                opacity: .5;
+                transform: scale(.9);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fifi-hero {
+                margin-left: 14px;
+                margin-right: 14px;
+                padding: 14px;
+            }
+
+            .fifi-hero-art {
+                width: 76px;
+                flex-basis: 76px;
+            }
+
+            .fifi-hero-copy {
+                max-width: calc(100% - 84px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fifi-icon,
+            .fifi-sparkle {
+                animation: none;
+            }
+        }
+    </style>
+</head>
 
 <body>
-<section class="fifi-hero fifi-hero--examples" aria-label="Ilustrasi contoh soal"><div class="fifi-hero-copy"><span class="fifi-hero-title">CONTOH SOAL PERTEMUAN 3</span><p>Ikuti langkah penyelesaian secara bertahap.</p></div><div class="fifi-hero-art" aria-hidden="true"><span class="fifi-orb"></span><span class="fifi-icon">💡</span><span class="fifi-sparkle">✦</span><span class="fifi-badge">∑</span></div></section>
 
-<div class="container">
+<div class="app">
 
-    <div class="header">
-        <a href="pertemuan3.html" class="back">← Kembali</a>
+    <!-- HEADER -->
+    <header>
+        <a href="pertemuan3.html">
+            ← Kembali
+        </a>
 
         <h1>📝 Contoh Soal</h1>
         <p>Operasi Pengurangan Matriks</p>
-    </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="fifi-hero fifi-hero--examples"
+             aria-label="Ilustrasi contoh soal">
+        <div class="fifi-hero-copy">
+            <span class="fifi-hero-title">
+                CONTOH SOAL PERTEMUAN 3
+            </span>
+            <p>Ikuti langkah penyelesaian secara bertahap.</p>
+        </div>
+
+        <div class="fifi-hero-art" aria-hidden="true">
+            <span class="fifi-orb"></span>
+            <span class="fifi-icon">💡</span>
+            <span class="fifi-sparkle">✦</span>
+            <span class="fifi-badge">∑</span>
+        </div>
+    </section>
 
     <div class="content">
 
         <!-- SOAL 1 -->
-        <div class="question">
-            <h2>
-                1. Diketahui matriks 
-                <div class="matrix-container">P = <div class="matrix"><div>5</div><div>2</div><div>-1</div><div>4</div></div></div> 
-                dan 
-                <div class="matrix-container">Q = <div class="matrix"><div>2</div><div>-3</div><div>4</div><div>1</div></div></div>. 
-                Hasil dari P - Q adalah...
-            </h2>
+        <div class="soal">
+            <h2>Soal 1</h2>
+
+            <div class="pertanyaan">
+                Diketahui matriks P dan matriks Q berikut.
+
+                <div class="matrix-row">
+                    <strong>P =</strong>
+                    <div class="matrix-container">
+                        <div class="matrix">
+                            <div>5</div><div>2</div>
+                            <div>-1</div><div>4</div>
+                        </div>
+                    </div>
+
+                    <strong>dan Q =</strong>
+                    <div class="matrix-container">
+                        <div class="matrix">
+                            <div>2</div><div>-3</div>
+                            <div>4</div><div>1</div>
+                        </div>
+                    </div>
+                </div>
+
+                Hasil dari <strong>P - Q</strong> adalah ....
+            </div>
 
             <div class="option">
-                A. &nbsp;
-                <div class="matrix-container"><div class="matrix"><div>3</div><div>-1</div><div>-5</div><div>3</div></div></div>
+                A.
+                <div class="matrix-container">
+                    <div class="matrix">
+                        <div>3</div><div>-1</div>
+                        <div>-5</div><div>3</div>
+                    </div>
+                </div>
             </div>
+
             <div class="option">
-                B. &nbsp;
-                <div class="matrix-container"><div class="matrix"><div>3</div><div>5</div><div>3</div><div>3</div></div></div>
+                B.
+                <div class="matrix-container">
+                    <div class="matrix">
+                        <div>3</div><div>5</div>
+                        <div>3</div><div>3</div>
+                    </div>
+                </div>
             </div>
+
             <div class="option">
-                C. &nbsp;
-                <div class="matrix-container"><div class="matrix"><div>3</div><div>5</div><div>-5</div><div>3</div></div></div>
+                C.
+                <div class="matrix-container">
+                    <div class="matrix">
+                        <div>3</div><div>5</div>
+                        <div>-5</div><div>3</div>
+                    </div>
+                </div>
             </div>
+
             <div class="option">
-                D. &nbsp;
-                <div class="matrix-container"><div class="matrix"><div>7</div><div>-1</div><div>3</div><div>5</div></div></div>
+                D.
+                <div class="matrix-container">
+                    <div class="matrix">
+                        <div>7</div><div>-1</div>
+                        <div>3</div><div>5</div>
+                    </div>
+                </div>
             </div>
 
             <div class="answer">
-                <strong>Jawaban: C</strong><br>
-                <strong>Penyelesaian:</strong><br>
-                Kurangkan setiap elemen yang seletak:<br>
-                • Baris 1 Kolom 1 &rarr; 5 - 2 = 3<br>
-                • Baris 1 Kolom 2 &rarr; 2 - (-3) = 2 + 3 = 5<br>
-                • Baris 2 Kolom 1 &rarr; -1 - 4 = -5<br>
-                • Baris 2 Kolom 2 &rarr; 4 - 1 = 3<br>
-                Maka, didapatkan hasil matriks akhir bernilai komponen 3, 5, -5, dan 3.
+                <strong class="answer-title">✅ Jawaban: C</strong>
+                <strong>Penyelesaian:</strong>
+                <p>Kurangkan setiap elemen yang seletak:</p>
+
+                <p>• Baris 1 kolom 1: 5 - 2 = 3</p>
+                <p>• Baris 1 kolom 2: 2 - (-3) = 2 + 3 = 5</p>
+                <p>• Baris 2 kolom 1: -1 - 4 = -5</p>
+                <p>• Baris 2 kolom 2: 4 - 1 = 3</p>
+
+                <p>
+                    Jadi, hasil dari P - Q adalah:
+                </p>
+
+                <div class="matrix-container">
+                    =
+                    <div class="matrix">
+                        <div>3</div><div>5</div>
+                        <div>-5</div><div>3</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- SOAL 2 -->
-        <div class="question">
-            <h2>
-                2. Perhatikan operasi pengurangan berikut: <br>
-                <div class="matrix-container">
-                    <div class="matrix"><div>8</div><div>4</div><div>3</div><div>1</div></div>
-                    -
-                    <div class="matrix"><div>-6</div><div>5</div><div>-9</div><div>6</div></div>
-                    = ...
+        <div class="soal">
+            <h2>Soal 2</h2>
+
+            <div class="pertanyaan">
+                Perhatikan operasi pengurangan matriks berikut.
+
+                <div class="matrix-row">
+                    <div class="matrix-container">
+                        <div class="matrix">
+                            <div>8</div><div>4</div>
+                            <div>3</div><div>1</div>
+                        </div>
+                    </div>
+
+                    <span class="operator">-</span>
+
+                    <div class="matrix-container">
+                        <div class="matrix">
+                            <div>-6</div><div>5</div>
+                            <div>-9</div><div>6</div>
+                        </div>
+                    </div>
+
+                    <span class="operator">= ...</span>
                 </div>
-            </h2>
-
-            <div class="option">
-                A. &nbsp;
-                <div class="matrix-container"><div class="matrix"><div>14</div><div>-1</div><div>12</div><div>-5</div></div></div>
-            </div>
-            <div class="option">
-                B. &nbsp;
-                <div class="matrix-container"><div class="matrix"><div>2</div><div>-1</div><div>-6</div><div>-5</div></div></div>
-            </div>
-            <div class="option">
-                C. &nbsp;
-                <div class="matrix-container"><div class="matrix"><div>14</div><div>9</div><div>12</div><div>7</div></div></div>
-            </div>
-            <div class="option">
-                D. &nbsp;
-                <div class="matrix-container"><div class="matrix"><div>2</div><div>9</div><div>12</div><div>-5</div></div></div>
             </div>
 
-            <div class="answer">
-                <strong>Jawaban: A</strong><br>
-                <strong>Penyelesaian:</strong><br>
+            <div class="option">
+                A.
                 <div class="matrix-container">
-                    = 
-                    <div class="matrix">
-                        <div>8 - (-6)</div><div>4 - 5</div>
-                        <div>3 - (-9)</div><div>1 - 6</div>
-                    </div>
-                </div><br>
-                <div class="matrix-container">
-                    = 
-                    <div class="matrix">
-                        <div>8 + 6</div><div>-1</div>
-                        <div>3 + 9</div><div>-5</div>
-                    </div>
-                </div><br>
-                <div class="matrix-container">
-                    = 
                     <div class="matrix">
                         <div>14</div><div>-1</div>
                         <div>12</div><div>-5</div>
                     </div>
                 </div>
             </div>
+
+            <div class="option">
+                B.
+                <div class="matrix-container">
+                    <div class="matrix">
+                        <div>2</div><div>-1</div>
+                        <div>-6</div><div>-5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option">
+                C.
+                <div class="matrix-container">
+                    <div class="matrix">
+                        <div>14</div><div>9</div>
+                        <div>12</div><div>7</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option">
+                D.
+                <div class="matrix-container">
+                    <div class="matrix">
+                        <div>2</div><div>9</div>
+                        <div>12</div><div>-5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="answer">
+                <strong class="answer-title">✅ Jawaban: A</strong>
+                <strong>Penyelesaian:</strong>
+
+                <div class="solution-step">
+                    <p>Langkah 1: Kurangkan elemen yang seletak.</p>
+                    <div class="matrix-container">
+                        =
+                        <div class="matrix">
+                            <div>8 - (-6)</div><div>4 - 5</div>
+                            <div>3 - (-9)</div><div>1 - 6</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-step">
+                    <p>Langkah 2: Sederhanakan operasi hitung.</p>
+                    <div class="matrix-container">
+                        =
+                        <div class="matrix">
+                            <div>8 + 6</div><div>-1</div>
+                            <div>3 + 9</div><div>-5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-step">
+                    <p>Langkah 3: Hitung hasil akhirnya.</p>
+                    <div class="matrix-container">
+                        =
+                        <div class="matrix">
+                            <div>14</div><div>-1</div>
+                            <div>12</div><div>-5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- SOAL 3 -->
-        <div class="question">
-            <h2>
-                3. Diketahui operasi matriks berikut: <br>
-                <div class="matrix-container">
-                    <div class="matrix"><div>x</div><div>9</div><div>6</div><div>7</div></div>
-                    -
-                    <div class="matrix"><div>4</div><div>y</div><div>1</div><div>2</div></div>
-                    =
-                    <div class="matrix"><div>2</div><div>5</div><div>5</div><div>5</div></div>
+        <div class="soal">
+            <h2>Soal 3</h2>
+
+            <div class="pertanyaan">
+                Diketahui operasi matriks berikut.
+
+                <div class="matrix-row">
+                    <div class="matrix-container">
+                        <div class="matrix">
+                            <div>x</div><div>9</div>
+                            <div>6</div><div>7</div>
+                        </div>
+                    </div>
+
+                    <span class="operator">-</span>
+
+                    <div class="matrix-container">
+                        <div class="matrix">
+                            <div>4</div><div>y</div>
+                            <div>1</div><div>2</div>
+                        </div>
+                    </div>
+
+                    <span class="operator">=</span>
+
+                    <div class="matrix-container">
+                        <div class="matrix">
+                            <div>2</div><div>5</div>
+                            <div>5</div><div>5</div>
+                        </div>
+                    </div>
                 </div>
-                <br>Nilai dari x dan y secara berturut-turut adalah...
-            </h2>
+
+                Nilai x dan y secara berturut-turut adalah ....
+            </div>
 
             <div class="option">A. x = 2 dan y = 4</div>
             <div class="option">B. x = 6 dan y = 4</div>
@@ -273,26 +667,41 @@ body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,
             <div class="option">D. x = 2 dan y = -4</div>
 
             <div class="answer">
-                <strong>Jawaban: B. x = 6 dan y = 4</strong><br>
-                <strong>Penyelesaian:</strong><br>
-                Berdasarkan elemen-elemen seletak yang memuat variabel:<br>
-                1) Elemen baris 1 kolom 1:<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;x - 4 = 2<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;x = 2 + 4 &rarr; <strong>x = 6</strong><br><br>
-                2) Elemen baris 1 kolom 2:<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;9 - y = 5<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;-y = 5 - 9<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;-y = -4 &rarr; <strong>y = 4</strong>
+                <strong class="answer-title">✅ Jawaban: B. x = 6 dan y = 4</strong>
+                <strong>Penyelesaian:</strong>
+
+                <p>
+                    Berdasarkan elemen-elemen seletak yang memuat variabel:
+                </p>
+
+                <div class="solution-step">
+                    <p><strong>1. Elemen baris 1 kolom 1:</strong></p>
+                    <p>x - 4 = 2</p>
+                    <p>x = 2 + 4</p>
+                    <p><strong>x = 6</strong></p>
+                </div>
+
+                <div class="solution-step">
+                    <p><strong>2. Elemen baris 1 kolom 2:</strong></p>
+                    <p>9 - y = 5</p>
+                    <p>-y = 5 - 9</p>
+                    <p>-y = -4</p>
+                    <p><strong>y = 4</strong></p>
+                </div>
+
+                <p>
+                    Jadi, nilai x = 6 dan y = 4.
+                </p>
             </div>
         </div>
 
         <a href="absensi3.html" class="button">
-            LANJUT KE ABSENSI
+            LANJUT KE ABSENSI →
         </a>
 
     </div>
-
 </div>
+
 <script src="js/auth.js"></script>
 </body>
 </html>
