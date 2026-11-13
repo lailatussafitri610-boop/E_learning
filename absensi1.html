@@ -267,6 +267,7 @@ body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,
 
         <button
             class="button"
+            id="btn-simpan"
             onclick="simpanAbsensi()">
 
             SIMPAN ABSENSI
@@ -288,9 +289,24 @@ body{background-color:var(--fifi-blue-100)!important;color:var(--fifi-ink)}.app,
 </div>
 
 
-<script>
+<script type="module">
+import { initializeApp } from "https://gstatic.com";
+import { getFirestore, collection, addDoc } from "https://gstatic.com";
 
-function simpanAbsensi() {
+const firebaseConfig = {
+  apiKey: "AIzaSyB8U4cR9yu3UoU0rc6UjRU8iG2d3ZogG",
+  authDomain: "://firebaseapp.com",
+  projectId: "e-learning-matematika",
+  storageBucket: "e-learning-matematika.firebasestorage.app",
+  messagingSenderId: "748000078584",
+  appId: "1:748000078584:web:5617e49239cf4c7f6d100",
+  measurementId: "G-K011W8K6Y9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.simpanAbsensi = async function() {
 
     const nama =
         document.getElementById("nama").value.trim();
@@ -300,58 +316,32 @@ function simpanAbsensi() {
             'input[name="status"]:checked'
         );
 
-
-    // Periksa nama
-
     if (nama === "") {
-
         alert("Silakan masukkan nama terlebih dahulu.");
-
         return;
-
     }
-
-
-    // Periksa status
 
     if (!status) {
-
         alert("Silakan pilih status kehadiran.");
-
         return;
-
     }
-localStorage.setItem("absensiPertemuan1", JSON.stringify({
-    nama: nama,
-    status: status.value,
-    pertemuan: 1,
-    waktu: new Date().toLocaleString("id-ID")
-}));
 
-    // Tampilkan pesan
+    const btn = document.getElementById("btn-simpan");
+    btn.disabled = true;
+    btn.innerText = "MENYIMPAN...";
 
-    const message =
-        document.getElementById("message");
+    localStorage.setItem("absensiPertemuan1", JSON.stringify({
+        nama: nama,
+        status: status.value,
+        pertemuan: 1,
+        waktu: new Date().toLocaleString("id-ID")
+    }));
 
+    try {
+        await addDoc(collection(db, "data_siswa"), {
+            nama: nama,
+            kelas: "XI SMA",
+            status: "Absensi Pertemuan 1: " + status.value,
+            waktu: new Date().toISOString()
+        });
 
-    message.style.display = "block";
-
-
-    message.innerHTML = `
-        <strong>✅ Absensi berhasil!</strong>
-        <br><br>
-        Nama: ${nama}
-        <br>
-        Status: ${status.value}
-        <br>
-        Pertemuan: 1
-    `;
-
-}
-
-</script>
-
-<script src="js/auth.js"></script>
-</body>
-
-</html>
